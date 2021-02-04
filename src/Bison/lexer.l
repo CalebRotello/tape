@@ -29,38 +29,39 @@ Sci     [Ee][+-]?{Dec}+
 [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/] loc.lines(yyleng); loc.step(); 
 \/\/(.*)     loc.step(); 
 
-"auto"      { return yy::Parser::make_AUTO      (loc); }
-"break"     { return yy::Parser::make_BREAK     (loc); }
-"case"      { return yy::Parser::make_CASE      (loc); }
-"continue"  { return yy::Parser::make_CONTINUE  (loc); }
-"default"   { return yy::Parser::make_DEFAULT   (loc); }
+ /*"auto"      { return yy::Parser::make_AUTO      (loc); }
+ "break"     { return yy::Parser::make_BREAK     (loc); }
+ "case"      { return yy::Parser::make_CASE      (loc); }
+ "continue"  { return yy::Parser::make_CONTINUE  (loc); }
+ "default"   { return yy::Parser::make_DEFAULT   (loc); } */
 "else"      { return yy::Parser::make_ELSE      (loc); }
-"enum"      { return yy::Parser::make_ENUM      (loc); }
+ /*"enum"      { return yy::Parser::make_ENUM      (loc); } */
 "for"       { return yy::Parser::make_FOR       (loc); }
 "if"        { return yy::Parser::make_IF        (loc); }
 "return"    { return yy::Parser::make_RETURN    (loc); }
-"sizeof"    { return yy::Parser::make_SIZEOF    (loc); }
-"static"    { return yy::Parser::make_STATIC    (loc); }
-"struct"    { return yy::Parser::make_STRUCT    (loc); }
-"switch"    { return yy::Parser::make_SWITCH    (loc); }
-"union"	    { return yy::Parser::make_UNION     (loc); }
+ /*"sizeof"    { return yy::Parser::make_SIZEOF    (loc); }
+ "static"    { return yy::Parser::make_STATIC    (loc); }
+ "struct"    { return yy::Parser::make_STRUCT    (loc); }
+ "switch"    { return yy::Parser::make_SWITCH    (loc); }
+ "union"	    { return yy::Parser::make_UNION     (loc); } */
 "let"       { return yy::Parser::make_LET       (loc); }
+"var"       { return yy::Parser::make_VAR       (loc); }
 "fn"        { return yy::Parser::make_FN        (loc); }
 "while"	    { return yy::Parser::make_WHILE     (loc); }
 
-"void"      { return yy::Parser::make_VOID      (loc); }
-"const"	    { return yy::Parser::make_CONST     (loc); }
-"signed"    { return yy::Parser::make_SIGNED    (loc); }
-"unsigned"  { return yy::Parser::make_UNSIGNED  (loc); }
+ /*"void"      { return yy::Parser::make_VOID      (loc); }
+ "const"	    { return yy::Parser::make_CONST     (loc); }
+ "signed"    { return yy::Parser::make_SIGNED    (loc); }
+ "unsigned"  { return yy::Parser::make_UNSIGNED  (loc); }
 
-"bool"      { return yy::Parser::make_BOOL  (loc); }
+ "bool"      { return yy::Parser::make_BOOL  (loc); } */
 "f32"       { return yy::Parser::make_F32   (loc); }
 "f64"       { return yy::Parser::make_F64   (loc); }
 "i8"        { return yy::Parser::make_I8    (loc); }
 "i16"       { return yy::Parser::make_I16   (loc); }
 "i32"       { return yy::Parser::make_I32   (loc); }
 "i64"       { return yy::Parser::make_I64   (loc); }
-"char"      { return yy::Parser::make_CHAR  (loc); }
+ /*"char"      { return yy::Parser::make_CHAR  (loc); } */
 
 "true"      {  return yy::Parser::make_BOOL_VAL (true, loc); }
 "false"     {  return yy::Parser::make_BOOL_VAL (false, loc); }
@@ -71,7 +72,7 @@ Sci     [Ee][+-]?{Dec}+
 \'[^\\']?\'             { return yy::Parser::make_CHAR_VAL  (yytext[1], loc);   }
 \"(\\.|[^\\"])*\"       { yytext[yyleng-1] = 0; return yy::Parser::make_STRING_VAL(yytext+1, loc); }
 
-"..."   { return yy::Parser::make_ELLIPSIS(loc); }
+ /*"..."   { return yy::Parser::make_ELLIPSIS(loc); }*/
 "+="    { return yy::Parser::make_PLUS_EQ(loc); }
 "-="    { return yy::Parser::make_MINUS_EQ(loc); }
 ">>="   { return yy::Parser::make_RIGHT_EQ(loc); }

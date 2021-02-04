@@ -42,13 +42,11 @@
 
 
 // Unqualified %code blocks.
-#line 28 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 25 "/home/espresso/projects/tape/src/Bison/parser.yy"
 
     #include "Driver.hh"
-    #include "../Ast/AstExpression.hh"
-    StatementList whole_program;
 
-#line 52 "../src/../src/Parser/Parser.cc"
+#line 50 "../src/../src/Parser/Parser.cc"
 
 
 #ifndef YY_
@@ -139,9 +137,9 @@
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 7 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
 namespace yy {
-#line 145 "../src/../src/Parser/Parser.cc"
+#line 143 "../src/../src/Parser/Parser.cc"
 
   /// Build a parser object.
   Parser::Parser (Driver *driver_yyarg)
@@ -210,43 +208,6 @@ namespace yy {
   {
     switch (that.kind ())
     {
-      case symbol_kind::S_atomic_expression: // atomic_expression
-      case symbol_kind::S_postfix_expression: // postfix_expression
-      case symbol_kind::S_unary_expression: // unary_expression
-      case symbol_kind::S_cast_expression: // cast_expression
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-      case symbol_kind::S_additive_expression: // additive_expression
-      case symbol_kind::S_shift_expression: // shift_expression
-      case symbol_kind::S_relational_expression: // relational_expression
-      case symbol_kind::S_equality_expression: // equality_expression
-      case symbol_kind::S_and_expression: // and_expression
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-      case symbol_kind::S_conditional_expression: // conditional_expression
-      case symbol_kind::S_assignment_expression: // assignment_expression
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_constant_expression: // constant_expression
-        value.YY_MOVE_OR_COPY< Expression* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-        value.YY_MOVE_OR_COPY< FunctionDecl* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-        value.YY_MOVE_OR_COPY< ObjDecl* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-        value.YY_MOVE_OR_COPY< Statement* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-        value.YY_MOVE_OR_COPY< VarDecl* > (YY_MOVE (that.value));
-        break;
-
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
         value.YY_MOVE_OR_COPY< bool > (YY_MOVE (that.value));
         break;
@@ -259,11 +220,6 @@ namespace yy {
         value.YY_MOVE_OR_COPY< float > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_assignment_operator: // assignment_operator
-      case symbol_kind::S_unary_operator: // unary_operator
-        value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
-        break;
-
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.YY_MOVE_OR_COPY< long long > (YY_MOVE (that.value));
         break;
@@ -271,10 +227,6 @@ namespace yy {
       case symbol_kind::S_STRING_VAL: // STRING_VAL
       case symbol_kind::S_ID: // ID
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-        value.YY_MOVE_OR_COPY< std::vector<Expression*>* > (YY_MOVE (that.value));
         break;
 
       default:
@@ -292,43 +244,6 @@ namespace yy {
   {
     switch (that.kind ())
     {
-      case symbol_kind::S_atomic_expression: // atomic_expression
-      case symbol_kind::S_postfix_expression: // postfix_expression
-      case symbol_kind::S_unary_expression: // unary_expression
-      case symbol_kind::S_cast_expression: // cast_expression
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-      case symbol_kind::S_additive_expression: // additive_expression
-      case symbol_kind::S_shift_expression: // shift_expression
-      case symbol_kind::S_relational_expression: // relational_expression
-      case symbol_kind::S_equality_expression: // equality_expression
-      case symbol_kind::S_and_expression: // and_expression
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-      case symbol_kind::S_conditional_expression: // conditional_expression
-      case symbol_kind::S_assignment_expression: // assignment_expression
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_constant_expression: // constant_expression
-        value.move< Expression* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-        value.move< FunctionDecl* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-        value.move< ObjDecl* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-        value.move< Statement* > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-        value.move< VarDecl* > (YY_MOVE (that.value));
-        break;
-
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
         value.move< bool > (YY_MOVE (that.value));
         break;
@@ -341,11 +256,6 @@ namespace yy {
         value.move< float > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_assignment_operator: // assignment_operator
-      case symbol_kind::S_unary_operator: // unary_operator
-        value.move< int > (YY_MOVE (that.value));
-        break;
-
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.move< long long > (YY_MOVE (that.value));
         break;
@@ -353,10 +263,6 @@ namespace yy {
       case symbol_kind::S_STRING_VAL: // STRING_VAL
       case symbol_kind::S_ID: // ID
         value.move< std::string > (YY_MOVE (that.value));
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-        value.move< std::vector<Expression*>* > (YY_MOVE (that.value));
         break;
 
       default:
@@ -374,43 +280,6 @@ namespace yy {
     state = that.state;
     switch (that.kind ())
     {
-      case symbol_kind::S_atomic_expression: // atomic_expression
-      case symbol_kind::S_postfix_expression: // postfix_expression
-      case symbol_kind::S_unary_expression: // unary_expression
-      case symbol_kind::S_cast_expression: // cast_expression
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-      case symbol_kind::S_additive_expression: // additive_expression
-      case symbol_kind::S_shift_expression: // shift_expression
-      case symbol_kind::S_relational_expression: // relational_expression
-      case symbol_kind::S_equality_expression: // equality_expression
-      case symbol_kind::S_and_expression: // and_expression
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-      case symbol_kind::S_conditional_expression: // conditional_expression
-      case symbol_kind::S_assignment_expression: // assignment_expression
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_constant_expression: // constant_expression
-        value.copy< Expression* > (that.value);
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-        value.copy< FunctionDecl* > (that.value);
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-        value.copy< ObjDecl* > (that.value);
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-        value.copy< Statement* > (that.value);
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-        value.copy< VarDecl* > (that.value);
-        break;
-
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
         value.copy< bool > (that.value);
         break;
@@ -423,11 +292,6 @@ namespace yy {
         value.copy< float > (that.value);
         break;
 
-      case symbol_kind::S_assignment_operator: // assignment_operator
-      case symbol_kind::S_unary_operator: // unary_operator
-        value.copy< int > (that.value);
-        break;
-
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.copy< long long > (that.value);
         break;
@@ -435,10 +299,6 @@ namespace yy {
       case symbol_kind::S_STRING_VAL: // STRING_VAL
       case symbol_kind::S_ID: // ID
         value.copy< std::string > (that.value);
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-        value.copy< std::vector<Expression*>* > (that.value);
         break;
 
       default:
@@ -455,43 +315,6 @@ namespace yy {
     state = that.state;
     switch (that.kind ())
     {
-      case symbol_kind::S_atomic_expression: // atomic_expression
-      case symbol_kind::S_postfix_expression: // postfix_expression
-      case symbol_kind::S_unary_expression: // unary_expression
-      case symbol_kind::S_cast_expression: // cast_expression
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-      case symbol_kind::S_additive_expression: // additive_expression
-      case symbol_kind::S_shift_expression: // shift_expression
-      case symbol_kind::S_relational_expression: // relational_expression
-      case symbol_kind::S_equality_expression: // equality_expression
-      case symbol_kind::S_and_expression: // and_expression
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-      case symbol_kind::S_conditional_expression: // conditional_expression
-      case symbol_kind::S_assignment_expression: // assignment_expression
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_constant_expression: // constant_expression
-        value.move< Expression* > (that.value);
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-        value.move< FunctionDecl* > (that.value);
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-        value.move< ObjDecl* > (that.value);
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-        value.move< Statement* > (that.value);
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-        value.move< VarDecl* > (that.value);
-        break;
-
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
         value.move< bool > (that.value);
         break;
@@ -504,11 +327,6 @@ namespace yy {
         value.move< float > (that.value);
         break;
 
-      case symbol_kind::S_assignment_operator: // assignment_operator
-      case symbol_kind::S_unary_operator: // unary_operator
-        value.move< int > (that.value);
-        break;
-
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.move< long long > (that.value);
         break;
@@ -516,10 +334,6 @@ namespace yy {
       case symbol_kind::S_STRING_VAL: // STRING_VAL
       case symbol_kind::S_ID: // ID
         value.move< std::string > (that.value);
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-        value.move< std::vector<Expression*>* > (that.value);
         break;
 
       default:
@@ -559,825 +373,645 @@ namespace yy {
         switch (yykind)
     {
       case symbol_kind::S_EQ: // "="
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 379 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_PLUS: // "+"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 385 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_MINUS: // "-"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 391 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_AT: // "@"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 397 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_AMP: // "&"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 403 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_PIPE: // "|"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 409 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_FSLASH: // "/"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 415 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_STAR: // "*"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 421 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_MOD: // "%"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 427 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_LPAREN: // "("
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 433 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_RPAREN: // ")"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 439 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_LSQUARE: // "["
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 445 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_RSQUARE: // "]"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 451 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_LBRACE: // "{"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 457 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_RBRACE: // "}"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 463 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_SC: // ";"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 469 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_LT: // "<"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 475 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_GT: // ">"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 481 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_COLON: // ":"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 487 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_CARROT: // "^"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 493 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_COMMA: // ","
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 499 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_QUESTION: // "?"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 505 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_DOT: // "."
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 511 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_BANG: // "!"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 517 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_TILDE: // "~"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 523 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_INT_VAL: // INT_VAL
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < long long > (); }
+#line 529 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < float > (); }
+#line 535 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_STRING_VAL: // STRING_VAL
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < std::string > (); }
+#line 541 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_CHAR_VAL: // CHAR_VAL
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < char > (); }
+#line 547 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_BOOL_VAL: // BOOL_VAL
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < bool > (); }
+#line 553 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_ID: // ID
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < std::string > (); }
+#line 559 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_POINTER: // POINTER
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 565 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_PLUS: // "+"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_INCREMENT: // INCREMENT
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 571 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_MINUS: // "-"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_DECREMENT: // DECREMENT
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 577 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_AT: // "@"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_LEFT: // LEFT
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 583 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_AMP: // "&"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_RIGHT: // RIGHT
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 589 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_PIPE: // "|"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_AMP_AMP: // AMP_AMP
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 595 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_FSLASH: // "/"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_PIPE_PIPE: // PIPE_PIPE
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 601 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_STAR: // "*"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_STAR_EQ: // STAR_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 607 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_MOD: // "%"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_FSLASH_EQ: // FSLASH_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 613 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LPAREN: // "("
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_MOD_EQ: // MOD_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 619 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_RPAREN: // ")"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_PLUS_EQ: // PLUS_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 625 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LSQUARE: // "["
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_MINUS_EQ: // MINUS_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 631 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_RSQUARE: // "]"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_LEFT_EQ: // LEFT_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 637 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LBRACE: // "{"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_RIGHT_EQ: // RIGHT_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 643 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_RBRACE: // "}"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_AMP_EQ: // AMP_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 649 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_SC: // ";"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_CARROT_EQ: // CARROT_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 655 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LT: // "<"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_PIPE_EQ: // PIPE_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 661 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_GT: // ">"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_LT_EQ: // LT_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 667 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_COLON: // ":"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_GT_EQ: // GT_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 673 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_CARROT: // "^"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_EQ_EQ: // EQ_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 679 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_COMMA: // ","
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_BANG_EQ: // BANG_EQ
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 685 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_QUESTION: // "?"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_IF: // IF
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 691 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_DOT: // "."
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_ELSE: // ELSE
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 697 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_BANG: // "!"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_FN: // FN
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 703 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_TILDE: // "~"
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_LET: // LET
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 709 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_INT_VAL: // INT_VAL
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < long long > (); }
+      case symbol_kind::S_VAR: // VAR
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 715 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < float > (); }
+      case symbol_kind::S_TYPE: // TYPE
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 721 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_STRING_VAL: // STRING_VAL
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < std::string > (); }
+      case symbol_kind::S_RETURN: // RETURN
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 727 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_CHAR_VAL: // CHAR_VAL
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < char > (); }
+      case symbol_kind::S_FOR: // FOR
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 733 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_BOOL_VAL: // BOOL_VAL
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < bool > (); }
+      case symbol_kind::S_WHILE: // WHILE
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 739 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_TYPE_NAME: // TYPE_NAME
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_MATCH: // MATCH
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 745 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_ID: // ID
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < std::string > (); }
+      case symbol_kind::S_BREAK: // BREAK
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
 #line 751 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_POINTER: // POINTER
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_CONTINUE: // CONTINUE
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 757 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_INCREMENT: // INCREMENT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_TYPE_NAME: // TYPE_NAME
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 763 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_DECREMENT: // DECREMENT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_I8: // I8
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 769 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LEFT: // LEFT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_I16: // I16
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 775 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_RIGHT: // RIGHT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_I32: // I32
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 781 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_AMP_AMP: // AMP_AMP
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_I64: // I64
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 787 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_PIPE_PIPE: // PIPE_PIPE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_F32: // F32
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 793 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_STAR_EQ: // STAR_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_F64: // F64
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 799 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_FSLASH_EQ: // FSLASH_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_74_: // "->"
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 805 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_MOD_EQ: // MOD_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_program: // program
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 811 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_PLUS_EQ: // PLUS_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_global_declaration: // global_declaration
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 817 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_MINUS_EQ: // MINUS_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_type_declaration: // type_declaration
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 823 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LEFT_EQ: // LEFT_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_declaration_type: // declaration_type
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 829 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_RIGHT_EQ: // RIGHT_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_type: // type
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 835 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_AMP_EQ: // AMP_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_declaration: // declaration
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 841 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_CARROT_EQ: // CARROT_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 847 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_PIPE_EQ: // PIPE_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_function_declaration: // function_declaration
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 853 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LT_EQ: // LT_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_parameter_list: // parameter_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 859 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_GT_EQ: // GT_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_parameter: // parameter
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 865 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_EQ_EQ: // EQ_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_statement_list: // statement_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 871 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_BANG_EQ: // BANG_EQ
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_statement: // statement
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 877 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_TYPEDEF: // TYPEDEF
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_statement_box: // statement_box
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 883 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_EXTERN: // EXTERN
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_iteration_statement: // iteration_statement
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 889 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_STATIC: // STATIC
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_flow_statement: // flow_statement
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 895 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_AUTO: // AUTO
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_conditional_statement: // conditional_statement
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 901 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_REGISTER: // REGISTER
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_expression_statement: // expression_statement
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 907 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_SIZEOF: // SIZEOF
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_initializer: // initializer
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 913 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_CHAR: // CHAR
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_initializer_list: // initializer_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 919 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_SIGNED: // SIGNED
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_expression: // expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 925 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_UNSIGNED: // UNSIGNED
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_atomic_expression: // atomic_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 931 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_CONST: // CONST
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_postfix_expression: // postfix_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 937 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_VOLATILE: // VOLATILE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_argument_expression_list: // argument_expression_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 943 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_VOID: // VOID
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_unary_expression: // unary_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 949 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_BOOL: // BOOL
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 955 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_LAMBDA: // LAMBDA
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_additive_expression: // additive_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 961 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_I8: // I8
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_relational_expression: // relational_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 967 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_I16: // I16
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_equality_expression: // equality_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 973 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_I32: // I32
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_logical_expression: // logical_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 979 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_I64: // I64
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_constant_expression: // constant_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 985 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_F32: // F32
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_conditional_expression: // conditional_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 991 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_F64: // F64
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_assignment_expression: // assignment_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 997 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_STRUCT: // STRUCT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_match_expression: // match_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 1003 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_UNION: // UNION
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_pattern_list: // pattern_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 1009 "../src/../src/Parser/Parser.cc"
         break;
 
-      case symbol_kind::S_ENUM: // ENUM
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
+      case symbol_kind::S_pattern: // pattern
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
 #line 1015 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_ELLIPSIS: // ELLIPSIS
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1021 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_FN: // FN
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1027 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_LET: // LET
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1033 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_CASE: // CASE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1039 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_DEFAULT: // DEFAULT
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1045 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_IF: // IF
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1051 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_ELSE: // ELSE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1057 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_SWITCH: // SWITCH
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1063 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_WHILE: // WHILE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1069 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_FOR: // FOR
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1075 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_CONTINUE: // CONTINUE
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1081 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_BREAK: // BREAK
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1087 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_RETURN: // RETURN
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1093 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_program: // program
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1099 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Statement* > (); }
-#line 1105 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < FunctionDecl* > (); }
-#line 1111 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_parameter_list: // parameter_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1117 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_parameter: // parameter
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1123 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_declaration_list: // declaration_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1129 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_declaration: // declaration
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1135 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < ObjDecl* > (); }
-#line 1141 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_id_list: // id_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1147 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_struct_or_union: // struct_or_union
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1153 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_declaration_specifier: // declaration_specifier
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1159 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_type_suffix_list: // type_suffix_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1165 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_type_suffix: // type_suffix
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1171 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_type_name: // type_name
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1177 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_type_qualifier: // type_qualifier
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1183 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_initializer: // initializer
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1189 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_initializer_list: // initializer_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1195 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_statement_list: // statement_list
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1201 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_statement: // statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1207 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_conditional_statement: // conditional_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1213 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_compound_statement: // compound_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1219 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_labeled_statement: // labeled_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1225 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_jump_statement: // jump_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1231 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_expression_statement: // expression_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1237 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < VarDecl* > (); }
-#line 1243 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_switch_statement: // switch_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1249 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_iteration_statement: // iteration_statement
-#line 35 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 1255 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_atomic_expression: // atomic_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1261 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_postfix_expression: // postfix_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1267 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < std::vector<Expression*>* > (); }
-#line 1273 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_unary_expression: // unary_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1279 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_cast_expression: // cast_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1285 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1291 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_additive_expression: // additive_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1297 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_shift_expression: // shift_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1303 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_relational_expression: // relational_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1309 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_equality_expression: // equality_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1315 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_and_expression: // and_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1321 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1327 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1333 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1339 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1345 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_conditional_expression: // conditional_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1351 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_assignment_expression: // assignment_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1357 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_expression: // expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1363 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_constant_expression: // constant_expression
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < Expression* > (); }
-#line 1369 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_assignment_operator: // assignment_operator
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < int > (); }
-#line 1375 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_unary_operator: // unary_operator
-#line 34 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << yysym.value.template as < int > (); }
-#line 1381 "../src/../src/Parser/Parser.cc"
         break;
 
       default:
@@ -1617,43 +1251,6 @@ namespace yy {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case symbol_kind::S_atomic_expression: // atomic_expression
-      case symbol_kind::S_postfix_expression: // postfix_expression
-      case symbol_kind::S_unary_expression: // unary_expression
-      case symbol_kind::S_cast_expression: // cast_expression
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-      case symbol_kind::S_additive_expression: // additive_expression
-      case symbol_kind::S_shift_expression: // shift_expression
-      case symbol_kind::S_relational_expression: // relational_expression
-      case symbol_kind::S_equality_expression: // equality_expression
-      case symbol_kind::S_and_expression: // and_expression
-      case symbol_kind::S_exclusive_or_expression: // exclusive_or_expression
-      case symbol_kind::S_inclusive_or_expression: // inclusive_or_expression
-      case symbol_kind::S_logical_and_expression: // logical_and_expression
-      case symbol_kind::S_logical_or_expression: // logical_or_expression
-      case symbol_kind::S_conditional_expression: // conditional_expression
-      case symbol_kind::S_assignment_expression: // assignment_expression
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_constant_expression: // constant_expression
-        yylhs.value.emplace< Expression* > ();
-        break;
-
-      case symbol_kind::S_function_definition: // function_definition
-        yylhs.value.emplace< FunctionDecl* > ();
-        break;
-
-      case symbol_kind::S_object_declaration_expression: // object_declaration_expression
-        yylhs.value.emplace< ObjDecl* > ();
-        break;
-
-      case symbol_kind::S_global_declaration: // global_declaration
-        yylhs.value.emplace< Statement* > ();
-        break;
-
-      case symbol_kind::S_declaration_expression: // declaration_expression
-        yylhs.value.emplace< VarDecl* > ();
-        break;
-
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
         yylhs.value.emplace< bool > ();
         break;
@@ -1666,11 +1263,6 @@ namespace yy {
         yylhs.value.emplace< float > ();
         break;
 
-      case symbol_kind::S_assignment_operator: // assignment_operator
-      case symbol_kind::S_unary_operator: // unary_operator
-        yylhs.value.emplace< int > ();
-        break;
-
       case symbol_kind::S_INT_VAL: // INT_VAL
         yylhs.value.emplace< long long > ();
         break;
@@ -1678,10 +1270,6 @@ namespace yy {
       case symbol_kind::S_STRING_VAL: // STRING_VAL
       case symbol_kind::S_ID: // ID
         yylhs.value.emplace< std::string > ();
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-        yylhs.value.emplace< std::vector<Expression*>* > ();
         break;
 
       default:
@@ -1704,482 +1292,8 @@ namespace yy {
         {
           switch (yyn)
             {
-  case 2: // program: global_declaration
-#line 109 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                    { whole_program = std::vector<Statement*>(); whole_program.push_back(yystack_[0].value.as < Statement* > ()); }
-#line 1711 "../src/../src/Parser/Parser.cc"
-    break;
 
-  case 3: // program: program global_declaration
-#line 110 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                    { whole_program.push_back(yystack_[0].value.as < Statement* > ()); }
-#line 1717 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 4: // global_declaration: function_definition
-#line 114 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                { yylhs.value.as < Statement* > () = yystack_[0].value.as < FunctionDecl* > (); }
-#line 1723 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 5: // global_declaration: declaration_expression
-#line 115 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                { yylhs.value.as < Statement* > () = yystack_[0].value.as < VarDecl* > (); }
-#line 1729 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 6: // global_declaration: object_declaration_expression
-#line 116 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Statement* > () = yystack_[0].value.as < ObjDecl* > (); }
-#line 1735 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 7: // function_definition: FN ID "(" ")" ":" declaration_specifier compound_statement
-#line 121 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                                    { yylhs.value.as < FunctionDecl* > () = new FunctionDecl(); }
-#line 1741 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 70: // atomic_expression: ID
-#line 287 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new Identifier(yystack_[0].value.as < std::string > ()); }
-#line 1747 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 71: // atomic_expression: INT_VAL
-#line 288 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new IVal(yystack_[0].value.as < long long > ()); }
-#line 1753 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 72: // atomic_expression: CHAR_VAL
-#line 289 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new CVal(yystack_[0].value.as < char > ()); }
-#line 1759 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 73: // atomic_expression: BOOL_VAL
-#line 290 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new BVal(yystack_[0].value.as < bool > ()); }
-#line 1765 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 74: // atomic_expression: FLOAT_VAL
-#line 291 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new FVal(yystack_[0].value.as < float > ()); }
-#line 1771 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 75: // atomic_expression: STRING_VAL
-#line 292 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = new SVal(yystack_[0].value.as < std::string > ()); }
-#line 1777 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 76: // atomic_expression: "(" expression ")"
-#line 293 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                            { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); }
-#line 1783 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 77: // postfix_expression: atomic_expression
-#line 297 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1789 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 78: // postfix_expression: postfix_expression "[" expression "]"
-#line 298 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = yystack_[3].value.as < Expression* > (); }
-#line 1795 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 79: // postfix_expression: postfix_expression "(" ")"
-#line 299 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new FunctionCall(yystack_[2].value.as < Expression* > (), nullptr); }
-#line 1801 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 80: // postfix_expression: postfix_expression "(" argument_expression_list ")"
-#line 300 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new FunctionCall(yystack_[3].value.as < Expression* > (), yystack_[1].value.as < std::vector<Expression*>* > ()); }
-#line 1807 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 81: // postfix_expression: postfix_expression "." ID
-#line 301 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new AccessCall(yystack_[2].value.as < Expression* > (), new Identifier(yystack_[0].value.as < std::string > ())); }
-#line 1813 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 82: // postfix_expression: postfix_expression POINTER ID
-#line 302 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new AccessCall(yystack_[2].value.as < Expression* > (), new Identifier(yystack_[0].value.as < std::string > ())); }
-#line 1819 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 83: // postfix_expression: postfix_expression INCREMENT
-#line 303 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_PLUS, yystack_[1].value.as < Expression* > (), new IVal(1)); }
-#line 1825 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 84: // postfix_expression: postfix_expression DECREMENT
-#line 304 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_MINUS, yystack_[1].value.as < Expression* > (), new IVal(1));}
-#line 1831 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 85: // argument_expression_list: assignment_expression
-#line 308 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { ExpressionList *l = new ExpressionList; l->push_back(yystack_[0].value.as < Expression* > ()); }
-#line 1837 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 86: // argument_expression_list: argument_expression_list "," assignment_expression
-#line 309 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yystack_[2].value.as < std::vector<Expression*>* > ()->push_back(yystack_[0].value.as < Expression* > ()); yylhs.value.as < std::vector<Expression*>* > () = yystack_[2].value.as < std::vector<Expression*>* > (); }
-#line 1843 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 87: // unary_expression: postfix_expression
-#line 313 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1849 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 88: // unary_expression: INCREMENT unary_expression
-#line 314 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_PLUS, new IVal(1), yystack_[0].value.as < Expression* > ()); }
-#line 1855 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 89: // unary_expression: DECREMENT unary_expression
-#line 315 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_MINUS, new IVal(1), yystack_[0].value.as < Expression* > ()); }
-#line 1861 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 90: // unary_expression: unary_operator cast_expression
-#line 316 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Expression* > () = new UnaryExpr(yystack_[1].value.as < int > (), yystack_[0].value.as < Expression* > ()); }
-#line 1867 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 91: // unary_expression: SIZEOF "(" type_name ")"
-#line 318 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                        { yylhs.value.as < Expression* > () = new IVal(1); }
-#line 1873 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 92: // cast_expression: unary_expression
-#line 322 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                            { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1879 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 93: // multiplicative_expression: cast_expression
-#line 327 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1885 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 94: // multiplicative_expression: multiplicative_expression "*" cast_expression
-#line 328 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_STAR, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ());    }
-#line 1891 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 95: // multiplicative_expression: multiplicative_expression "/" cast_expression
-#line 329 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_FSLASH, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ());  }
-#line 1897 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 96: // multiplicative_expression: multiplicative_expression "%" cast_expression
-#line 330 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_MOD, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ());     }
-#line 1903 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 97: // additive_expression: multiplicative_expression
-#line 334 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1909 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 98: // additive_expression: additive_expression "+" multiplicative_expression
-#line 335 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_PLUS, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ());    }
-#line 1915 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 99: // additive_expression: additive_expression "-" multiplicative_expression
-#line 336 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_MINUS, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ());   }
-#line 1921 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 100: // shift_expression: additive_expression
-#line 340 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                    { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1927 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 101: // shift_expression: shift_expression LEFT additive_expression
-#line 341 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                    { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_LEFT, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1933 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 102: // shift_expression: shift_expression RIGHT additive_expression
-#line 342 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                    { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_RIGHT, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1939 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 103: // relational_expression: shift_expression
-#line 346 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1945 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 104: // relational_expression: relational_expression "<" shift_expression
-#line 347 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_LT, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1951 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 105: // relational_expression: relational_expression ">" shift_expression
-#line 348 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_GT, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1957 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 106: // relational_expression: relational_expression LT_EQ shift_expression
-#line 349 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_LT_EQ, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1963 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 107: // relational_expression: relational_expression GT_EQ shift_expression
-#line 350 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                        { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_GT_EQ, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1969 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 108: // equality_expression: relational_expression
-#line 354 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1975 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 109: // equality_expression: equality_expression EQ_EQ relational_expression
-#line 355 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_EQ_EQ, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1981 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 110: // equality_expression: equality_expression BANG_EQ relational_expression
-#line 356 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_BANG_EQ, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1987 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 111: // and_expression: equality_expression
-#line 360 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 1993 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 112: // and_expression: and_expression "&" equality_expression
-#line 361 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_AMP, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 1999 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 113: // exclusive_or_expression: and_expression
-#line 365 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                    { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2005 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 114: // exclusive_or_expression: exclusive_or_expression "^" and_expression
-#line 366 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                    { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_CARROT, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2011 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 115: // inclusive_or_expression: exclusive_or_expression
-#line 370 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2017 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 116: // inclusive_or_expression: inclusive_or_expression "|" exclusive_or_expression
-#line 371 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                            { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_PIPE, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2023 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 117: // logical_and_expression: inclusive_or_expression
-#line 375 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2029 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 118: // logical_and_expression: logical_and_expression AMP_AMP inclusive_or_expression
-#line 376 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_AMP_AMP, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2035 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 119: // logical_or_expression: logical_and_expression
-#line 380 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2041 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 120: // logical_or_expression: logical_or_expression PIPE_PIPE logical_and_expression
-#line 381 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                { yylhs.value.as < Expression* > () = new BinaryExpr(yy::Parser::symbol_kind_type::S_PIPE_PIPE, yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2047 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 121: // conditional_expression: logical_or_expression
-#line 385 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                        { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2053 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 122: // conditional_expression: logical_or_expression "?" expression ":" conditional_expression
-#line 386 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                        { yylhs.value.as < Expression* > () = new OrExpr(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2059 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 123: // assignment_expression: conditional_expression
-#line 391 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                   {yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2065 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 124: // assignment_expression: unary_expression assignment_operator assignment_expression
-#line 392 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                                   {yylhs.value.as < Expression* > () = new AssignmentExpr(yystack_[1].value.as < int > (), yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > ()); }
-#line 2071 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 125: // expression: assignment_expression
-#line 396 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                                { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2077 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 126: // constant_expression: conditional_expression
-#line 401 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                                { yylhs.value.as < Expression* > () = yystack_[0].value.as < Expression* > (); }
-#line 2083 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 127: // assignment_operator: "="
-#line 406 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_EQ; }
-#line 2089 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 128: // assignment_operator: STAR_EQ
-#line 407 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_STAR_EQ; }
-#line 2095 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 129: // assignment_operator: FSLASH_EQ
-#line 408 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_FSLASH_EQ; }
-#line 2101 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 130: // assignment_operator: MOD_EQ
-#line 409 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MOD_EQ; }
-#line 2107 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 131: // assignment_operator: PLUS_EQ
-#line 410 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_PLUS_EQ; }
-#line 2113 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 132: // assignment_operator: MINUS_EQ
-#line 411 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MINUS_EQ; }
-#line 2119 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 133: // assignment_operator: LEFT_EQ
-#line 412 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_LEFT_EQ; }
-#line 2125 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 134: // assignment_operator: RIGHT_EQ
-#line 413 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_RIGHT_EQ; }
-#line 2131 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 135: // assignment_operator: AMP_EQ
-#line 414 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_AMP_EQ; }
-#line 2137 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 136: // assignment_operator: CARROT_EQ
-#line 415 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_CARROT_EQ; }
-#line 2143 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 137: // assignment_operator: PIPE_EQ
-#line 416 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                    { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_PIPE_EQ; }
-#line 2149 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 138: // unary_operator: "@"
-#line 420 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_AT;      }
-#line 2155 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 139: // unary_operator: "-"
-#line 421 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MINUS;   }
-#line 2161 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 140: // unary_operator: "&"
-#line 422 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_AMP;    }
-#line 2167 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 141: // unary_operator: "!"
-#line 423 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_BANG;    }
-#line 2173 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 142: // unary_operator: "~"
-#line 424 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_TILDE;   }
-#line 2179 "../src/../src/Parser/Parser.cc"
-    break;
-
-
-#line 2183 "../src/../src/Parser/Parser.cc"
+#line 1297 "../src/../src/Parser/Parser.cc"
 
             default:
               break;
@@ -2366,31 +1480,23 @@ namespace yy {
     "end of file", "error", "invalid token", "=", "+", "-", "@", "&", "|",
   "/", "*", "%", "(", ")", "[", "]", "{", "}", ";", "<", ">", ":", "^",
   ",", "?", ".", "!", "~", "INT_VAL", "FLOAT_VAL", "STRING_VAL",
-  "CHAR_VAL", "BOOL_VAL", "TYPE_NAME", "ID", "POINTER", "INCREMENT",
-  "DECREMENT", "LEFT", "RIGHT", "AMP_AMP", "PIPE_PIPE", "STAR_EQ",
-  "FSLASH_EQ", "MOD_EQ", "PLUS_EQ", "MINUS_EQ", "LEFT_EQ", "RIGHT_EQ",
-  "AMP_EQ", "CARROT_EQ", "PIPE_EQ", "LT_EQ", "GT_EQ", "EQ_EQ", "BANG_EQ",
-  "TYPEDEF", "EXTERN", "STATIC", "AUTO", "REGISTER", "SIZEOF", "CHAR",
-  "SIGNED", "UNSIGNED", "CONST", "VOLATILE", "VOID", "BOOL", "LAMBDA",
-  "I8", "I16", "I32", "I64", "F32", "F64", "STRUCT", "UNION", "ENUM",
-  "ELLIPSIS", "FN", "LET", "CASE", "DEFAULT", "IF", "ELSE", "SWITCH",
-  "WHILE", "FOR", "CONTINUE", "BREAK", "RETURN", "$accept", "program",
-  "global_declaration", "function_definition", "parameter_list",
-  "parameter", "declaration_list", "declaration",
-  "object_declaration_expression", "id_list", "struct_or_union",
-  "declaration_specifier", "type_suffix_list", "type_suffix", "type_name",
-  "type_qualifier", "initializer", "initializer_list", "statement_list",
-  "statement", "conditional_statement", "compound_statement",
-  "labeled_statement", "jump_statement", "expression_statement",
-  "declaration_expression", "switch_statement", "iteration_statement",
+  "CHAR_VAL", "BOOL_VAL", "ID", "POINTER", "INCREMENT", "DECREMENT",
+  "LEFT", "RIGHT", "AMP_AMP", "PIPE_PIPE", "STAR_EQ", "FSLASH_EQ",
+  "MOD_EQ", "PLUS_EQ", "MINUS_EQ", "LEFT_EQ", "RIGHT_EQ", "AMP_EQ",
+  "CARROT_EQ", "PIPE_EQ", "LT_EQ", "GT_EQ", "EQ_EQ", "BANG_EQ", "IF",
+  "ELSE", "FN", "LET", "VAR", "TYPE", "RETURN", "FOR", "WHILE", "MATCH",
+  "BREAK", "CONTINUE", "TYPE_NAME", "I8", "I16", "I32", "I64", "F32",
+  "F64", "->", "$accept", "program", "global_declaration",
+  "type_declaration", "declaration_type", "type", "declaration",
+  "declaration_hypothesis", "function_declaration", "parameter_list",
+  "parameter", "statement_list", "statement", "statement_box",
+  "iteration_statement", "flow_statement", "conditional_statement",
+  "expression_statement", "initializer", "initializer_list", "expression",
   "atomic_expression", "postfix_expression", "argument_expression_list",
-  "unary_expression", "cast_expression", "multiplicative_expression",
-  "additive_expression", "shift_expression", "relational_expression",
-  "equality_expression", "and_expression", "exclusive_or_expression",
-  "inclusive_or_expression", "logical_and_expression",
-  "logical_or_expression", "conditional_expression",
-  "assignment_expression", "expression", "constant_expression",
-  "assignment_operator", "unary_operator", YY_NULLPTR
+  "unary_expression", "multiplicative_expression", "additive_expression",
+  "relational_expression", "equality_expression", "logical_expression",
+  "constant_expression", "conditional_expression", "assignment_expression",
+  "match_expression", "pattern_list", "pattern", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -2655,250 +1761,229 @@ namespace yy {
   }
 
 
-  const short Parser::yypact_ninf_ = -173;
+  const short Parser::yypact_ninf_ = -150;
 
-  const signed char Parser::yytable_ninf_ = -1;
+  const signed char Parser::yytable_ninf_ = -17;
 
   const short
   Parser::yypact_[] =
   {
-      69,  -173,  -173,   -26,   -19,    25,  -173,  -173,  -173,    13,
-    -173,    46,  -173,    93,   131,  -173,  -173,   109,     5,  -173,
-    -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,
-    -173,     4,     2,    59,   -11,  -173,    86,    96,    14,  -173,
-    -173,  -173,  -173,   321,     4,  -173,  -173,  -173,  -173,  -173,
-    -173,  -173,  -173,   321,   321,    91,  -173,    51,  -173,    36,
-     317,  -173,   104,   154,   123,    -7,   110,   127,   125,   143,
-     116,   -17,  -173,  -173,   321,  -173,  -173,   165,  -173,   145,
-      26,  -173,     2,     2,   156,   150,  -173,   177,    45,  -173,
-    -173,   165,  -173,     4,   273,   321,   159,   161,  -173,  -173,
-     321,   321,   321,   321,   321,   321,   321,   321,   321,   321,
-     321,   321,   321,   321,   321,   321,   321,   321,   321,   321,
-    -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,
-    -173,  -173,  -173,  -173,  -173,   176,  -173,   181,  -173,     2,
-    -173,  -173,  -173,   187,  -173,  -173,    43,  -173,   186,  -173,
-    -173,  -173,  -173,  -173,  -173,   104,   104,   154,   154,   123,
-     123,   123,   123,    -7,    -7,   110,   127,   125,   143,   182,
-     116,   102,  -173,   180,  -173,   181,  -173,  -173,   321,  -173,
-     321,  -173,   309,  -173,  -173,   321,   183,   190,   193,   201,
-     203,   200,   202,   216,    92,  -173,  -173,  -173,  -173,  -173,
-    -173,  -173,  -173,  -173,   207,  -173,  -173,  -173,  -173,  -173,
-     204,   205,   180,   321,   321,   321,   216,  -173,  -173,  -173,
-    -173,  -173,  -173,  -173,   180,  -173,   217,   218,   236,   216,
-    -173,   180,   180,   180,   321,   144,  -173,  -173,   238,   180,
-     180,  -173,  -173
+      42,   -12,  -150,  -150,    10,     6,  -150,    67,    86,    63,
+    -150,    96,  -150,  -150,  -150,    94,   252,    93,    -4,    82,
+     252,  -150,  -150,  -150,  -150,  -150,   106,   359,   359,   -12,
+     252,  -150,  -150,  -150,  -150,  -150,   117,  -150,   118,  -150,
+     137,   132,    73,    13,    29,   -19,   114,  -150,  -150,  -150,
+    -150,   -30,  -150,    93,    93,   127,   120,   129,   131,  -150,
+    -150,  -150,   134,   252,  -150,   298,   252,   115,   119,  -150,
+    -150,   359,   359,   359,   359,   359,   359,   359,   359,   359,
+     359,   359,   359,   252,  -150,  -150,   145,  -150,    93,    82,
+     146,  -150,   252,   152,  -150,     0,  -150,  -150,   151,  -150,
+    -150,  -150,  -150,  -150,  -150,    73,    73,    13,    13,    13,
+      13,    29,    29,   126,   110,    28,  -150,  -150,    95,     3,
+    -150,  -150,  -150,   359,  -150,   252,   135,  -150,  -150,  -150,
+     125,  -150,   252,  -150,  -150,   158,    62,   162,   252,   163,
+     164,   159,   160,   176,  -150,  -150,  -150,  -150,  -150,  -150,
+     174,  -150,   168,  -150,  -150,   252,   180,   173,   252,  -150,
+    -150,   222,  -150,    93,   186,  -150,   173,   187,   328,  -150,
+       7,   189,  -150,   194,   125,   252,   125,     5,  -150,  -150,
+     328,  -150,  -150,   155,   199,  -150,  -150,  -150,   125,   125,
+    -150,  -150
   };
 
-  const unsigned char
+  const signed char
   Parser::yydefact_[] =
   {
-       0,    20,    21,     0,     0,     0,     2,     4,     6,     0,
-       5,     0,    18,     0,     0,     1,     3,     0,     0,   127,
-      66,   128,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,     0,    39,     0,     0,    17,     0,     0,     0,     9,
-     139,   138,   140,     0,     0,   141,   142,    71,    74,    75,
-      72,    73,    70,     0,     0,     0,    43,     0,    77,    87,
-      92,    93,    97,   100,   103,   108,   111,   113,   115,   117,
-     119,   121,   123,    41,     0,    40,    14,     0,    19,     0,
-       0,    12,    39,    39,     0,     0,   125,     0,     0,    88,
-      89,     0,    65,     0,     0,     0,     0,     0,    83,    84,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      92,    90,    38,    37,    28,    35,    36,    29,    30,    31,
-      32,    33,    34,    23,    16,     0,    13,     0,    11,    39,
-      10,    76,    42,     0,    44,    79,     0,    85,     0,    81,
-      82,   124,    95,    94,    96,    98,    99,   101,   102,   104,
-     105,   106,   107,   109,   110,   112,   114,   116,   118,     0,
-     120,    22,    15,     0,     7,     0,    91,    80,     0,    78,
-       0,    25,     0,    24,    64,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,    45,    48,    47,    50,    53,
-      49,    63,    52,    51,     0,     8,    86,   122,    26,   126,
-       0,     0,     0,     0,     0,     0,     0,    61,    60,    59,
-      56,    46,    62,    27,     0,    58,     0,     0,     0,     0,
-      57,     0,     0,     0,     0,    54,    67,    69,     0,     0,
-       0,    55,    68
+       0,     0,    18,    19,     0,     0,     2,     0,     0,     0,
+       6,     0,     7,     1,     3,     0,     0,     8,     0,     0,
+       0,    52,    55,    56,    53,    54,    51,     0,     0,    15,
+       0,    10,    11,    12,    13,    14,     0,    48,     0,    58,
+      68,    72,    76,    79,    84,    87,     0,    90,    88,    50,
+      49,     0,    17,     8,     8,     0,    23,     0,     0,    15,
+      69,    70,     0,     0,     5,     0,     0,     0,     0,    64,
+      65,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,    16,     9,     0,    25,     8,     0,
+       0,    57,     0,     0,    60,     0,    72,    66,     0,    62,
+      63,    91,    74,    73,    75,    77,    78,    80,    81,    82,
+      83,    85,    86,     0,     0,     0,    24,     4,     0,     0,
+      93,    71,    61,     0,    59,     0,     0,    26,    21,    20,
+       0,    92,     0,    67,    89,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,    95,    28,    32,    31,    29,    30,
+       0,    94,     0,    33,    27,     0,     0,     0,     0,    37,
+      38,     0,    41,     8,     0,    36,     0,     0,     0,    46,
+       0,     0,    45,     0,     0,     0,     0,     0,    45,    43,
+       0,    42,    22,    39,     0,    35,    44,    47,     0,     0,
+      40,    34
   };
 
   const short
   Parser::yypgoto_[] =
   {
-    -173,  -173,   249,  -173,  -173,   170,  -173,   -29,  -173,  -173,
-    -173,   -80,  -173,  -173,   166,  -173,   163,   214,  -173,   160,
-    -173,  -133,  -173,  -173,  -172,    95,  -173,  -173,  -173,  -173,
-    -173,   -25,   -48,    62,    82,    22,    56,   146,   157,   149,
-     142,   155,  -173,  -163,   -30,   -43,  -173,   213,  -173
+    -150,  -150,   208,  -150,   -52,   165,    32,  -150,    72,   -14,
+    -150,  -150,  -103,  -104,  -150,  -150,  -150,  -142,    34,    47,
+     -16,  -150,  -150,  -150,   -20,    12,    27,    31,  -150,  -150,
+     -55,  -150,  -149,  -150,  -150,    85
   };
 
   const short
   Parser::yydefgoto_[] =
   {
-      -1,     5,     6,     7,    38,    39,    80,    13,     8,    14,
-       9,    76,   171,   183,   133,    77,    56,    57,   194,   195,
-     196,   197,   198,   199,   200,   201,   202,   203,    58,    59,
-     146,    60,    61,    62,    63,    64,    65,    66,    67,    68,
-      69,    70,    71,    72,    86,   204,   210,    31,    74
+      -1,     5,     6,     7,    52,    36,   143,     9,    37,    55,
+      56,   136,   144,   145,   146,   147,   148,   149,   169,   170,
+     150,    39,    40,    95,    41,    42,    43,    44,    45,    46,
+      47,    48,    49,    50,   119,   120
   };
 
-  const unsigned char
+  const short
   Parser::yytable_[] =
   {
-      87,    73,   137,   138,   174,    81,    79,   118,    11,    40,
-      41,    42,   108,   109,    73,    12,    43,   207,    36,   209,
-      44,   219,   211,    12,   119,    15,   121,    84,    89,    90,
-      45,    46,    47,    48,    49,    50,    51,    85,    52,    37,
-      53,    54,   205,   135,   229,   110,   111,    17,    94,   120,
-      95,   136,   148,   152,   153,   154,   177,   234,    18,   175,
-      12,    96,   142,    73,   147,    55,   178,    75,    93,    92,
-     151,    97,    98,    99,    93,   169,   120,   120,   120,   120,
-     120,   120,   120,   120,   120,   120,   120,   120,   120,   120,
-     120,   120,   120,    78,   120,    10,    19,    40,    41,    42,
-      10,     1,     2,    91,    43,     3,     4,    82,   173,   220,
-     184,    20,   181,   101,   102,   103,   182,    83,    45,    46,
-      47,    48,    49,    50,    51,    34,    52,    35,    53,    54,
-     159,   160,   161,   162,   114,    21,    22,    23,    24,    25,
-      26,    27,    28,    29,    30,     1,     2,   115,   206,     3,
-       4,   116,    32,    55,    33,   120,   117,   120,   104,   105,
-     120,   106,   107,   134,   112,   113,   155,   156,   163,   164,
-     226,   227,   228,     4,   185,   186,   187,   139,   188,   189,
-     190,   191,   192,   193,    37,    40,    41,    42,   157,   158,
-     141,   238,    43,   149,   172,   150,   173,   173,   184,   122,
-     176,   179,   213,   180,   212,   214,    45,    46,    47,    48,
-      49,    50,    51,   215,    52,   216,    53,    54,   217,   223,
-     218,    40,    41,    42,   123,   222,   224,   124,    43,   239,
-     231,   232,   125,   126,   184,   127,   128,   129,   130,   131,
-     132,    55,    45,    46,    47,    48,    49,    50,    51,   233,
-      52,   240,    53,    54,    16,   140,   144,   143,    88,   168,
-     165,     4,   185,   186,   187,   167,   188,   189,   190,   191,
-     192,   193,   166,   100,   170,     0,     0,    55,    40,    41,
-      42,     0,     0,     0,     0,    43,   145,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     4,     0,    45,
-      46,    47,    48,    49,    50,    51,     0,    52,     0,    53,
-      54,     0,     0,     0,    40,    41,    42,     0,     0,     0,
-      19,    43,     0,     0,   208,     0,    40,    41,    42,     0,
-       0,     0,     0,    43,    55,    45,    46,    47,    48,    49,
-      50,    51,     0,    52,     0,    53,    54,    45,    46,    47,
-      48,    49,    50,    51,   221,    52,     0,    53,    54,    21,
-      22,    23,    24,    25,    26,    27,    28,    29,    30,     0,
-      55,     0,   225,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    55,     0,   230,     0,     0,     0,     0,     0,
-       0,   235,   236,   237,     0,     0,     0,     0,     0,   241,
-     242
+      38,    86,    87,    84,    58,    57,    13,    60,    61,    53,
+      97,   129,   172,   122,    62,   166,   101,    75,    76,   178,
+     131,    11,   186,   123,   175,   179,   132,    59,   180,    54,
+     180,   178,     8,   154,    81,    82,   115,     8,    31,    32,
+      33,    34,    35,    12,   127,    96,   128,    93,    77,    78,
+      98,    96,   102,   103,   104,    96,    96,    96,    96,    96,
+      96,    96,    96,     1,     2,     3,     4,   113,   133,   182,
+      15,   183,    10,   185,    20,   116,   118,    10,   127,   153,
+      79,    80,    72,    73,    74,   190,   191,   105,   106,    16,
+      21,    22,    23,    24,    25,    26,    17,    27,    28,     1,
+       2,     3,     4,    96,   107,   108,   109,   110,    18,   134,
+      19,   173,   111,   112,    51,    54,   118,   137,   -16,    29,
+       2,     3,   156,   138,   139,   140,    30,   141,   142,    63,
+      31,    32,    33,    34,    35,    71,    64,    20,    83,   164,
+      88,   127,   167,    89,    91,   171,    90,   125,    99,    65,
+      92,    66,   100,    21,    22,    23,    24,    25,    26,   184,
+      27,    28,    67,   114,   117,   121,   124,   126,   135,   130,
+     152,    68,    69,    70,   155,   157,   158,   159,   160,   161,
+     137,   163,    29,     2,     3,    20,   138,   139,   140,    30,
+     141,   142,   162,    31,    32,    33,    34,    35,   165,   174,
+     176,    21,    22,    23,    24,    25,    26,   181,    27,    28,
+     127,   188,   189,    14,   187,   177,    85,   151,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+      29,     2,     3,     0,    20,     0,     0,    30,   168,     0,
+       0,    31,    32,    33,    34,    35,     0,     0,     0,     0,
+      21,    22,    23,    24,    25,    26,     0,    27,    28,     0,
+       0,     0,     0,     0,    20,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    29,
+      21,    22,    23,    24,    25,    26,    30,    27,    28,     0,
+      31,    32,    33,    34,    35,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    29,
+      20,    94,     0,     0,     0,     0,    30,     0,     0,     0,
+      31,    32,    33,    34,    35,     0,    21,    22,    23,    24,
+      25,    26,     0,    27,    28,     0,     0,     0,     0,     0,
+      20,     0,     0,     0,   168,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    59,    21,    22,    23,    24,
+      25,    26,     0,    27,    28,     0,    31,    32,    33,    34,
+      35,    20,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    59,     0,    21,    22,    23,
+      24,    25,    26,     0,    27,    28,    31,    32,    33,    34,
+      35,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,    59,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    31,    32,    33,
+      34,    35
   };
 
   const short
   Parser::yycheck_[] =
   {
-      43,    31,    82,    83,   137,    34,    17,    24,    34,     5,
-       6,     7,    19,    20,    44,    34,    12,   180,    13,   182,
-      16,   193,   185,    34,    41,     0,    74,    13,    53,    54,
-      26,    27,    28,    29,    30,    31,    32,    23,    34,    34,
-      36,    37,   175,    17,   216,    52,    53,    34,    12,    74,
-      14,    80,    95,   101,   102,   103,    13,   229,    12,   139,
-      34,    25,    17,    93,    94,    61,    23,    65,    23,    18,
-     100,    35,    36,    37,    23,   118,   101,   102,   103,   104,
-     105,   106,   107,   108,   109,   110,   111,   112,   113,   114,
-     115,   116,   117,    34,   119,     0,     3,     5,     6,     7,
-       5,    76,    77,    12,    12,    80,    81,    21,    16,    17,
-      18,    18,    10,     9,    10,    11,    14,    21,    26,    27,
-      28,    29,    30,    31,    32,    16,    34,    18,    36,    37,
-     108,   109,   110,   111,     7,    42,    43,    44,    45,    46,
-      47,    48,    49,    50,    51,    76,    77,    22,   178,    80,
-      81,     8,    21,    61,    23,   180,    40,   182,     4,     5,
-     185,    38,    39,    18,    54,    55,   104,   105,   112,   113,
-     213,   214,   215,    81,    82,    83,    84,    21,    86,    87,
-      88,    89,    90,    91,    34,     5,     6,     7,   106,   107,
-      13,   234,    12,    34,    18,    34,    16,    16,    18,    34,
-      13,    15,    12,    21,    21,    12,    26,    27,    28,    29,
-      30,    31,    32,    12,    34,    12,    36,    37,    18,    15,
-      18,     5,     6,     7,    59,    18,    21,    62,    12,    85,
-      13,    13,    67,    68,    18,    70,    71,    72,    73,    74,
-      75,    61,    26,    27,    28,    29,    30,    31,    32,    13,
-      34,    13,    36,    37,     5,    85,    93,    91,    44,   117,
-     114,    81,    82,    83,    84,   116,    86,    87,    88,    89,
-      90,    91,   115,    60,   119,    -1,    -1,    61,     5,     6,
-       7,    -1,    -1,    -1,    -1,    12,    13,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    81,    -1,    26,
-      27,    28,    29,    30,    31,    32,    -1,    34,    -1,    36,
-      37,    -1,    -1,    -1,     5,     6,     7,    -1,    -1,    -1,
-       3,    12,    -1,    -1,    15,    -1,     5,     6,     7,    -1,
-      -1,    -1,    -1,    12,    61,    26,    27,    28,    29,    30,
-      31,    32,    -1,    34,    -1,    36,    37,    26,    27,    28,
-      29,    30,    31,    32,   194,    34,    -1,    36,    37,    42,
-      43,    44,    45,    46,    47,    48,    49,    50,    51,    -1,
-      61,    -1,   212,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    61,    -1,   224,    -1,    -1,    -1,    -1,    -1,
-      -1,   231,   232,   233,    -1,    -1,    -1,    -1,    -1,   239,
-     240
+      16,    53,    54,    33,    20,    19,     0,    27,    28,    13,
+      65,   115,   161,    13,    30,   157,    71,     4,     5,   168,
+      17,    33,    17,    23,   166,    18,    23,    57,    23,    33,
+      23,   180,     0,   136,    53,    54,    88,     5,    68,    69,
+      70,    71,    72,    33,    16,    65,    18,    63,    19,    20,
+      66,    71,    72,    73,    74,    75,    76,    77,    78,    79,
+      80,    81,    82,    57,    58,    59,    60,    83,   123,   173,
+       3,   174,     0,   176,    12,    89,    92,     5,    16,    17,
+      51,    52,     9,    10,    11,   188,   189,    75,    76,     3,
+      28,    29,    30,    31,    32,    33,    33,    35,    36,    57,
+      58,    59,    60,   123,    77,    78,    79,    80,    12,   125,
+      16,   163,    81,    82,    21,    33,   132,    55,    12,    57,
+      58,    59,   138,    61,    62,    63,    64,    65,    66,    12,
+      68,    69,    70,    71,    72,     3,    18,    12,    24,   155,
+      13,    16,   158,    23,    13,   161,    17,    21,    33,    12,
+      16,    14,    33,    28,    29,    30,    31,    32,    33,   175,
+      35,    36,    25,    18,    18,    13,    15,    57,    33,    74,
+      12,    34,    35,    36,    12,    12,    12,    18,    18,     3,
+      55,    13,    57,    58,    59,    12,    61,    62,    63,    64,
+      65,    66,    18,    68,    69,    70,    71,    72,    18,    13,
+      13,    28,    29,    30,    31,    32,    33,    18,    35,    36,
+      16,    56,    13,     5,   180,   168,    51,   132,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      57,    58,    59,    -1,    12,    -1,    -1,    64,    16,    -1,
+      -1,    68,    69,    70,    71,    72,    -1,    -1,    -1,    -1,
+      28,    29,    30,    31,    32,    33,    -1,    35,    36,    -1,
+      -1,    -1,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,
+      28,    29,    30,    31,    32,    33,    64,    35,    36,    -1,
+      68,    69,    70,    71,    72,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,
+      12,    13,    -1,    -1,    -1,    -1,    64,    -1,    -1,    -1,
+      68,    69,    70,    71,    72,    -1,    28,    29,    30,    31,
+      32,    33,    -1,    35,    36,    -1,    -1,    -1,    -1,    -1,
+      12,    -1,    -1,    -1,    16,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    57,    28,    29,    30,    31,
+      32,    33,    -1,    35,    36,    -1,    68,    69,    70,    71,
+      72,    12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    57,    -1,    28,    29,    30,
+      31,    32,    33,    -1,    35,    36,    68,    69,    70,    71,
+      72,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    57,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    68,    69,    70,
+      71,    72
   };
 
-  const unsigned char
+  const signed char
   Parser::yystos_[] =
   {
-       0,    76,    77,    80,    81,    93,    94,    95,   100,   102,
-     117,    34,    34,    99,   101,     0,    94,    34,    12,     3,
-      18,    42,    43,    44,    45,    46,    47,    48,    49,    50,
-      51,   139,    21,    23,    16,    18,    13,    34,    96,    97,
-       5,     6,     7,    12,    16,    26,    27,    28,    29,    30,
-      31,    32,    34,    36,    37,    61,   108,   109,   120,   121,
-     123,   124,   125,   126,   127,   128,   129,   130,   131,   132,
-     133,   134,   135,   136,   140,    65,   103,   107,    34,    17,
-      98,    99,    21,    21,    13,    23,   136,   137,   109,   123,
-     123,    12,    18,    23,    12,    14,    25,    35,    36,    37,
-     139,     9,    10,    11,     4,     5,    38,    39,    19,    20,
-      52,    53,    54,    55,     7,    22,     8,    40,    24,    41,
-     123,   124,    34,    59,    62,    67,    68,    70,    71,    72,
-      73,    74,    75,   106,    18,    17,    99,   103,   103,    21,
-      97,    13,    17,   106,   108,    13,   122,   136,   137,    34,
-      34,   136,   124,   124,   124,   125,   125,   126,   126,   127,
-     127,   127,   127,   128,   128,   129,   130,   131,   132,   137,
-     133,   104,    18,    16,   113,   103,    13,    13,    23,    15,
-      21,    10,    14,   105,    18,    82,    83,    84,    86,    87,
-      88,    89,    90,    91,   110,   111,   112,   113,   114,   115,
-     116,   117,   118,   119,   137,   113,   136,   135,    15,   135,
-     138,   135,    21,    12,    12,    12,    12,    18,    18,   116,
-      17,   111,    18,    15,    21,   111,   137,   137,   137,   116,
-     111,    13,    13,    13,   116,   111,   111,   111,   137,    85,
-      13,   111,   111
+       0,    57,    58,    59,    60,    76,    77,    78,    81,    82,
+      83,    33,    33,     0,    77,     3,     3,    33,    12,    16,
+      12,    28,    29,    30,    31,    32,    33,    35,    36,    57,
+      64,    68,    69,    70,    71,    72,    80,    83,    95,    96,
+      97,    99,   100,   101,   102,   103,   104,   105,   106,   107,
+     108,    21,    79,    13,    33,    84,    85,    84,    95,    57,
+      99,    99,    95,    12,    18,    12,    14,    25,    34,    35,
+      36,     3,     9,    10,    11,     4,     5,    19,    20,    51,
+      52,    53,    54,    24,    33,    80,    79,    79,    13,    23,
+      17,    13,    16,    95,    13,    98,    99,   105,    95,    33,
+      33,   105,    99,    99,    99,   100,   100,   101,   101,   101,
+     101,   102,   102,    95,    18,    79,    84,    18,    95,   109,
+     110,    13,    13,    23,    15,    21,    57,    16,    18,    88,
+      74,    17,    23,   105,    95,    33,    86,    55,    61,    62,
+      63,    65,    66,    81,    87,    88,    89,    90,    91,    92,
+      95,   110,    12,    17,    87,    12,    95,    12,    12,    18,
+      18,     3,    18,    13,    95,    18,    92,    95,    16,    93,
+      94,    95,   107,    79,    13,    92,    13,    94,   107,    18,
+      23,    18,    88,    87,    95,    87,    17,    93,    56,    13,
+      87,    87
   };
 
-  const unsigned char
+  const signed char
   Parser::yyr1_[] =
   {
-       0,    92,    93,    93,    94,    94,    94,    95,    95,    96,
-      96,    97,    98,    98,    99,   100,   100,   100,   101,   101,
-     102,   102,   103,   104,   104,   105,   105,   105,   106,   106,
-     106,   106,   106,   106,   106,   106,   106,   106,   106,   107,
-     107,   108,   108,   109,   109,   110,   110,   111,   111,   111,
-     111,   111,   111,   111,   112,   112,   113,   114,   114,   115,
-     115,   115,   116,   116,   116,   117,   117,   118,   119,   119,
-     120,   120,   120,   120,   120,   120,   120,   121,   121,   121,
-     121,   121,   121,   121,   121,   122,   122,   123,   123,   123,
-     123,   123,   124,   125,   125,   125,   125,   126,   126,   126,
-     127,   127,   127,   128,   128,   128,   128,   128,   129,   129,
-     129,   130,   130,   131,   131,   132,   132,   133,   133,   134,
-     134,   135,   135,   136,   136,   137,   138,   139,   139,   139,
-     139,   139,   139,   139,   139,   139,   139,   139,   140,   140,
-     140,   140,   140
+       0,    75,    76,    76,    77,    77,    77,    78,    79,    79,
+      80,    80,    80,    80,    80,    80,    80,    81,    82,    82,
+      83,    83,    83,    84,    84,    85,    86,    86,    87,    87,
+      87,    87,    87,    88,    89,    89,    90,    90,    90,    91,
+      91,    92,    92,    92,    93,    93,    94,    94,    95,    95,
+      95,    96,    96,    96,    96,    96,    96,    96,    97,    97,
+      97,    97,    97,    97,    97,    97,    98,    98,    99,    99,
+      99,    99,   100,   100,   100,   100,   101,   101,   101,   102,
+     102,   102,   102,   102,   103,   103,   103,   104,   105,   106,
+     107,   107,   108,   109,   109,   110
   };
 
   const signed char
   Parser::yyr2_[] =
   {
-       0,     2,     1,     2,     1,     1,     1,     7,     8,     1,
-       3,     3,     1,     2,     3,     6,     5,     3,     1,     3,
-       1,     1,     3,     0,     2,     1,     2,     3,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     0,
-       1,     1,     3,     1,     3,     1,     2,     1,     1,     1,
-       1,     1,     1,     1,     5,     7,     3,     4,     3,     2,
-       2,     2,     2,     1,     1,     5,     3,     5,     7,     5,
-       1,     1,     1,     1,     1,     1,     3,     1,     4,     3,
-       4,     3,     3,     2,     2,     1,     3,     1,     2,     2,
-       2,     4,     1,     1,     3,     3,     3,     1,     3,     3,
-       1,     3,     3,     1,     3,     3,     3,     3,     1,     3,
-       3,     1,     3,     1,     3,     1,     3,     1,     3,     1,
-       3,     1,     5,     1,     3,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1
+       0,     2,     1,     2,     6,     4,     1,     2,     0,     2,
+       1,     1,     1,     1,     1,     1,     1,     3,     1,     1,
+       7,     7,    12,     1,     3,     2,     0,     2,     1,     1,
+       1,     1,     1,     3,     7,     5,     3,     2,     2,     5,
+       7,     2,     4,     4,     3,     1,     1,     3,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     3,     1,     4,
+       3,     4,     3,     3,     2,     2,     1,     3,     1,     2,
+       2,     4,     1,     3,     3,     3,     1,     3,     3,     1,
+       3,     3,     3,     3,     1,     3,     3,     1,     1,     5,
+       1,     3,     5,     1,     3,     3
   };
 
 
@@ -2908,21 +1993,16 @@ namespace yy {
   const short
   Parser::yyrline_[] =
   {
-       0,   109,   109,   110,   114,   115,   116,   121,   122,   126,
-     127,   131,   136,   137,   141,   145,   146,   147,   151,   152,
-     156,   157,   162,   166,   167,   171,   172,   173,   177,   178,
-     179,   180,   181,   182,   183,   184,   185,   186,   189,   204,
-     205,   209,   211,   215,   216,   229,   230,   234,   235,   236,
-     237,   238,   239,   240,   244,   245,   249,   253,   254,   258,
-     259,   260,   264,   265,   266,   270,   271,   274,   278,   279,
-     287,   288,   289,   290,   291,   292,   293,   297,   298,   299,
-     300,   301,   302,   303,   304,   308,   309,   313,   314,   315,
-     316,   318,   322,   327,   328,   329,   330,   334,   335,   336,
-     340,   341,   342,   346,   347,   348,   349,   350,   354,   355,
-     356,   360,   361,   365,   366,   370,   371,   375,   376,   380,
-     381,   385,   386,   391,   392,   396,   401,   406,   407,   408,
-     409,   410,   411,   412,   413,   414,   415,   416,   420,   421,
-     422,   423,   424
+       0,    92,    92,    93,    97,    98,    99,   103,   107,   108,
+     112,   112,   112,   112,   112,   112,   112,   116,   120,   120,
+     123,   124,   125,   130,   131,   135,   140,   141,   145,   146,
+     148,   149,   150,   154,   158,   159,   163,   164,   165,   169,
+     170,   174,   175,   176,   180,   181,   185,   186,   191,   192,
+     193,   197,   198,   199,   200,   201,   202,   203,   207,   208,
+     209,   210,   211,   212,   213,   214,   218,   219,   223,   224,
+     225,   226,   231,   232,   233,   234,   238,   239,   240,   244,
+     245,   246,   247,   248,   252,   253,   254,   258,   268,   272,
+     276,   277,   283,   287,   288,   292
   };
 
   void
@@ -2953,35 +2033,13 @@ namespace yy {
 #endif // YYDEBUG
 
 
-#line 7 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
 } // yy
-#line 2959 "../src/../src/Parser/Parser.cc"
+#line 2039 "../src/../src/Parser/Parser.cc"
 
-#line 429 "/home/espresso/projects/tape/src/Bison/parser.yy"
-
-
+#line 295 "/home/espresso/projects/tape/src/Bison/parser.yy"
+ 
 
 void yy::Parser::error(const location_type &loc, const std::string &msg) {
     std::cerr << loc << ": " << msg << std::endl;
 }
-
-//int char_to_sym(char c) {
-//    switch (c) {
-//    case '*':
-//        return yy::Parser::symbol_kind_type::S_STAR;
-//    case '+':
-//        return yy::Parser::symbol_kind_type::S_PLUS;
-//    case '-':
-//        return yy::Parser::symbol_kind_type::S_MINUS;
-//    case '/':
-//        return yy::Parser::symbol_kind_type::S_FSLASH;
-//    case '@':
-//        return yy::Parser::symbol_kind_type::S_AT;
-//    case '&':
-//        return yy::Parser::symbol_kind_type::S_AMP;  
-//    case ''
-//        return yy::Parser::symbol_kind_type::S_BANG; 
-//        return yy::Parser::symbol_kind_type::S_TILDE;
-//    }
-//    return yy::Parser::symbol_kind_type::S_YYUNDEF;
-//}

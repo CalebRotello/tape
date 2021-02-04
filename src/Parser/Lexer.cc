@@ -1,6 +1,6 @@
-#line 1 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 1 "../src/../src/../src/Parser/Lexer.cc"
 
-#line 3 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 3 "../src/../src/../src/Parser/Lexer.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -434,8 +434,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 /* %% [3.0] code to copy yytext_ptr to yytext[] goes here, if %array \ */\
 	(yy_c_buf_p) = yy_cp;
 /* %% [4.0] data tables for the DFA and the user's section 1 definitions go here */
-#define YY_NUM_RULES 90
-#define YY_END_OF_BUFFER 91
+#define YY_NUM_RULES 73
+#define YY_END_OF_BUFFER 74
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -443,30 +443,22 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[199] =
+static const flex_int16_t yy_accept[123] =
     {   0,
-        0,    0,   91,   89,   87,   88,   74,   89,   80,   73,
-       89,   68,   69,   78,   77,   66,   76,   72,   79,   36,
-       67,   63,   82,   62,   83,   86,   81,   35,   70,   71,
-       84,   35,   35,   35,   35,   35,   35,   35,   35,   35,
-       35,   35,   35,   35,   35,   64,   85,   65,   75,   87,
-       61,    0,   39,    0,   47,   56,   49,    0,   38,   45,
-       53,   41,   54,   42,   55,    0,    0,    2,   46,   37,
-       36,   52,   58,   60,   59,   51,   35,   48,   35,   35,
-       35,   35,   35,   35,   35,   35,   35,   35,   35,   35,
-       19,   35,   35,   35,   35,   28,   11,   35,   35,   35,
+        0,    0,   74,   72,   70,   71,   57,   72,   63,   56,
+       72,   51,   52,   61,   60,   49,   59,   55,   62,   20,
+       50,   46,   65,   45,   66,   69,   64,   19,   53,   54,
+       67,   19,   19,   19,   19,   19,   19,   19,   19,   47,
+       68,   48,   58,   70,   44,    0,   23,    0,   30,   39,
+       32,    0,   22,   28,   36,   24,   37,   25,   38,    0,
+        2,   29,   21,   20,   35,   41,   43,   42,   34,   19,
+       31,   19,   19,   19,   19,    9,   19,   19,   19,   19,
+       13,    5,   19,   19,   19,   19,   19,   33,   40,    0,
+        0,    2,   21,   27,   26,   19,   11,   12,   19,    4,
 
-       35,   35,   35,   35,   35,   35,   50,   57,   40,    0,
-        0,    2,   37,   44,   43,   35,   35,   35,   35,   35,
-       35,   35,   35,   35,   26,   27,   35,   10,   29,   30,
-       31,   18,   35,   35,   35,   35,   35,   35,   35,   35,
-       35,   35,   35,    0,    1,    3,   25,   35,    5,   32,
-       35,   35,   35,    8,    9,   35,   35,   35,   35,   35,
-       35,   35,   33,   35,   35,   21,   35,    0,    0,    4,
-       22,   35,   35,   34,   35,   35,   35,   35,   35,   35,
-       17,   35,   20,   35,   35,   12,   23,   13,   14,   15,
-       16,   35,   35,    7,   35,    6,   24,    0
-
+       14,   15,   16,    7,   19,   19,    8,   19,    0,    1,
+        3,   19,   19,   17,   19,    0,    0,   18,   19,   10,
+        6,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -480,11 +472,11 @@ static const YY_CHAR yy_ec[256] =
        27,   28,   29,   30,   31,   31,   31,   31,   31,   31,
        31,   31,   31,   31,   31,   31,   31,   31,   31,   31,
        31,   31,   31,   31,   31,   31,   31,   31,   31,   31,
-       32,   33,   34,   35,   31,    1,   36,   37,   38,   39,
+       32,   33,   34,   35,   31,    1,   36,   31,   31,   31,
 
-       40,   41,   42,   43,   44,   31,   45,   46,   47,   48,
-       49,   31,   31,   50,   51,   52,   53,   54,   55,   31,
-       31,   56,   57,   58,   59,   60,    1,    1,    1,    1,
+       37,   38,   31,   39,   40,   31,   31,   41,   31,   42,
+       43,   31,   31,   44,   45,   46,   47,   48,   49,   31,
+       31,   31,   50,   51,   52,   53,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -501,148 +493,110 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[61] =
+static const YY_CHAR yy_meta[54] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    3,    3,    3,    3,
-        3,    3,    3,    1,    1,    1,    1,    1,    1,    1,
-        3,    1,    4,    1,    1,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    1,    1,    1,    1
+        1,    1,    1,    1,    3,    1,    4,    4,    4,    4,
+        4,    4,    4,    1,    1,    1,    1,    1,    1,    1,
+        5,    1,    6,    1,    1,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    1,
+        1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[206] =
+static const flex_int16_t yy_base[131] =
     {   0,
-        0,    0,  262,  263,  259,  263,  233,   56,  232,   55,
-      250,  263,  263,  230,   51,  263,   52,  241,   54,   54,
-      263,  263,   41,  228,   56,  263,  263,    0,  263,  263,
-      227,  200,   36,   51,  212,   42,   71,   81,  211,  210,
-       53,  199,  200,  198,  203,  263,   37,  263,  263,  243,
-      263,   91,  263,  241,  263,  263,  263,  235,  263,  263,
-      263,  263,  263,  263,  263,  227,  230,    0,  263,   92,
-      108,  213,  263,  263,  263,  212,    0,  263,  186,  188,
-      196,  184,  198,  185,  191,  180,  177,  210,  207,  181,
-        0,  176,  203,  205,  202,    0,    0,  170,  169,   50,
+        0,    0,  186,  187,  183,  187,  157,   49,  156,   48,
+      174,  187,  187,  154,   44,  187,   45,  187,   47,  165,
+      187,  187,   34,  152,   37,  187,  187,    0,  187,  187,
+      151,  136,   47,   58,  139,  138,  130,  137,  133,  187,
+       35,  187,  187,  169,  187,   52,  187,  167,  187,  187,
+      187,  161,  187,  187,  187,  187,  187,  187,  187,  157,
+        0,  187,   80,  152,  139,  187,  187,  187,  138,    0,
+      187,  119,  144,  141,  120,    0,  116,  137,  139,  136,
+        0,    0,  110,  109,  107,  109,  112,  187,  187,  140,
+       68,    0,   87,  187,  187,  113,    0,    0,   88,    0,
 
-       66,  176,  166,   88,  174,  173,  263,  263,  263,  205,
-      122,    0,  123,  263,  263,  166,  168,  177,  172,  161,
-       66,  174,  169,  161,    0,    0,  156,    0,    0,    0,
-        0,    0,  153,  157,  164,  151,  149,  149,  160,  150,
-      154,  158,  150,  184,  263,    0,    0,  149,    0,    0,
-      141,  148,  138,    0,    0,  150,  139,  148,  138,  142,
-      147,  146,    0,  135,  140,    0,  141,  169,  136,    0,
-        0,  131,  132,    0,  129,  137,  124,  113,   98,  106,
-        0,  100,    0,   84,   84,    0,    0,    0,    0,    0,
-        0,   95,   94,    0,   82,    0,    0,  263,  152,  156,
-
-       95,  159,  163,  167,  171
+        0,    0,    0,    0,   48,   57,    0,   52,   80,  187,
+        0,   51,   33,    0,   33,   57,   76,    0,   24,    0,
+        0,  187,  110,  116,  119,  120,  125,  131,  137,  143
     } ;
 
-static const flex_int16_t yy_def[206] =
+static const flex_int16_t yy_def[131] =
     {   0,
-      198,    1,  198,  198,  198,  198,  198,  199,  198,  198,
-      200,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  201,  198,  198,
-      198,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  198,  198,  198,  198,  198,
-      198,  199,  198,  199,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  202,  203,  198,  198,
-      198,  198,  198,  198,  198,  198,  201,  198,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
+      122,    1,  122,  122,  122,  122,  122,  123,  122,  122,
+      124,  122,  122,  122,  122,  122,  122,  122,  122,  125,
+      122,  122,  122,  122,  122,  122,  122,  126,  122,  122,
+      122,  126,  126,  126,  126,  126,  126,  126,  126,  122,
+      122,  122,  122,  122,  122,  123,  122,  123,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  127,
+      128,  122,  122,  125,  122,  122,  122,  122,  122,  126,
+      122,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  122,  122,  127,
+      129,  128,  122,  122,  122,  126,  126,  126,  126,  126,
 
-      201,  201,  201,  201,  201,  201,  198,  198,  198,  202,
-      204,  203,  198,  198,  198,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  205,  198,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  205,  204,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,  201,  201,  201,
-      201,  201,  201,  201,  201,  201,  201,    0,  198,  198,
-
-      198,  198,  198,  198,  198
+      126,  126,  126,  126,  126,  126,  126,  126,  130,  122,
+      126,  126,  126,  126,  126,  130,  129,  126,  126,  126,
+      126,    0,  122,  122,  122,  122,  122,  122,  122,  122
     } ;
 
-static const flex_int16_t yy_nxt[324] =
+static const flex_int16_t yy_nxt[241] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,   16,   17,   18,   19,   20,   20,   20,   20,
        20,   20,   20,   21,   22,   23,   24,   25,   26,   27,
-       28,   29,    4,   30,   31,   32,   33,   34,   35,   36,
-       37,   28,   28,   38,   28,   39,   28,   28,   28,   40,
-       41,   42,   43,   44,   45,   28,   46,   47,   48,   49,
-       53,   56,   61,  107,   67,   63,   72,   73,   70,   68,
-       71,   71,   71,   71,   71,   71,   71,   62,   64,   65,
-       69,   57,   75,   76,   80,   81,   82,   86,   54,   87,
-       88,  134,   89,   83,  108,   53,  100,   77,   93,   84,
+       28,   29,    4,   30,   31,   28,   32,   33,   28,   34,
+       35,   28,   28,   36,   28,   37,   28,   38,   39,   40,
+       41,   42,   43,   47,   50,   55,   47,   60,   57,   65,
+       66,   88,   61,   68,   69,  121,   73,  117,   74,  120,
+       56,   58,   59,   62,   51,   78,  119,   79,   91,   80,
+       81,   48,   75,  110,   48,   89,  117,  118,   76,   77,
+      117,  110,  115,  114,  113,   82,   93,   93,   93,   93,
 
-       94,  136,   95,   96,  101,  135,   90,  102,  113,  113,
-      113,  113,  113,  113,  113,  137,  151,  152,   91,   92,
-      197,   97,   70,   54,   71,   71,   71,   71,   71,   71,
-       71,  140,  111,  196,  195,  194,  193,  145,  141,  113,
-      113,  113,  113,  113,  113,  113,  169,  192,  191,  190,
-      189,  145,   52,   52,   52,   52,   58,   58,   58,  110,
-      110,  110,  110,  112,  188,  112,  112,  144,  144,  144,
-      144,  168,  168,  168,  168,  187,  186,  185,  184,  169,
-      183,  182,  181,  180,  179,  178,  177,  176,  175,  174,
-      173,  172,  171,  170,  169,  167,  166,  165,  164,  163,
+       93,   93,   93,   93,   93,   93,   93,   93,   93,   93,
+       46,   46,   46,   46,   46,   46,   52,   52,   52,   52,
+       52,   64,   64,   70,   70,   90,   90,   90,   90,   90,
+       90,   92,  112,   92,   92,   92,   92,  109,  109,  109,
+      109,  109,  109,  116,  116,  116,  116,  116,  116,  111,
+       91,  108,  107,  106,  105,  104,  103,  102,  101,  100,
+       99,   98,   97,   96,   95,   94,   63,   91,   53,  122,
+       44,   87,   86,   85,   84,   83,   72,   71,   67,   63,
+       54,   53,   49,   45,   44,  122,    3,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
 
-      162,  161,  160,  159,  158,  157,  156,  155,  154,  153,
-      150,  149,  148,  147,  146,  111,  143,  142,  139,  138,
-      133,  132,  131,  130,  129,  128,  127,  126,  125,  124,
-      123,  122,  121,  120,  119,  118,  117,  116,  115,  114,
-      111,  109,   59,  198,   50,  106,  105,  104,  103,   99,
-       98,   85,   79,   78,   74,   66,   60,   59,   55,   51,
-       50,  198,    3,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122
     } ;
 
-static const flex_int16_t yy_chk[324] =
+static const flex_int16_t yy_chk[241] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        8,   10,   15,   47,   19,   17,   23,   23,   20,   19,
-       20,   20,   20,   20,   20,   20,   20,   15,   17,   17,
-       19,   10,   25,   25,   33,   33,   34,   36,    8,   36,
-       37,  100,   37,   34,   47,   52,   41,  201,   38,   34,
+        1,    1,    1,    8,   10,   15,   46,   19,   17,   23,
+       23,   41,   19,   25,   25,  119,   33,  116,   33,  115,
+       15,   17,   17,   19,   10,   34,  113,   34,   91,   34,
+       34,    8,   33,   91,   46,   41,  117,  112,   33,   33,
+      109,  117,  108,  106,  105,   34,   63,   63,   63,   63,
 
-       38,  101,   38,   38,   41,  100,   37,   41,   70,   70,
-       70,   70,   70,   70,   70,  101,  121,  121,   37,   37,
-      195,   38,   71,   52,   71,   71,   71,   71,   71,   71,
-       71,  104,  111,  193,  192,  185,  184,  111,  104,  113,
-      113,  113,  113,  113,  113,  113,  169,  182,  180,  179,
-      178,  169,  199,  199,  199,  199,  200,  200,  200,  202,
-      202,  202,  202,  203,  177,  203,  203,  204,  204,  204,
-      204,  205,  205,  205,  205,  176,  175,  173,  172,  168,
-      167,  165,  164,  162,  161,  160,  159,  158,  157,  156,
-      153,  152,  151,  148,  144,  143,  142,  141,  140,  139,
+       63,   63,   63,   93,   93,   93,   93,   93,   93,   93,
+      123,  123,  123,  123,  123,  123,  124,  124,  124,  124,
+      124,  125,  125,  126,  126,  127,  127,  127,  127,  127,
+      127,  128,   99,  128,  128,  128,  128,  129,  129,  129,
+      129,  129,  129,  130,  130,  130,  130,  130,  130,   96,
+       90,   87,   86,   85,   84,   83,   80,   79,   78,   77,
+       75,   74,   73,   72,   69,   65,   64,   60,   52,   48,
+       44,   39,   38,   37,   36,   35,   32,   31,   24,   20,
+       14,   11,    9,    7,    5,    3,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
 
-      138,  137,  136,  135,  134,  133,  127,  124,  123,  122,
-      120,  119,  118,  117,  116,  110,  106,  105,  103,  102,
-       99,   98,   95,   94,   93,   92,   90,   89,   88,   87,
-       86,   85,   84,   83,   82,   81,   80,   79,   76,   72,
-       67,   66,   58,   54,   50,   45,   44,   43,   42,   40,
-       39,   35,   32,   31,   24,   18,   14,   11,    9,    7,
-        5,    3,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198,  198,  198,  198,  198,  198,  198,  198,
-      198,  198,  198
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122,
+      122,  122,  122,  122,  122,  122,  122,  122,  122,  122
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -651,17 +605,16 @@ static char *yy_last_accepting_cpos;
 extern int yy_flex_debug;
 int yy_flex_debug = 1;
 
-static const flex_int16_t yy_rule_linenum[90] =
+static const flex_int16_t yy_rule_linenum[73] =
     {   0,
-       30,   31,   33,   34,   35,   36,   37,   38,   39,   40,
-       41,   42,   43,   44,   45,   46,   47,   48,   49,   50,
-       52,   53,   54,   55,   57,   58,   59,   60,   61,   62,
-       63,   64,   66,   67,   68,   70,   71,   72,   73,   75,
-       76,   77,   78,   79,   80,   81,   82,   83,   84,   85,
-       86,   87,   88,   89,   90,   91,   92,   93,   94,   95,
-       96,   97,   98,   99,  100,  101,  102,  103,  104,  105,
-      106,  107,  108,  109,  110,  111,  112,  113,  114,  115,
-      116,  117,  118,  119,  120,  121,  123,  124,  125
+       30,   31,   38,   40,   41,   42,   48,   49,   50,   51,
+       59,   60,   61,   62,   63,   64,   67,   68,   69,   71,
+       72,   73,   74,   77,   78,   79,   80,   81,   82,   83,
+       84,   85,   86,   87,   88,   89,   90,   91,   92,   93,
+       94,   95,   96,   97,   98,   99,  100,  101,  102,  103,
+      104,  105,  106,  107,  108,  109,  110,  111,  112,  113,
+      114,  115,  116,  117,  118,  119,  120,  121,  122,  124,
+      125,  126
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -682,11 +635,11 @@ char *yytext;
     #include <string>
     #include "Driver.hh"
     #include "Parser.hh"
-#line 685 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 638 "../src/../src/../src/Parser/Lexer.cc"
 #line 21 "/home/espresso/projects/tape/src/Bison/lexer.l"
     #define YY_USER_ACTION loc.columns(yyleng);
-#line 688 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
-#line 689 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 641 "../src/../src/../src/Parser/Lexer.cc"
+#line 642 "../src/../src/../src/Parser/Lexer.cc"
 
 #define INITIAL 0
 
@@ -972,7 +925,7 @@ YY_DECL
     loc.step();
 
 
-#line 975 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 928 "../src/../src/../src/Parser/Lexer.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1001,13 +954,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 199 )
+				if ( yy_current_state >= 123 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_current_state != 198 );
+		while ( yy_current_state != 122 );
 		yy_cp = (yy_last_accepting_cpos);
 		yy_current_state = (yy_last_accepting_state);
 
@@ -1026,13 +979,13 @@ do_action:	/* This label is used only to access EOF actions. */
 			{
 			if ( yy_act == 0 )
 				fprintf( stderr, "--scanner backing up\n" );
-			else if ( yy_act < 90 )
+			else if ( yy_act < 73 )
 				fprintf( stderr, "--accepting rule at line %ld (\"%s\")\n",
 				         (long)yy_rule_linenum[yy_act], yytext );
-			else if ( yy_act == 90 )
+			else if ( yy_act == 73 )
 				fprintf( stderr, "--accepting default rule (\"%s\")\n",
 				         yytext );
-			else if ( yy_act == 91 )
+			else if ( yy_act == 74 )
 				fprintf( stderr, "--(end of buffer or a NUL)\n" );
 			else
 				fprintf( stderr, "--EOF (start condition %d)\n", YY_START );
@@ -1059,454 +1012,388 @@ YY_RULE_SETUP
 #line 31 "/home/espresso/projects/tape/src/Bison/lexer.l"
 loc.step(); 
 	YY_BREAK
+/*"auto"      { return yy::Parser::make_AUTO      (loc); }
+ "break"     { return yy::Parser::make_BREAK     (loc); }
+ "case"      { return yy::Parser::make_CASE      (loc); }
+ "continue"  { return yy::Parser::make_CONTINUE  (loc); }
+ "default"   { return yy::Parser::make_DEFAULT   (loc); } */
 case 3:
-YY_RULE_SETUP
-#line 33 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_AUTO      (loc); }
-	YY_BREAK
-case 4:
-YY_RULE_SETUP
-#line 34 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_BREAK     (loc); }
-	YY_BREAK
-case 5:
-YY_RULE_SETUP
-#line 35 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CASE      (loc); }
-	YY_BREAK
-case 6:
-YY_RULE_SETUP
-#line 36 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CONTINUE  (loc); }
-	YY_BREAK
-case 7:
-YY_RULE_SETUP
-#line 37 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_DEFAULT   (loc); }
-	YY_BREAK
-case 8:
 YY_RULE_SETUP
 #line 38 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_ELSE      (loc); }
 	YY_BREAK
-case 9:
-YY_RULE_SETUP
-#line 39 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_ENUM      (loc); }
-	YY_BREAK
-case 10:
+/*"enum"      { return yy::Parser::make_ENUM      (loc); } */
+case 4:
 YY_RULE_SETUP
 #line 40 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_FOR       (loc); }
 	YY_BREAK
-case 11:
+case 5:
 YY_RULE_SETUP
 #line 41 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_IF        (loc); }
 	YY_BREAK
-case 12:
+case 6:
 YY_RULE_SETUP
 #line 42 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_RETURN    (loc); }
 	YY_BREAK
-case 13:
-YY_RULE_SETUP
-#line 43 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_SIZEOF    (loc); }
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 44 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_STATIC    (loc); }
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 45 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_STRUCT    (loc); }
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 46 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_SWITCH    (loc); }
-	YY_BREAK
-case 17:
-YY_RULE_SETUP
-#line 47 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_UNION     (loc); }
-	YY_BREAK
-case 18:
+/*"sizeof"    { return yy::Parser::make_SIZEOF    (loc); }
+ "static"    { return yy::Parser::make_STATIC    (loc); }
+ "struct"    { return yy::Parser::make_STRUCT    (loc); }
+ "switch"    { return yy::Parser::make_SWITCH    (loc); }
+ "union"	    { return yy::Parser::make_UNION     (loc); } */
+case 7:
 YY_RULE_SETUP
 #line 48 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_LET       (loc); }
 	YY_BREAK
-case 19:
+case 8:
 YY_RULE_SETUP
 #line 49 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_VAR       (loc); }
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 50 "/home/espresso/projects/tape/src/Bison/lexer.l"
 { return yy::Parser::make_FN        (loc); }
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 51 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_WHILE     (loc); }
+	YY_BREAK
+/*"void"      { return yy::Parser::make_VOID      (loc); }
+ "const"	    { return yy::Parser::make_CONST     (loc); }
+ "signed"    { return yy::Parser::make_SIGNED    (loc); }
+ "unsigned"  { return yy::Parser::make_UNSIGNED  (loc); }
+
+ "bool"      { return yy::Parser::make_BOOL  (loc); } */
+case 11:
+YY_RULE_SETUP
+#line 59 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_F32   (loc); }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 60 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_F64   (loc); }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 61 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_I8    (loc); }
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 62 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_I16   (loc); }
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 63 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_I32   (loc); }
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 64 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_I64   (loc); }
+	YY_BREAK
+/*"char"      { return yy::Parser::make_CHAR  (loc); } */
+case 17:
+YY_RULE_SETUP
+#line 67 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{  return yy::Parser::make_BOOL_VAL (true, loc); }
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 68 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{  return yy::Parser::make_BOOL_VAL (false, loc); }
+	YY_BREAK
+case 19:
+YY_RULE_SETUP
+#line 69 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_ID(yytext, loc); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 50 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_WHILE     (loc); }
+#line 71 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_INT_VAL   (atoll(yytext), loc);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 52 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_VOID      (loc); }
+#line 72 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_FLOAT_VAL (atof(yytext), loc);}
 	YY_BREAK
 case 22:
+/* rule 22 can match eol */
 YY_RULE_SETUP
-#line 53 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CONST     (loc); }
+#line 73 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_CHAR_VAL  (yytext[1], loc);   }
 	YY_BREAK
 case 23:
+/* rule 23 can match eol */
 YY_RULE_SETUP
-#line 54 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_SIGNED    (loc); }
+#line 74 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ yytext[yyleng-1] = 0; return yy::Parser::make_STRING_VAL(yytext+1, loc); }
 	YY_BREAK
+/*"..."   { return yy::Parser::make_ELLIPSIS(loc); }*/
 case 24:
 YY_RULE_SETUP
-#line 55 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_UNSIGNED  (loc); }
+#line 77 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_PLUS_EQ(loc); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 57 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_BOOL  (loc); }
+#line 78 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_MINUS_EQ(loc); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 58 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_F32   (loc); }
+#line 79 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_RIGHT_EQ(loc); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 59 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_F64   (loc); }
+#line 80 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LEFT_EQ(loc); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 60 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_I8    (loc); }
+#line 81 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_STAR_EQ(loc); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 61 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_I16   (loc); }
+#line 82 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_FSLASH_EQ(loc); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 62 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_I32   (loc); }
+#line 83 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_MOD_EQ(loc); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 63 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_I64   (loc); }
+#line 84 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_CARROT_EQ(loc); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 64 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CHAR  (loc); }
+#line 85 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_AMP_EQ(loc); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 66 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{  return yy::Parser::make_BOOL_VAL (true, loc); }
+#line 86 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_PIPE_EQ(loc); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 67 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{  return yy::Parser::make_BOOL_VAL (false, loc); }
+#line 87 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_RIGHT(loc); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 68 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_ID(yytext, loc); }
+#line 88 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LEFT(loc); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 70 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_INT_VAL   (atoll(yytext), loc);}
+#line 89 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_INCREMENT(loc); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 71 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_FLOAT_VAL (atof(yytext), loc);}
+#line 90 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_DECREMENT(loc); }
 	YY_BREAK
 case 38:
-/* rule 38 can match eol */
 YY_RULE_SETUP
-#line 72 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CHAR_VAL  (yytext[1], loc);   }
+#line 91 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_POINTER(loc); }
 	YY_BREAK
 case 39:
-/* rule 39 can match eol */
 YY_RULE_SETUP
-#line 73 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ yytext[yyleng-1] = 0; return yy::Parser::make_STRING_VAL(yytext+1, loc); }
+#line 92 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_AMP_AMP(loc); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 75 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_ELLIPSIS(loc); }
+#line 93 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_PIPE_PIPE(loc); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 76 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_PLUS_EQ(loc); }
+#line 94 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LT_EQ(loc); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 77 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_MINUS_EQ(loc); }
+#line 95 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_GT_EQ(loc); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 78 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_RIGHT_EQ(loc); }
+#line 96 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_EQ_EQ(loc); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 79 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LEFT_EQ(loc); }
+#line 97 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_BANG_EQ(loc); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 80 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_STAR_EQ(loc); }
+#line 98 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_EQ (loc); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 81 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_FSLASH_EQ(loc); }
+#line 99 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_SC (loc); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 82 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_MOD_EQ(loc); }
+#line 100 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LBRACE (loc); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 83 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CARROT_EQ(loc); }
+#line 101 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_RBRACE (loc); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 84 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_AMP_EQ(loc); }
+#line 102 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_COMMA (loc); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 85 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_PIPE_EQ(loc); }
+#line 103 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_COLON (loc); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 86 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_RIGHT(loc); }
+#line 104 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LPAREN (loc); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 87 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LEFT(loc); }
+#line 105 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_RPAREN (loc); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 88 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_INCREMENT(loc); }
+#line 106 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LSQUARE (loc); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 89 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_DECREMENT(loc); }
+#line 107 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_RSQUARE (loc); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 90 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_POINTER(loc); }
+#line 108 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_DOT (loc); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 91 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_AMP_AMP(loc); }
+#line 109 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_AMP (loc); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 92 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_PIPE_PIPE(loc); }
+#line 110 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_BANG (loc); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 93 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LT_EQ(loc); }
+#line 111 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_TILDE (loc); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 94 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_GT_EQ(loc); }
+#line 112 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_MINUS (loc); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 95 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_EQ_EQ(loc); }
+#line 113 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_PLUS (loc); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 96 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_BANG_EQ(loc); }
+#line 114 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_STAR (loc); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 97 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_EQ (loc); }
+#line 115 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_FSLASH (loc); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 98 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_SC (loc); }
+#line 116 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_MOD (loc); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 99 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LBRACE (loc); }
+#line 117 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_AT (loc); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 100 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_RBRACE (loc); }
+#line 118 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_LT (loc); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 101 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_COMMA (loc); }
+#line 119 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_GT (loc); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 102 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_COLON (loc); }
+#line 120 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_CARROT (loc); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 103 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LPAREN (loc); }
+#line 121 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_PIPE (loc); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 104 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_RPAREN (loc); }
+#line 122 "/home/espresso/projects/tape/src/Bison/lexer.l"
+{ return yy::Parser::make_QUESTION (loc); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 105 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LSQUARE (loc); }
+#line 124 "/home/espresso/projects/tape/src/Bison/lexer.l"
+loc.step();
 	YY_BREAK
 case 71:
+/* rule 71 can match eol */
 YY_RULE_SETUP
-#line 106 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_RSQUARE (loc); }
+#line 125 "/home/espresso/projects/tape/src/Bison/lexer.l"
+loc.lines(yyleng); loc.step();
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 107 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_DOT (loc); }
-	YY_BREAK
-case 73:
-YY_RULE_SETUP
-#line 108 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_AMP (loc); }
-	YY_BREAK
-case 74:
-YY_RULE_SETUP
-#line 109 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_BANG (loc); }
-	YY_BREAK
-case 75:
-YY_RULE_SETUP
-#line 110 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_TILDE (loc); }
-	YY_BREAK
-case 76:
-YY_RULE_SETUP
-#line 111 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_MINUS (loc); }
-	YY_BREAK
-case 77:
-YY_RULE_SETUP
-#line 112 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_PLUS (loc); }
-	YY_BREAK
-case 78:
-YY_RULE_SETUP
-#line 113 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_STAR (loc); }
-	YY_BREAK
-case 79:
-YY_RULE_SETUP
-#line 114 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_FSLASH (loc); }
-	YY_BREAK
-case 80:
-YY_RULE_SETUP
-#line 115 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_MOD (loc); }
-	YY_BREAK
-case 81:
-YY_RULE_SETUP
-#line 116 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_AT (loc); }
-	YY_BREAK
-case 82:
-YY_RULE_SETUP
-#line 117 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_LT (loc); }
-	YY_BREAK
-case 83:
-YY_RULE_SETUP
-#line 118 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_GT (loc); }
-	YY_BREAK
-case 84:
-YY_RULE_SETUP
-#line 119 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_CARROT (loc); }
-	YY_BREAK
-case 85:
-YY_RULE_SETUP
-#line 120 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_PIPE (loc); }
-	YY_BREAK
-case 86:
-YY_RULE_SETUP
-#line 121 "/home/espresso/projects/tape/src/Bison/lexer.l"
-{ return yy::Parser::make_QUESTION (loc); }
-	YY_BREAK
-case 87:
-YY_RULE_SETUP
-#line 123 "/home/espresso/projects/tape/src/Bison/lexer.l"
-loc.step();
-	YY_BREAK
-case 88:
-/* rule 88 can match eol */
-YY_RULE_SETUP
-#line 124 "/home/espresso/projects/tape/src/Bison/lexer.l"
-loc.lines(yyleng); loc.step();
-	YY_BREAK
-case 89:
-YY_RULE_SETUP
-#line 125 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 126 "/home/espresso/projects/tape/src/Bison/lexer.l"
 
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 126 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 127 "/home/espresso/projects/tape/src/Bison/lexer.l"
 return yy::Parser::make_YYEOF(loc);
 	YY_BREAK
-case 90:
+case 73:
 YY_RULE_SETUP
-#line 128 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 129 "/home/espresso/projects/tape/src/Bison/lexer.l"
 ECHO;
 	YY_BREAK
-#line 1509 "/home/espresso/projects/tape/build/../src/Parser/Lexer.cc"
+#line 1396 "../src/../src/../src/Parser/Lexer.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1825,7 +1712,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 199 )
+			if ( yy_current_state >= 123 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1858,11 +1745,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 199 )
+		if ( yy_current_state >= 123 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 198);
+	yy_is_jam = (yy_current_state == 122);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2611,7 +2498,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 128 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 129 "/home/espresso/projects/tape/src/Bison/lexer.l"
 
 
 void Driver::scan_start() {
