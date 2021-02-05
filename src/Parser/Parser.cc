@@ -220,6 +220,11 @@ namespace yy {
         value.YY_MOVE_OR_COPY< float > (YY_MOVE (that.value));
         break;
 
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
+        break;
+
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.YY_MOVE_OR_COPY< long long > (YY_MOVE (that.value));
         break;
@@ -254,6 +259,11 @@ namespace yy {
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.move< float > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.move< int > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -292,6 +302,11 @@ namespace yy {
         value.copy< float > (that.value);
         break;
 
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.copy< int > (that.value);
+        break;
+
       case symbol_kind::S_INT_VAL: // INT_VAL
         value.copy< long long > (that.value);
         break;
@@ -325,6 +340,11 @@ namespace yy {
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.move< float > (that.value);
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.move< int > (that.value);
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -375,643 +395,685 @@ namespace yy {
       case symbol_kind::S_EQ: // "="
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 379 "../src/../src/Parser/Parser.cc"
+#line 399 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PLUS: // "+"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 385 "../src/../src/Parser/Parser.cc"
+#line 405 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MINUS: // "-"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 391 "../src/../src/Parser/Parser.cc"
+#line 411 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AT: // "@"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 397 "../src/../src/Parser/Parser.cc"
+#line 417 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP: // "&"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 403 "../src/../src/Parser/Parser.cc"
+#line 423 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE: // "|"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 409 "../src/../src/Parser/Parser.cc"
+#line 429 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FSLASH: // "/"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 415 "../src/../src/Parser/Parser.cc"
+#line 435 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STAR: // "*"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 421 "../src/../src/Parser/Parser.cc"
+#line 441 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MOD: // "%"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 427 "../src/../src/Parser/Parser.cc"
+#line 447 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LPAREN: // "("
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 433 "../src/../src/Parser/Parser.cc"
+#line 453 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RPAREN: // ")"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 439 "../src/../src/Parser/Parser.cc"
+#line 459 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LSQUARE: // "["
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 445 "../src/../src/Parser/Parser.cc"
+#line 465 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RSQUARE: // "]"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 451 "../src/../src/Parser/Parser.cc"
+#line 471 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LBRACE: // "{"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 457 "../src/../src/Parser/Parser.cc"
+#line 477 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RBRACE: // "}"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 463 "../src/../src/Parser/Parser.cc"
+#line 483 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_SC: // ";"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 469 "../src/../src/Parser/Parser.cc"
+#line 489 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LT: // "<"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 475 "../src/../src/Parser/Parser.cc"
+#line 495 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_GT: // ">"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 481 "../src/../src/Parser/Parser.cc"
+#line 501 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_COLON: // ":"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 487 "../src/../src/Parser/Parser.cc"
+#line 507 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CARROT: // "^"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 493 "../src/../src/Parser/Parser.cc"
+#line 513 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_COMMA: // ","
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 499 "../src/../src/Parser/Parser.cc"
+#line 519 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_QUESTION: // "?"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 505 "../src/../src/Parser/Parser.cc"
+#line 525 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_DOT: // "."
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 511 "../src/../src/Parser/Parser.cc"
+#line 531 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BANG: // "!"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 517 "../src/../src/Parser/Parser.cc"
+#line 537 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_TILDE: // "~"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 523 "../src/../src/Parser/Parser.cc"
+#line 543 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < long long > (); }
-#line 529 "../src/../src/Parser/Parser.cc"
+#line 549 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < float > (); }
-#line 535 "../src/../src/Parser/Parser.cc"
+#line 555 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STRING_VAL: // STRING_VAL
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < std::string > (); }
-#line 541 "../src/../src/Parser/Parser.cc"
+#line 561 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CHAR_VAL: // CHAR_VAL
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < char > (); }
-#line 547 "../src/../src/Parser/Parser.cc"
+#line 567 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < bool > (); }
-#line 553 "../src/../src/Parser/Parser.cc"
+#line 573 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_ID: // ID
 #line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << yysym.value.template as < std::string > (); }
-#line 559 "../src/../src/Parser/Parser.cc"
+#line 579 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_POINTER: // POINTER
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 565 "../src/../src/Parser/Parser.cc"
+#line 585 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_INCREMENT: // INCREMENT
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 571 "../src/../src/Parser/Parser.cc"
+#line 591 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_DECREMENT: // DECREMENT
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 577 "../src/../src/Parser/Parser.cc"
+#line 597 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LEFT: // LEFT
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 583 "../src/../src/Parser/Parser.cc"
+#line 603 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RIGHT: // RIGHT
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 589 "../src/../src/Parser/Parser.cc"
+#line 609 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP_AMP: // AMP_AMP
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 595 "../src/../src/Parser/Parser.cc"
+#line 615 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE_PIPE: // PIPE_PIPE
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 601 "../src/../src/Parser/Parser.cc"
+#line 621 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STAR_EQ: // STAR_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 607 "../src/../src/Parser/Parser.cc"
+#line 627 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FSLASH_EQ: // FSLASH_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 613 "../src/../src/Parser/Parser.cc"
+#line 633 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MOD_EQ: // MOD_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 619 "../src/../src/Parser/Parser.cc"
+#line 639 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PLUS_EQ: // PLUS_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 625 "../src/../src/Parser/Parser.cc"
+#line 645 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MINUS_EQ: // MINUS_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 631 "../src/../src/Parser/Parser.cc"
+#line 651 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LEFT_EQ: // LEFT_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 637 "../src/../src/Parser/Parser.cc"
+#line 657 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RIGHT_EQ: // RIGHT_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 643 "../src/../src/Parser/Parser.cc"
+#line 663 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP_EQ: // AMP_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 649 "../src/../src/Parser/Parser.cc"
+#line 669 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CARROT_EQ: // CARROT_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 655 "../src/../src/Parser/Parser.cc"
+#line 675 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE_EQ: // PIPE_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 661 "../src/../src/Parser/Parser.cc"
+#line 681 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LT_EQ: // LT_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 667 "../src/../src/Parser/Parser.cc"
+#line 687 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_GT_EQ: // GT_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 673 "../src/../src/Parser/Parser.cc"
+#line 693 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_EQ_EQ: // EQ_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 679 "../src/../src/Parser/Parser.cc"
+#line 699 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BANG_EQ: // BANG_EQ
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 685 "../src/../src/Parser/Parser.cc"
+#line 705 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_IF: // IF
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 691 "../src/../src/Parser/Parser.cc"
+#line 711 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_ELSE: // ELSE
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 697 "../src/../src/Parser/Parser.cc"
+#line 717 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FN: // FN
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 703 "../src/../src/Parser/Parser.cc"
+#line 723 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LET: // LET
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 709 "../src/../src/Parser/Parser.cc"
+#line 729 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_VAR: // VAR
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 715 "../src/../src/Parser/Parser.cc"
+#line 735 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_TYPE: // TYPE
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 721 "../src/../src/Parser/Parser.cc"
+#line 741 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RETURN: // RETURN
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 727 "../src/../src/Parser/Parser.cc"
+#line 747 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FOR: // FOR
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 733 "../src/../src/Parser/Parser.cc"
+#line 753 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_WHILE: // WHILE
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 739 "../src/../src/Parser/Parser.cc"
+#line 759 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MATCH: // MATCH
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 745 "../src/../src/Parser/Parser.cc"
+#line 765 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BREAK: // BREAK
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 751 "../src/../src/Parser/Parser.cc"
+#line 771 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CONTINUE: // CONTINUE
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 757 "../src/../src/Parser/Parser.cc"
+#line 777 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_TYPE_NAME: // TYPE_NAME
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 763 "../src/../src/Parser/Parser.cc"
+#line 783 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I8: // I8
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 769 "../src/../src/Parser/Parser.cc"
+#line 789 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I16: // I16
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 775 "../src/../src/Parser/Parser.cc"
+#line 795 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I32: // I32
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 781 "../src/../src/Parser/Parser.cc"
+#line 801 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I64: // I64
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 787 "../src/../src/Parser/Parser.cc"
+#line 807 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_F32: // F32
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 793 "../src/../src/Parser/Parser.cc"
+#line 813 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_F64: // F64
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 799 "../src/../src/Parser/Parser.cc"
+#line 819 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_74_: // "->"
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 805 "../src/../src/Parser/Parser.cc"
+#line 825 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_program: // program
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 811 "../src/../src/Parser/Parser.cc"
+#line 831 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_global_declaration: // global_declaration
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 817 "../src/../src/Parser/Parser.cc"
+#line 837 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_variable_declaration: // variable_declaration
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 843 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_declaration: // type_declaration
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 823 "../src/../src/Parser/Parser.cc"
+#line 849 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_type_declaration_list: // type_declaration_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 855 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_type_declaration_member: // type_declaration_member
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 861 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration_type: // declaration_type
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 829 "../src/../src/Parser/Parser.cc"
+#line 867 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_type_mods: // type_mods
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 873 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_type_mod: // type_mod
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 879 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type: // type
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 835 "../src/../src/Parser/Parser.cc"
+#line 885 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration: // declaration
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 841 "../src/../src/Parser/Parser.cc"
+#line 891 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_declaration_specification: // declaration_specification
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 897 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 847 "../src/../src/Parser/Parser.cc"
+#line 903 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_function_declaration: // function_declaration
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 853 "../src/../src/Parser/Parser.cc"
+#line 909 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_parameter_list: // parameter_list
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 859 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_parameter: // parameter
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 865 "../src/../src/Parser/Parser.cc"
+#line 915 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement_list: // statement_list
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 871 "../src/../src/Parser/Parser.cc"
+#line 921 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement: // statement
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 877 "../src/../src/Parser/Parser.cc"
+#line 927 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement_box: // statement_box
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 883 "../src/../src/Parser/Parser.cc"
+#line 933 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_iteration_statement: // iteration_statement
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 889 "../src/../src/Parser/Parser.cc"
+#line 939 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_flow_statement: // flow_statement
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 895 "../src/../src/Parser/Parser.cc"
+#line 945 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_conditional_statement: // conditional_statement
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 901 "../src/../src/Parser/Parser.cc"
+#line 951 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_expression_statement: // expression_statement
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 907 "../src/../src/Parser/Parser.cc"
+#line 957 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_initializer: // initializer
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 913 "../src/../src/Parser/Parser.cc"
+#line 963 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_initializer_list: // initializer_list
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 919 "../src/../src/Parser/Parser.cc"
+#line 969 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_expression: // expression
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 925 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_atomic_expression: // atomic_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 931 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_postfix_expression: // postfix_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 937 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_argument_expression_list: // argument_expression_list
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 943 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_unary_expression: // unary_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 949 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 955 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_additive_expression: // additive_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 961 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_relational_expression: // relational_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 967 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_equality_expression: // equality_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 973 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_logical_expression: // logical_expression
-#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
-                 { yyo << "<>"; }
-#line 979 "../src/../src/Parser/Parser.cc"
+#line 975 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_constant_expression: // constant_expression
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 985 "../src/../src/Parser/Parser.cc"
+#line 981 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_conditional_expression: // conditional_expression
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 991 "../src/../src/Parser/Parser.cc"
+#line 987 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_assignment_expression: // assignment_expression
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 997 "../src/../src/Parser/Parser.cc"
+#line 993 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_atomic_expression: // atomic_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 999 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_postfix_expression: // postfix_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1005 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_argument_expression_list: // argument_expression_list
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1011 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_unary_expression: // unary_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1017 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1023 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_additive_expression: // additive_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1029 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_relational_expression: // relational_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1035 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_equality_expression: // equality_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1041 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_logical_expression: // logical_expression
+#line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << "<>"; }
+#line 1047 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_match_expression: // match_expression
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 1003 "../src/../src/Parser/Parser.cc"
+#line 1053 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_pattern_list: // pattern_list
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 1009 "../src/../src/Parser/Parser.cc"
+#line 1059 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_pattern: // pattern
 #line 30 "/home/espresso/projects/tape/src/Bison/parser.yy"
                  { yyo << "<>"; }
-#line 1015 "../src/../src/Parser/Parser.cc"
+#line 1065 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < int > (); }
+#line 1071 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_unary_op: // unary_op
+#line 29 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                 { yyo << yysym.value.template as < int > (); }
+#line 1077 "../src/../src/Parser/Parser.cc"
         break;
 
       default:
@@ -1263,6 +1325,11 @@ namespace yy {
         yylhs.value.emplace< float > ();
         break;
 
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        yylhs.value.emplace< int > ();
+        break;
+
       case symbol_kind::S_INT_VAL: // INT_VAL
         yylhs.value.emplace< long long > ();
         break;
@@ -1292,8 +1359,74 @@ namespace yy {
         {
           switch (yyn)
             {
+  case 107: // assign_op: "="
+#line 334 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_EQ;          }
+#line 1366 "../src/../src/Parser/Parser.cc"
+    break;
 
-#line 1297 "../src/../src/Parser/Parser.cc"
+  case 108: // assign_op: PLUS_EQ
+#line 335 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_PLUS_EQ;     }
+#line 1372 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 109: // assign_op: MINUS_EQ
+#line 336 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MINUS_EQ;    }
+#line 1378 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 110: // assign_op: STAR_EQ
+#line 337 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_STAR_EQ;     }
+#line 1384 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 111: // assign_op: FSLASH_EQ
+#line 338 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_FSLASH_EQ;   }
+#line 1390 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 112: // assign_op: MOD_EQ
+#line 339 "/home/espresso/projects/tape/src/Bison/parser.yy"
+                { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MOD_EQ;      }
+#line 1396 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 113: // unary_op: "!"
+#line 343 "/home/espresso/projects/tape/src/Bison/parser.yy"
+        { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_BANG;    }
+#line 1402 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 114: // unary_op: "@"
+#line 344 "/home/espresso/projects/tape/src/Bison/parser.yy"
+        { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_AT;      }
+#line 1408 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 115: // unary_op: "&"
+#line 345 "/home/espresso/projects/tape/src/Bison/parser.yy"
+        { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_AMP;     }
+#line 1414 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 116: // unary_op: "-"
+#line 346 "/home/espresso/projects/tape/src/Bison/parser.yy"
+        { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_MINUS;   }
+#line 1420 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 117: // unary_op: "~"
+#line 347 "/home/espresso/projects/tape/src/Bison/parser.yy"
+        { yylhs.value.as < int > () = yy::Parser::symbol_kind_type::S_TILDE;   }
+#line 1426 "../src/../src/Parser/Parser.cc"
+    break;
+
+
+#line 1430 "../src/../src/Parser/Parser.cc"
 
             default:
               break;
@@ -1487,16 +1620,18 @@ namespace yy {
   "ELSE", "FN", "LET", "VAR", "TYPE", "RETURN", "FOR", "WHILE", "MATCH",
   "BREAK", "CONTINUE", "TYPE_NAME", "I8", "I16", "I32", "I64", "F32",
   "F64", "->", "$accept", "program", "global_declaration",
-  "type_declaration", "declaration_type", "type", "declaration",
+  "variable_declaration", "type_declaration", "type_declaration_list",
+  "type_declaration_member", "declaration_type", "type_mods", "type_mod",
+  "type", "declaration", "declaration_specification",
   "declaration_hypothesis", "function_declaration", "parameter_list",
-  "parameter", "statement_list", "statement", "statement_box",
-  "iteration_statement", "flow_statement", "conditional_statement",
-  "expression_statement", "initializer", "initializer_list", "expression",
-  "atomic_expression", "postfix_expression", "argument_expression_list",
-  "unary_expression", "multiplicative_expression", "additive_expression",
+  "statement_list", "statement", "statement_box", "iteration_statement",
+  "flow_statement", "conditional_statement", "expression_statement",
+  "initializer", "initializer_list", "expression", "constant_expression",
+  "conditional_expression", "assignment_expression", "atomic_expression",
+  "postfix_expression", "argument_expression_list", "unary_expression",
+  "multiplicative_expression", "additive_expression",
   "relational_expression", "equality_expression", "logical_expression",
-  "constant_expression", "conditional_expression", "assignment_expression",
-  "match_expression", "pattern_list", "pattern", YY_NULLPTR
+  "match_expression", "pattern_list", "pattern", "assign_op", "unary_op", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -1761,229 +1896,229 @@ namespace yy {
   }
 
 
-  const short Parser::yypact_ninf_ = -150;
+  const short Parser::yypact_ninf_ = -158;
 
-  const signed char Parser::yytable_ninf_ = -17;
+  const signed char Parser::yytable_ninf_ = -1;
 
   const short
   Parser::yypact_[] =
   {
-      42,   -12,  -150,  -150,    10,     6,  -150,    67,    86,    63,
-    -150,    96,  -150,  -150,  -150,    94,   252,    93,    -4,    82,
-     252,  -150,  -150,  -150,  -150,  -150,   106,   359,   359,   -12,
-     252,  -150,  -150,  -150,  -150,  -150,   117,  -150,   118,  -150,
-     137,   132,    73,    13,    29,   -19,   114,  -150,  -150,  -150,
-    -150,   -30,  -150,    93,    93,   127,   120,   129,   131,  -150,
-    -150,  -150,   134,   252,  -150,   298,   252,   115,   119,  -150,
-    -150,   359,   359,   359,   359,   359,   359,   359,   359,   359,
-     359,   359,   359,   252,  -150,  -150,   145,  -150,    93,    82,
-     146,  -150,   252,   152,  -150,     0,  -150,  -150,   151,  -150,
-    -150,  -150,  -150,  -150,  -150,    73,    73,    13,    13,    13,
-      13,    29,    29,   126,   110,    28,  -150,  -150,    95,     3,
-    -150,  -150,  -150,   359,  -150,   252,   135,  -150,  -150,  -150,
-     125,  -150,   252,  -150,  -150,   158,    62,   162,   252,   163,
-     164,   159,   160,   176,  -150,  -150,  -150,  -150,  -150,  -150,
-     174,  -150,   168,  -150,  -150,   252,   180,   173,   252,  -150,
-    -150,   222,  -150,    93,   186,  -150,   173,   187,   328,  -150,
-       7,   189,  -150,   194,   125,   252,   125,     5,  -150,  -150,
-     328,  -150,  -150,   155,   199,  -150,  -150,  -150,   125,   125,
-    -150,  -150
+      30,   -19,  -158,  -158,     5,    18,  -158,    26,    53,    43,
+      40,  -158,    70,    52,  -158,  -158,  -158,  -158,   289,    65,
+    -158,    40,    27,  -158,  -158,  -158,   250,   289,  -158,  -158,
+    -158,  -158,  -158,  -158,  -158,  -158,   364,   364,  -158,  -158,
+    -158,  -158,  -158,    91,     9,   113,    37,   -12,    -5,    77,
+     364,   -44,  -158,    71,    95,    81,  -158,  -158,  -158,  -158,
+    -158,  -158,  -158,   250,  -158,    97,  -158,  -158,  -158,    -2,
+    -158,  -158,   321,   250,    78,    80,  -158,  -158,  -158,  -158,
+    -158,  -158,  -158,  -158,   364,   364,   364,   364,   364,   364,
+     364,   364,   364,   364,   364,   364,   250,  -158,  -158,    40,
+      65,  -158,  -158,    87,    92,    22,   112,  -158,  -158,   289,
+    -158,  -158,     7,  -158,   114,  -158,  -158,  -158,  -158,  -158,
+    -158,   113,   113,    37,    37,    37,    37,   -12,   -12,   115,
+      22,  -158,    17,  -158,    81,  -158,   353,  -158,   250,  -158,
+    -158,   364,  -158,   250,   170,  -158,  -158,  -158,  -158,   119,
+      63,    -1,  -158,  -158,  -158,   132,   250,   133,   134,   131,
+     142,   145,   126,  -158,  -158,  -158,  -158,  -158,  -158,   146,
+    -158,   170,  -158,   250,   250,   148,   211,   250,  -158,  -158,
+    -158,  -158,  -158,  -158,  -158,  -158,   137,  -158,   211,   154,
+     170,   250,   170,   116,   155,  -158,   170,   170,  -158,  -158
   };
 
   const signed char
   Parser::yydefact_[] =
   {
-       0,     0,    18,    19,     0,     0,     2,     0,     0,     0,
-       6,     0,     7,     1,     3,     0,     0,     8,     0,     0,
-       0,    52,    55,    56,    53,    54,    51,     0,     0,    15,
-       0,    10,    11,    12,    13,    14,     0,    48,     0,    58,
-      68,    72,    76,    79,    84,    87,     0,    90,    88,    50,
-      49,     0,    17,     8,     8,     0,    23,     0,     0,    15,
-      69,    70,     0,     0,     5,     0,     0,     0,     0,    64,
-      65,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,    16,     9,     0,    25,     8,     0,
-       0,    57,     0,     0,    60,     0,    72,    66,     0,    62,
-      63,    91,    74,    73,    75,    77,    78,    80,    81,    82,
-      83,    85,    86,     0,     0,     0,    24,     4,     0,     0,
-      93,    71,    61,     0,    59,     0,     0,    26,    21,    20,
-       0,    92,     0,    67,    89,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,    95,    28,    32,    31,    29,    30,
-       0,    94,     0,    33,    27,     0,     0,     0,     0,    37,
-      38,     0,    41,     8,     0,    36,     0,     0,     0,    46,
-       0,     0,    45,     0,     0,     0,     0,     0,    45,    43,
-       0,    42,    22,    39,     0,    35,    44,    47,     0,     0,
-      40,    34
+       0,     0,    30,    31,     0,     0,     2,     0,     0,     8,
+       0,     5,     0,     0,     1,     3,     4,     6,     0,    15,
+      28,    34,     0,   116,   114,   115,     0,     0,   113,   117,
+      67,    70,    71,    68,    69,    66,     0,     0,     7,    64,
+      61,    55,    73,    83,    87,    91,    94,    99,   102,    63,
+       0,     0,    29,    35,     0,     0,    27,    22,    23,    24,
+      25,    26,    17,     0,    58,     0,    60,    59,    56,     0,
+      84,    85,     0,     0,     0,     0,    79,    80,   107,   110,
+     111,   112,   108,   109,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    86,    17,    34,
+      15,    14,    13,     0,    11,     9,     0,    72,    54,     0,
+      75,    81,     0,    87,     0,    77,    78,    65,    89,    88,
+      90,    92,    93,    95,    96,    97,    98,   100,   101,     0,
+      16,    36,     0,    10,     0,    19,     0,    18,     0,    57,
+      76,     0,    74,     0,     0,    33,    32,    12,    20,     0,
+       0,     0,   104,    82,    62,     0,     0,     0,     0,     0,
+       0,     0,     0,    37,    39,    43,    42,    40,    41,     0,
+      21,     0,   103,     0,     0,     0,     0,     0,    48,    49,
+      53,    44,    38,    52,   106,   105,     0,    47,     0,     0,
+       0,     0,     0,    50,     0,    46,     0,     0,    51,    45
   };
 
   const short
   Parser::yypgoto_[] =
   {
-    -150,  -150,   208,  -150,   -52,   165,    32,  -150,    72,   -14,
-    -150,  -150,  -103,  -104,  -150,  -150,  -150,  -142,    34,    47,
-     -16,  -150,  -150,  -150,   -20,    12,    27,    31,  -150,  -150,
-     -55,  -150,  -149,  -150,  -150,    85
+    -158,  -158,   164,     1,   -51,    36,  -158,    73,    76,  -158,
+     120,  -158,   168,  -158,    29,    94,  -158,   -90,    47,  -158,
+    -158,  -158,  -157,   -24,  -158,   -26,   -67,  -158,   -16,  -158,
+    -158,  -158,   -27,    -9,    28,    -3,  -158,  -158,  -158,  -158,
+      21,  -158,  -158
   };
 
   const short
   Parser::yydefgoto_[] =
   {
-      -1,     5,     6,     7,    52,    36,   143,     9,    37,    55,
-      56,   136,   144,   145,   146,   147,   148,   149,   169,   170,
-     150,    39,    40,    95,    41,    42,    43,    44,    45,    46,
-      47,    48,    49,    50,   119,   120
+      -1,     5,     6,   161,     8,   103,   104,    52,   105,   137,
+      62,     9,    53,    10,    64,    54,   162,   163,   164,   165,
+     166,   167,   168,    38,    69,   169,    39,    40,    66,    42,
+      43,   112,    44,    45,    46,    47,    48,    49,    67,   151,
+     152,    84,    50
   };
 
-  const short
+  const unsigned char
   Parser::yytable_[] =
   {
-      38,    86,    87,    84,    58,    57,    13,    60,    61,    53,
-      97,   129,   172,   122,    62,   166,   101,    75,    76,   178,
-     131,    11,   186,   123,   175,   179,   132,    59,   180,    54,
-     180,   178,     8,   154,    81,    82,   115,     8,    31,    32,
-      33,    34,    35,    12,   127,    96,   128,    93,    77,    78,
-      98,    96,   102,   103,   104,    96,    96,    96,    96,    96,
-      96,    96,    96,     1,     2,     3,     4,   113,   133,   182,
-      15,   183,    10,   185,    20,   116,   118,    10,   127,   153,
-      79,    80,    72,    73,    74,   190,   191,   105,   106,    16,
-      21,    22,    23,    24,    25,    26,    17,    27,    28,     1,
-       2,     3,     4,    96,   107,   108,   109,   110,    18,   134,
-      19,   173,   111,   112,    51,    54,   118,   137,   -16,    29,
-       2,     3,   156,   138,   139,   140,    30,   141,   142,    63,
-      31,    32,    33,    34,    35,    71,    64,    20,    83,   164,
-      88,   127,   167,    89,    91,   171,    90,   125,    99,    65,
-      92,    66,   100,    21,    22,    23,    24,    25,    26,   184,
-      27,    28,    67,   114,   117,   121,   124,   126,   135,   130,
-     152,    68,    69,    70,   155,   157,   158,   159,   160,   161,
-     137,   163,    29,     2,     3,    20,   138,   139,   140,    30,
-     141,   142,   162,    31,    32,    33,    34,    35,   165,   174,
-     176,    21,    22,    23,    24,    25,    26,   181,    27,    28,
-     127,   188,   189,    14,   187,   177,    85,   151,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      29,     2,     3,     0,    20,     0,     0,    30,   168,     0,
-       0,    31,    32,    33,    34,    35,     0,     0,     0,     0,
-      21,    22,    23,    24,    25,    26,     0,    27,    28,     0,
-       0,     0,     0,     0,    20,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    29,
-      21,    22,    23,    24,    25,    26,    30,    27,    28,     0,
-      31,    32,    33,    34,    35,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    29,
-      20,    94,     0,     0,     0,     0,    30,     0,     0,     0,
-      31,    32,    33,    34,    35,     0,    21,    22,    23,    24,
-      25,    26,     0,    27,    28,     0,     0,     0,     0,     0,
-      20,     0,     0,     0,   168,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,    59,    21,    22,    23,    24,
-      25,    26,     0,    27,    28,     0,    31,    32,    33,    34,
-      35,    20,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,    59,     0,    21,    22,    23,
-      24,    25,    26,     0,    27,    28,    31,    32,    33,    34,
-      35,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    59,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,    31,    32,    33,
-      34,    35
+      65,     7,    41,    68,   102,   111,     7,    90,    91,    70,
+      71,    41,    78,    56,    12,   108,   172,   117,    14,   188,
+     140,   109,   173,    97,    57,    58,    59,    60,    61,    11,
+     141,   191,   135,   144,    11,   145,   136,   106,    13,    92,
+      93,    88,    89,    55,    16,   113,    18,   114,    94,    95,
+      79,    80,    81,    82,    83,    22,   101,   113,   118,   119,
+     120,   113,   113,   113,   113,   113,   113,   113,   113,   149,
+     129,    17,   182,    19,   153,     1,     2,     3,     4,   121,
+     122,   184,    21,   102,    56,   139,    51,     1,     2,     3,
+       4,   127,   128,    41,    99,    57,    58,    59,    60,    61,
+     193,    96,   195,    72,   133,    73,   198,   199,   100,   113,
+     107,   115,   150,   116,   113,   134,    74,   154,   123,   124,
+     125,   126,    85,    86,    87,    75,    76,    77,   138,   142,
+     175,    23,    24,    25,   170,   101,   143,   171,    26,     2,
+       3,     4,   144,   181,   174,   176,   177,   150,   186,   178,
+     190,   189,    28,    29,    30,    31,    32,    33,    34,    35,
+     179,    36,    37,   180,   183,   194,   187,   192,   197,    15,
+     147,    98,   196,   132,   130,    23,    24,    25,    20,   146,
+       0,   155,    26,     1,     2,     3,   144,   156,   157,   158,
+      63,   159,   160,   131,   185,     0,    28,    29,    30,    31,
+      32,    33,    34,    35,     0,    36,    37,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,    23,    24,    25,     0,
+       0,     0,     0,    26,     0,   155,     0,     1,     2,     3,
+       0,   156,   157,   158,    63,   159,   160,    28,    29,    30,
+      31,    32,    33,    34,    35,     0,    36,    37,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,    25,     0,     0,
+       0,     0,    26,     0,     0,     0,     0,     0,     1,     2,
+       3,     0,     0,     0,     0,    63,    28,    29,    30,    31,
+      32,    33,    34,    35,     0,    36,    37,     0,     0,     0,
+       0,     0,     0,     0,    23,    24,    25,     0,     0,     0,
+       0,    26,     0,     0,     0,    27,     0,     1,     0,     0,
+       0,     0,     0,     0,    63,    28,    29,    30,    31,    32,
+      33,    34,    35,     0,    36,    37,    23,    24,    25,     0,
+       0,     0,     0,    26,   110,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    28,    29,    30,
+      31,    32,    33,    34,    35,     0,    36,    37,    23,    24,
+      25,     0,     0,     0,     0,    26,     0,     0,   148,    23,
+      24,    25,     0,     0,     0,     0,    26,     0,     0,    28,
+      29,    30,    31,    32,    33,    34,    35,     0,    36,    37,
+      28,    29,    30,    31,    32,    33,    34,    35,     0,    36,
+      37
   };
 
   const short
   Parser::yycheck_[] =
   {
-      16,    53,    54,    33,    20,    19,     0,    27,    28,    13,
-      65,   115,   161,    13,    30,   157,    71,     4,     5,   168,
-      17,    33,    17,    23,   166,    18,    23,    57,    23,    33,
-      23,   180,     0,   136,    53,    54,    88,     5,    68,    69,
-      70,    71,    72,    33,    16,    65,    18,    63,    19,    20,
-      66,    71,    72,    73,    74,    75,    76,    77,    78,    79,
-      80,    81,    82,    57,    58,    59,    60,    83,   123,   173,
-       3,   174,     0,   176,    12,    89,    92,     5,    16,    17,
-      51,    52,     9,    10,    11,   188,   189,    75,    76,     3,
-      28,    29,    30,    31,    32,    33,    33,    35,    36,    57,
-      58,    59,    60,   123,    77,    78,    79,    80,    12,   125,
-      16,   163,    81,    82,    21,    33,   132,    55,    12,    57,
-      58,    59,   138,    61,    62,    63,    64,    65,    66,    12,
-      68,    69,    70,    71,    72,     3,    18,    12,    24,   155,
-      13,    16,   158,    23,    13,   161,    17,    21,    33,    12,
-      16,    14,    33,    28,    29,    30,    31,    32,    33,   175,
-      35,    36,    25,    18,    18,    13,    15,    57,    33,    74,
-      12,    34,    35,    36,    12,    12,    12,    18,    18,     3,
-      55,    13,    57,    58,    59,    12,    61,    62,    63,    64,
-      65,    66,    18,    68,    69,    70,    71,    72,    18,    13,
-      13,    28,    29,    30,    31,    32,    33,    18,    35,    36,
-      16,    56,    13,     5,   180,   168,    51,   132,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      57,    58,    59,    -1,    12,    -1,    -1,    64,    16,    -1,
-      -1,    68,    69,    70,    71,    72,    -1,    -1,    -1,    -1,
-      28,    29,    30,    31,    32,    33,    -1,    35,    36,    -1,
-      -1,    -1,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,
-      28,    29,    30,    31,    32,    33,    64,    35,    36,    -1,
-      68,    69,    70,    71,    72,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,
-      12,    13,    -1,    -1,    -1,    -1,    64,    -1,    -1,    -1,
-      68,    69,    70,    71,    72,    -1,    28,    29,    30,    31,
-      32,    33,    -1,    35,    36,    -1,    -1,    -1,    -1,    -1,
-      12,    -1,    -1,    -1,    16,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    57,    28,    29,    30,    31,
-      32,    33,    -1,    35,    36,    -1,    68,    69,    70,    71,
-      72,    12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    57,    -1,    28,    29,    30,
-      31,    32,    33,    -1,    35,    36,    68,    69,    70,    71,
-      72,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    57,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    68,    69,    70,
-      71,    72
+      26,     0,    18,    27,    55,    72,     5,    19,    20,    36,
+      37,    27,     3,    57,    33,    17,    17,    84,     0,   176,
+      13,    23,    23,    50,    68,    69,    70,    71,    72,     0,
+      23,   188,    10,    16,     5,    18,    14,    63,    33,    51,
+      52,     4,     5,    16,    18,    72,     3,    73,    53,    54,
+      41,    42,    43,    44,    45,     3,    55,    84,    85,    86,
+      87,    88,    89,    90,    91,    92,    93,    94,    95,   136,
+      96,    18,   162,    33,   141,    57,    58,    59,    60,    88,
+      89,   171,    12,   134,    57,   109,    21,    57,    58,    59,
+      60,    94,    95,   109,    23,    68,    69,    70,    71,    72,
+     190,    24,   192,    12,    17,    14,   196,   197,    13,   136,
+      13,    33,   138,    33,   141,    23,    25,   143,    90,    91,
+      92,    93,     9,    10,    11,    34,    35,    36,    16,    15,
+     156,     5,     6,     7,    15,   134,    21,    74,    12,    58,
+      59,    60,    16,    17,    12,    12,    12,   173,   174,    18,
+      13,   177,    26,    27,    28,    29,    30,    31,    32,    33,
+      18,    35,    36,    18,    18,   191,    18,    13,    13,     5,
+     134,    51,    56,   100,    98,     5,     6,     7,    10,   132,
+      -1,    55,    12,    57,    58,    59,    16,    61,    62,    63,
+      64,    65,    66,    99,   173,    -1,    26,    27,    28,    29,
+      30,    31,    32,    33,    -1,    35,    36,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,     5,     6,     7,    -1,
+      -1,    -1,    -1,    12,    -1,    55,    -1,    57,    58,    59,
+      -1,    61,    62,    63,    64,    65,    66,    26,    27,    28,
+      29,    30,    31,    32,    33,    -1,    35,    36,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,     5,     6,     7,    -1,    -1,
+      -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,    57,    58,
+      59,    -1,    -1,    -1,    -1,    64,    26,    27,    28,    29,
+      30,    31,    32,    33,    -1,    35,    36,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,     5,     6,     7,    -1,    -1,    -1,
+      -1,    12,    -1,    -1,    -1,    16,    -1,    57,    -1,    -1,
+      -1,    -1,    -1,    -1,    64,    26,    27,    28,    29,    30,
+      31,    32,    33,    -1,    35,    36,     5,     6,     7,    -1,
+      -1,    -1,    -1,    12,    13,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    26,    27,    28,
+      29,    30,    31,    32,    33,    -1,    35,    36,     5,     6,
+       7,    -1,    -1,    -1,    -1,    12,    -1,    -1,    15,     5,
+       6,     7,    -1,    -1,    -1,    -1,    12,    -1,    -1,    26,
+      27,    28,    29,    30,    31,    32,    33,    -1,    35,    36,
+      26,    27,    28,    29,    30,    31,    32,    33,    -1,    35,
+      36
   };
 
   const signed char
   Parser::yystos_[] =
   {
-       0,    57,    58,    59,    60,    76,    77,    78,    81,    82,
-      83,    33,    33,     0,    77,     3,     3,    33,    12,    16,
-      12,    28,    29,    30,    31,    32,    33,    35,    36,    57,
-      64,    68,    69,    70,    71,    72,    80,    83,    95,    96,
-      97,    99,   100,   101,   102,   103,   104,   105,   106,   107,
-     108,    21,    79,    13,    33,    84,    85,    84,    95,    57,
-      99,    99,    95,    12,    18,    12,    14,    25,    34,    35,
-      36,     3,     9,    10,    11,     4,     5,    19,    20,    51,
-      52,    53,    54,    24,    33,    80,    79,    79,    13,    23,
-      17,    13,    16,    95,    13,    98,    99,   105,    95,    33,
-      33,   105,    99,    99,    99,   100,   100,   101,   101,   101,
-     101,   102,   102,    95,    18,    79,    84,    18,    95,   109,
-     110,    13,    13,    23,    15,    21,    57,    16,    18,    88,
-      74,    17,    23,   105,    95,    33,    86,    55,    61,    62,
-      63,    65,    66,    81,    87,    88,    89,    90,    91,    92,
-      95,   110,    12,    17,    87,    12,    95,    12,    12,    18,
-      18,     3,    18,    13,    95,    18,    92,    95,    16,    93,
-      94,    95,   107,    79,    13,    92,    13,    94,   107,    18,
-      23,    18,    88,    87,    95,    87,    17,    93,    56,    13,
-      87,    87
+       0,    57,    58,    59,    60,    76,    77,    78,    79,    86,
+      88,    89,    33,    33,     0,    77,    18,    18,     3,    33,
+      87,    12,     3,     5,     6,     7,    12,    16,    26,    27,
+      28,    29,    30,    31,    32,    33,    35,    36,    98,   101,
+     102,   103,   104,   105,   107,   108,   109,   110,   111,   112,
+     117,    21,    82,    87,    90,    16,    57,    68,    69,    70,
+      71,    72,    85,    64,    89,   100,   103,   113,    98,    99,
+     107,   107,    12,    14,    25,    34,    35,    36,     3,    41,
+      42,    43,    44,    45,   116,     9,    10,    11,     4,     5,
+      19,    20,    51,    52,    53,    54,    24,   107,    85,    23,
+      13,    78,    79,    80,    81,    83,   100,    13,    17,    23,
+      13,   101,   106,   107,   100,    33,    33,   101,   107,   107,
+     107,   108,   108,   109,   109,   109,   109,   110,   110,   100,
+      83,    90,    82,    17,    23,    10,    14,    84,    16,    98,
+      13,    23,    15,    21,    16,    18,    93,    80,    15,   101,
+     100,   114,   115,   101,   100,    55,    61,    62,    63,    65,
+      66,    78,    91,    92,    93,    94,    95,    96,    97,   100,
+      15,    74,    17,    23,    12,   100,    12,    12,    18,    18,
+      18,    17,    92,    18,    92,   115,   100,    18,    97,   100,
+      13,    97,    13,    92,   100,    92,    56,    13,    92,    92
   };
 
   const signed char
   Parser::yyr1_[] =
   {
-       0,    75,    76,    76,    77,    77,    77,    78,    79,    79,
-      80,    80,    80,    80,    80,    80,    80,    81,    82,    82,
-      83,    83,    83,    84,    84,    85,    86,    86,    87,    87,
-      87,    87,    87,    88,    89,    89,    90,    90,    90,    91,
-      91,    92,    92,    92,    93,    93,    94,    94,    95,    95,
-      95,    96,    96,    96,    96,    96,    96,    96,    97,    97,
-      97,    97,    97,    97,    97,    97,    98,    98,    99,    99,
-      99,    99,   100,   100,   100,   100,   101,   101,   101,   102,
-     102,   102,   102,   102,   103,   103,   103,   104,   105,   106,
-     107,   107,   108,   109,   109,   110
+       0,    75,    76,    76,    77,    77,    77,    78,    78,    79,
+      79,    80,    80,    81,    81,    82,    82,    83,    83,    84,
+      84,    84,    85,    85,    85,    85,    85,    85,    86,    87,
+      88,    88,    89,    89,    90,    90,    90,    91,    91,    92,
+      92,    92,    92,    92,    93,    94,    94,    95,    95,    95,
+      96,    96,    97,    97,    98,    98,    99,    99,   100,   100,
+     100,   101,   102,   102,   103,   103,   104,   104,   104,   104,
+     104,   104,   104,   105,   105,   105,   105,   105,   105,   105,
+     105,   106,   106,   107,   107,   107,   107,   108,   108,   108,
+     108,   109,   109,   109,   110,   110,   110,   110,   110,   111,
+     111,   111,   112,   113,   114,   114,   115,   116,   116,   116,
+     116,   116,   116,   117,   117,   117,   117,   117
   };
 
   const signed char
   Parser::yyr2_[] =
   {
-       0,     2,     1,     2,     6,     4,     1,     2,     0,     2,
-       1,     1,     1,     1,     1,     1,     1,     3,     1,     1,
-       7,     7,    12,     1,     3,     2,     0,     2,     1,     1,
-       1,     1,     1,     3,     7,     5,     3,     2,     2,     5,
-       7,     2,     4,     4,     3,     1,     1,     3,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     3,     1,     4,
-       3,     4,     3,     3,     2,     2,     1,     3,     1,     2,
-       2,     4,     1,     3,     3,     3,     1,     3,     3,     1,
-       3,     3,     3,     3,     1,     3,     3,     1,     1,     5,
-       1,     3,     5,     1,     3,     3
+       0,     2,     1,     2,     2,     1,     2,     3,     1,     5,
+       6,     1,     3,     1,     1,     0,     3,     0,     2,     1,
+       2,     3,     1,     1,     1,     1,     1,     1,     2,     2,
+       1,     1,     7,     7,     0,     1,     3,     1,     2,     1,
+       1,     1,     1,     1,     3,     7,     5,     3,     2,     2,
+       5,     7,     2,     2,     3,     1,     1,     3,     1,     1,
+       1,     1,     5,     1,     1,     3,     1,     1,     1,     1,
+       1,     1,     3,     1,     4,     3,     4,     3,     3,     2,
+       2,     1,     3,     1,     2,     2,     2,     1,     3,     3,
+       3,     1,     3,     3,     1,     3,     3,     3,     3,     1,
+       3,     3,     1,     5,     1,     3,     3,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1
   };
 
 
@@ -1993,16 +2128,18 @@ namespace yy {
   const short
   Parser::yyrline_[] =
   {
-       0,    92,    92,    93,    97,    98,    99,   103,   107,   108,
-     112,   112,   112,   112,   112,   112,   112,   116,   120,   120,
-     123,   124,   125,   130,   131,   135,   140,   141,   145,   146,
-     148,   149,   150,   154,   158,   159,   163,   164,   165,   169,
-     170,   174,   175,   176,   180,   181,   185,   186,   191,   192,
-     193,   197,   198,   199,   200,   201,   202,   203,   207,   208,
-     209,   210,   211,   212,   213,   214,   218,   219,   223,   224,
-     225,   226,   231,   232,   233,   234,   238,   239,   240,   244,
-     245,   246,   247,   248,   252,   253,   254,   258,   268,   272,
-     276,   277,   283,   287,   288,   292
+       0,   101,   101,   102,   106,   107,   108,   112,   113,   117,
+     118,   122,   123,   127,   128,   133,   134,   138,   139,   143,
+     144,   145,   149,   149,   149,   149,   149,   149,   154,   158,
+     162,   162,   165,   166,   170,   171,   172,   178,   179,   183,
+     184,   185,   186,   187,   191,   195,   196,   200,   201,   202,
+     206,   207,   211,   212,   216,   217,   221,   222,   227,   228,
+     229,   233,   237,   238,   242,   243,   247,   248,   249,   250,
+     251,   252,   253,   257,   258,   259,   260,   261,   262,   263,
+     264,   268,   269,   273,   274,   275,   276,   281,   282,   283,
+     284,   288,   289,   290,   294,   295,   296,   297,   298,   302,
+     303,   304,   308,   321,   325,   326,   330,   334,   335,   336,
+     337,   338,   339,   343,   344,   345,   346,   347
   };
 
   void
@@ -2035,9 +2172,9 @@ namespace yy {
 
 #line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
 } // yy
-#line 2039 "../src/../src/Parser/Parser.cc"
+#line 2176 "../src/../src/Parser/Parser.cc"
 
-#line 295 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 350 "/home/espresso/projects/tape/src/Bison/parser.yy"
  
 
 void yy::Parser::error(const location_type &loc, const std::string &msg) {

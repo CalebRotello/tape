@@ -410,12 +410,16 @@ namespace yy {
       // FLOAT_VAL
       char dummy3[sizeof (float)];
 
+      // assign_op
+      // unary_op
+      char dummy4[sizeof (int)];
+
       // INT_VAL
-      char dummy4[sizeof (long long)];
+      char dummy5[sizeof (long long)];
 
       // STRING_VAL
       // ID
-      char dummy5[sizeof (std::string)];
+      char dummy6[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -634,39 +638,46 @@ namespace yy {
         S_YYACCEPT = 75,                         // $accept
         S_program = 76,                          // program
         S_global_declaration = 77,               // global_declaration
-        S_type_declaration = 78,                 // type_declaration
-        S_declaration_type = 79,                 // declaration_type
-        S_type = 80,                             // type
-        S_declaration = 81,                      // declaration
-        S_declaration_hypothesis = 82,           // declaration_hypothesis
-        S_function_declaration = 83,             // function_declaration
-        S_parameter_list = 84,                   // parameter_list
-        S_parameter = 85,                        // parameter
-        S_statement_list = 86,                   // statement_list
-        S_statement = 87,                        // statement
-        S_statement_box = 88,                    // statement_box
-        S_iteration_statement = 89,              // iteration_statement
-        S_flow_statement = 90,                   // flow_statement
-        S_conditional_statement = 91,            // conditional_statement
-        S_expression_statement = 92,             // expression_statement
-        S_initializer = 93,                      // initializer
-        S_initializer_list = 94,                 // initializer_list
-        S_expression = 95,                       // expression
-        S_atomic_expression = 96,                // atomic_expression
-        S_postfix_expression = 97,               // postfix_expression
-        S_argument_expression_list = 98,         // argument_expression_list
-        S_unary_expression = 99,                 // unary_expression
-        S_multiplicative_expression = 100,       // multiplicative_expression
-        S_additive_expression = 101,             // additive_expression
-        S_relational_expression = 102,           // relational_expression
-        S_equality_expression = 103,             // equality_expression
-        S_logical_expression = 104,              // logical_expression
-        S_constant_expression = 105,             // constant_expression
-        S_conditional_expression = 106,          // conditional_expression
-        S_assignment_expression = 107,           // assignment_expression
-        S_match_expression = 108,                // match_expression
-        S_pattern_list = 109,                    // pattern_list
-        S_pattern = 110                          // pattern
+        S_variable_declaration = 78,             // variable_declaration
+        S_type_declaration = 79,                 // type_declaration
+        S_type_declaration_list = 80,            // type_declaration_list
+        S_type_declaration_member = 81,          // type_declaration_member
+        S_declaration_type = 82,                 // declaration_type
+        S_type_mods = 83,                        // type_mods
+        S_type_mod = 84,                         // type_mod
+        S_type = 85,                             // type
+        S_declaration = 86,                      // declaration
+        S_declaration_specification = 87,        // declaration_specification
+        S_declaration_hypothesis = 88,           // declaration_hypothesis
+        S_function_declaration = 89,             // function_declaration
+        S_parameter_list = 90,                   // parameter_list
+        S_statement_list = 91,                   // statement_list
+        S_statement = 92,                        // statement
+        S_statement_box = 93,                    // statement_box
+        S_iteration_statement = 94,              // iteration_statement
+        S_flow_statement = 95,                   // flow_statement
+        S_conditional_statement = 96,            // conditional_statement
+        S_expression_statement = 97,             // expression_statement
+        S_initializer = 98,                      // initializer
+        S_initializer_list = 99,                 // initializer_list
+        S_expression = 100,                      // expression
+        S_constant_expression = 101,             // constant_expression
+        S_conditional_expression = 102,          // conditional_expression
+        S_assignment_expression = 103,           // assignment_expression
+        S_atomic_expression = 104,               // atomic_expression
+        S_postfix_expression = 105,              // postfix_expression
+        S_argument_expression_list = 106,        // argument_expression_list
+        S_unary_expression = 107,                // unary_expression
+        S_multiplicative_expression = 108,       // multiplicative_expression
+        S_additive_expression = 109,             // additive_expression
+        S_relational_expression = 110,           // relational_expression
+        S_equality_expression = 111,             // equality_expression
+        S_logical_expression = 112,              // logical_expression
+        S_match_expression = 113,                // match_expression
+        S_pattern_list = 114,                    // pattern_list
+        S_pattern = 115,                         // pattern
+        S_assign_op = 116,                       // assign_op
+        S_unary_op = 117                         // unary_op
       };
     };
 
@@ -713,6 +724,11 @@ namespace yy {
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.move< float > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.move< int > (std::move (that.value));
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -786,6 +802,19 @@ namespace yy {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, int&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const int& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, long long&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
@@ -844,6 +873,11 @@ switch (yykind)
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.template destroy< float > ();
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.template destroy< int > ();
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -2268,7 +2302,7 @@ switch (yykind)
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
     // number is the opposite.  If YYTABLE_NINF, syntax error.
-    static const short yytable_[];
+    static const unsigned char yytable_[];
 
     static const short yycheck_[];
 
@@ -2521,9 +2555,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 431,     ///< Last index in yytable_.
-      yynnts_ = 36,  ///< Number of nonterminal symbols.
-      yyfinal_ = 13 ///< Termination state number.
+      yylast_ = 400,     ///< Last index in yytable_.
+      yynnts_ = 43,  ///< Number of nonterminal symbols.
+      yyfinal_ = 14 ///< Termination state number.
     };
 
 
@@ -2558,6 +2592,11 @@ switch (yykind)
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.copy< float > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.copy< int > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -2608,6 +2647,11 @@ switch (yykind)
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
         value.move< float > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_assign_op: // assign_op
+      case symbol_kind::S_unary_op: // unary_op
+        value.move< int > (YY_MOVE (s.value));
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
@@ -2682,7 +2726,7 @@ switch (yykind)
 
 #line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
 } // yy
-#line 2686 "../src/../src/Parser/Parser.hh"
+#line 2730 "../src/../src/Parser/Parser.hh"
 
 
 
