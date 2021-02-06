@@ -4,29 +4,29 @@
 #include <string>
 #include <map>
 #include "Parser.hh"
+#include "../Ast/Ast.hh"
 //#include "Lexer.hh"
 #include "location.hh"
 
 // yylex for Flex
 # define YY_DECL \
-    yy::Parser::symbol_type yylex (Driver *driver) 
+    yy::Parser::symbol_type yylex (Driver *driver)//, std::vector<Stmt*> *fstmt_list) 
 // declare for parser
 YY_DECL;
 
-class Driver {
-public:
+struct Driver {
     Driver();
-    std::map<std::string, int> vars;
-    int result;
+    Tree *f_ast;
+    yy::location loc;
+
+    bool show_scan = false;
+    bool trace_ast = false;
     std::string fname;
 
-    bool trace_ast;
     int parse (const std::string& fname);
-
-    bool show_scan;
     void scan_start();
     void scan_finish();
-    yy::location loc;
+
 };
 
 

@@ -53,7 +53,7 @@
 #  endif
 # endif
 
-#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/parser.yy"
 namespace yy {
 #line 59 "../src/../src/Parser/location.hh"
 
@@ -299,7 +299,7 @@ namespace yy {
     return ostr;
   }
 
-#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/parser.yy"
 } // yy
 #line 305 "../src/../src/Parser/location.hh"
 

@@ -1,19 +1,34 @@
 
 #include "Parser/Driver.hh"
+#include "Ast/Ast.hh"
 
 int main(int argc, char *argv[]) {
-    int result = 0;
+    int result = 1;
     Driver driver;
-    //for (size_t i = 1; i < argc; i++) {
-    //    if (argv[i] == std::string("-a"))
-    //        driver.trace_ast = true;
-    //    else if (argv[i] == std::string("-s"))
-    //        
-    //}
-    driver.trace_ast = true;
-    if (!driver.parse(argv[1])) {
-        std::cout << driver.result << std::endl;
-        result = 1;
+
+    std::vector<std::string> source_files;
+    std::vector<Tree*> ftrees;
+    for (int i = 1; i < argc; i++) {
+        std::string arg(argv[i]);
+        if (arg == "-a")
+            driver.trace_ast = true;
+        else if (arg == "-s")
+            driver.show_scan = true;
+        else if (arg.substr(arg.rfind('.')) == ".tape")
+            source_files.push_back(arg);
+        else 
+            std::cerr << "tape: unrecognized command" << std::endl;
+    }
+
+    // parse the whole program
+    for (const std::string& str : source_files) {
+        result = driver.parse(str);
+        ftrees.push_back(driver.f_ast);
+    }
+
+    // ast elbow grease
+    for (Tree *tree : ftrees) {
+        prettyprint(tree->getProg(), 0);
     }
 
     return result;

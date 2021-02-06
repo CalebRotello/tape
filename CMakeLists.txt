@@ -9,7 +9,7 @@ find_package(FLEX)
 #MAIN
   set(CMAKE_CURRENT_BINARY_DIR ../src)
 
-  set(GEN src/Bison)
+  set(GEN src)
   set(AST src/Ast)
   set(PARSER src/Parser)
   
@@ -26,6 +26,7 @@ find_package(FLEX)
 
     ${PARSER}/Driver.cc
     ${PARSER}/Parser.cc
+    ${AST}/Ast.cc
     ${BISON_TapeParser_OUTPUTS} 
     ${PARSER}/Lexer.cc
     ${FLEX_TapeScanner_OUTPUTS} 

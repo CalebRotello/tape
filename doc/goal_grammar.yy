@@ -11,9 +11,10 @@
 
 %code requires {
     #include <string>
-    int char_to_sym(char c);
-    class Driver;
 
+    class Driver;
+    class Value;
+    class Expression;
 }
 
 %param {Driver *driver}
@@ -24,6 +25,7 @@
 
 %code {
     #include "Driver.hh"
+    #include "../Ast/Ast.hh"
 }
 
 %printer { yyo << $$; } <*>;
@@ -81,6 +83,8 @@
 
 // nonterms
 %nterm <int> assign_op unary_op
+%nterm <Value*> atomic_expression
+%nterm <Expression*> expression
 
 
 %left "+" "-"
@@ -105,7 +109,7 @@ program:
 global_declaration: 
     variable_declaration ";"
 |   function_declaration 
-|   type_declaration ";"
+|   type_declaration 
     ;
 
 variable_declaration:
@@ -115,7 +119,7 @@ variable_declaration:
 
 type_declaration:
     TYPE ID "=" type type_mods 
-|   TYPE ID "=" "{" type_declaration_list "}" 
+|   TYPE ID "=" "{" type_declaration_list "}"  
     ;
 
 type_declaration_list:
@@ -244,13 +248,13 @@ assignment_expression:
     ; 
 
 atomic_expression:
-    ID 
-|   INT_VAL     
-|   CHAR_VAL 
-|   BOOL_VAL 
-|   FLOAT_VAL 
-|   STRING_VAL 
-|   "(" expression ")"
+    ID          { $$ = new IdValue($1);     }
+|   INT_VAL     { $$ = new IntValue($1);    }
+|   CHAR_VAL    { $$ = new IntValue($1);    }
+|   BOOL_VAL    { $$ = new IntValue($1);    } // this is bad memory, 63 excessive bits
+|   FLOAT_VAL   { $$ = new FloatValue($1);  }
+|   STRING_VAL  { $$ = new StrValue($1);    }
+|   "(" expression ")" { $$ = new ExprValue($1) }
     ;
 
 postfix_expression:

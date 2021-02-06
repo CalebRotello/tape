@@ -625,9 +625,9 @@ static const flex_int16_t yy_rule_linenum[73] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 1 "/home/espresso/projects/tape/src/lexer.l"
 #define YY_NO_INPUT 1
-#line 5 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 5 "/home/espresso/projects/tape/src/lexer.l"
     #include <cerrno>
     #include <climits>
     #include <cstdlib>
@@ -636,7 +636,7 @@ char *yytext;
     #include "Driver.hh"
     #include "Parser.hh"
 #line 638 "../src/../src/../src/Parser/Lexer.cc"
-#line 21 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 21 "/home/espresso/projects/tape/src/lexer.l"
     #define YY_USER_ACTION loc.columns(yyleng);
 #line 641 "../src/../src/../src/Parser/Lexer.cc"
 #line 642 "../src/../src/../src/Parser/Lexer.cc"
@@ -917,10 +917,10 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 23 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 23 "/home/espresso/projects/tape/src/lexer.l"
 
 
-#line 26 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 26 "/home/espresso/projects/tape/src/lexer.l"
     yy::location &loc = driver->loc;
     loc.step();
 
@@ -1004,12 +1004,12 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 30 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 30 "/home/espresso/projects/tape/src/lexer.l"
 loc.lines(yyleng); loc.step(); 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 31 "/home/espresso/projects/tape/src/lexer.l"
 loc.step(); 
 	YY_BREAK
 /*"auto"      { return yy::Parser::make_AUTO      (loc); }
@@ -1019,23 +1019,23 @@ loc.step();
  "default"   { return yy::Parser::make_DEFAULT   (loc); } */
 case 3:
 YY_RULE_SETUP
-#line 38 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 38 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_ELSE      (loc); }
 	YY_BREAK
 /*"enum"      { return yy::Parser::make_ENUM      (loc); } */
 case 4:
 YY_RULE_SETUP
-#line 40 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 40 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_FOR       (loc); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 41 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_IF        (loc); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 42 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RETURN    (loc); }
 	YY_BREAK
 /*"sizeof"    { return yy::Parser::make_SIZEOF    (loc); }
@@ -1045,22 +1045,22 @@ YY_RULE_SETUP
  "union"	    { return yy::Parser::make_UNION     (loc); } */
 case 7:
 YY_RULE_SETUP
-#line 48 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 48 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LET       (loc); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 49 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_VAR       (loc); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 50 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 50 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_FN        (loc); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 51 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 51 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_WHILE     (loc); }
 	YY_BREAK
 /*"void"      { return yy::Parser::make_VOID      (loc); }
@@ -1071,326 +1071,326 @@ YY_RULE_SETUP
  "bool"      { return yy::Parser::make_BOOL  (loc); } */
 case 11:
 YY_RULE_SETUP
-#line 59 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 59 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_F32   (loc); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 60 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 60 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_F64   (loc); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 61 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 61 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_I8    (loc); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 62 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 62 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_I16   (loc); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 63 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 63 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_I32   (loc); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 64 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 64 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_I64   (loc); }
 	YY_BREAK
 /*"char"      { return yy::Parser::make_CHAR  (loc); } */
 case 17:
 YY_RULE_SETUP
-#line 67 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 67 "/home/espresso/projects/tape/src/lexer.l"
 {  return yy::Parser::make_BOOL_VAL (true, loc); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 68 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 68 "/home/espresso/projects/tape/src/lexer.l"
 {  return yy::Parser::make_BOOL_VAL (false, loc); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 69 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 69 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_ID(yytext, loc); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 71 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 71 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_INT_VAL   (atoll(yytext), loc);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 72 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 72 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_FLOAT_VAL (atof(yytext), loc);}
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 73 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 73 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_CHAR_VAL  (yytext[1], loc);   }
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 74 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 74 "/home/espresso/projects/tape/src/lexer.l"
 { yytext[yyleng-1] = 0; return yy::Parser::make_STRING_VAL(yytext+1, loc); }
 	YY_BREAK
 /*"..."   { return yy::Parser::make_ELLIPSIS(loc); }*/
 case 24:
 YY_RULE_SETUP
-#line 77 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 77 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_PLUS_EQ(loc); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 78 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 78 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_MINUS_EQ(loc); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 79 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 79 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RIGHT_EQ(loc); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 80 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 80 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LEFT_EQ(loc); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 81 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 81 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_STAR_EQ(loc); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 82 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 82 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_FSLASH_EQ(loc); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 83 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 83 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_MOD_EQ(loc); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 84 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 84 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_CARROT_EQ(loc); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 85 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 85 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_AMP_EQ(loc); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 86 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 86 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_PIPE_EQ(loc); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 87 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 87 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RIGHT(loc); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 88 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 88 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LEFT(loc); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 89 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 89 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_INCREMENT(loc); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 90 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 90 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_DECREMENT(loc); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 91 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 91 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_POINTER(loc); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 92 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 92 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_AMP_AMP(loc); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 93 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 93 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_PIPE_PIPE(loc); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 94 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 94 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LT_EQ(loc); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 95 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 95 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_GT_EQ(loc); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 96 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 96 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_EQ_EQ(loc); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 97 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 97 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_BANG_EQ(loc); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 98 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 98 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_EQ (loc); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 99 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 99 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_SC (loc); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 100 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 100 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LBRACE (loc); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 101 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 101 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RBRACE (loc); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 102 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 102 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_COMMA (loc); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 103 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 103 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_COLON (loc); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 104 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 104 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LPAREN (loc); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 105 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 105 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RPAREN (loc); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 106 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 106 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LSQUARE (loc); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 107 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 107 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_RSQUARE (loc); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 108 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 108 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_DOT (loc); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 109 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 109 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_AMP (loc); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 110 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 110 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_BANG (loc); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 111 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 111 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_TILDE (loc); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 112 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 112 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_MINUS (loc); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 113 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 113 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_PLUS (loc); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 114 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 114 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_STAR (loc); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 115 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 115 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_FSLASH (loc); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 116 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 116 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_MOD (loc); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 117 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 117 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_AT (loc); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 118 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 118 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_LT (loc); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 119 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 119 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_GT (loc); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 120 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 120 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_CARROT (loc); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 121 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 121 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_PIPE (loc); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 122 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 122 "/home/espresso/projects/tape/src/lexer.l"
 { return yy::Parser::make_QUESTION (loc); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 124 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 124 "/home/espresso/projects/tape/src/lexer.l"
 loc.step();
 	YY_BREAK
 case 71:
 /* rule 71 can match eol */
 YY_RULE_SETUP
-#line 125 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 125 "/home/espresso/projects/tape/src/lexer.l"
 loc.lines(yyleng); loc.step();
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 126 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 126 "/home/espresso/projects/tape/src/lexer.l"
 
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 127 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 127 "/home/espresso/projects/tape/src/lexer.l"
 return yy::Parser::make_YYEOF(loc);
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 129 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 129 "/home/espresso/projects/tape/src/lexer.l"
 ECHO;
 	YY_BREAK
 #line 1396 "../src/../src/../src/Parser/Lexer.cc"
@@ -2498,11 +2498,13 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 129 "/home/espresso/projects/tape/src/Bison/lexer.l"
+#line 129 "/home/espresso/projects/tape/src/lexer.l"
 
 
 void Driver::scan_start() {
     yy_flex_debug = show_scan;
+    if (trace_ast)
+        #define YYDEBUG 1
     if (!(yyin = fopen(fname.c_str(), "r"))) {
         std::cerr << "Error opening " << fname << ": " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);

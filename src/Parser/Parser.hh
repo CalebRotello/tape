@@ -45,14 +45,20 @@
 #ifndef YY_YY_SRC_SRC_PARSER_PARSER_HH_INCLUDED
 # define YY_YY_SRC_SRC_PARSER_PARSER_HH_INCLUDED
 // "%code requires" blocks.
-#line 12 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 12 "/home/espresso/projects/tape/src/parser.yy"
 
     #include <string>
-    int char_to_sym(char c);
-    class Driver;
+    #include <vector>
 
+    struct Driver;
+    class Expr;
+    class Stmt;
+    class StmtList;
+    class FunctionDeclStmt;
+    class VarDeclStmt;
+    class TypeDeclStmt;
 
-#line 56 "../src/../src/Parser/Parser.hh"
+#line 62 "../src/../src/Parser/Parser.hh"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -185,9 +191,9 @@
 # define YYDEBUG 1
 #endif
 
-#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/parser.yy"
 namespace yy {
-#line 191 "../src/../src/Parser/Parser.hh"
+#line 197 "../src/../src/Parser/Parser.hh"
 
 
 
@@ -401,25 +407,62 @@ namespace yy {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
+      // initializer
+      // expression
+      // constant_expression
+      // assignment_expression
+      // atomic_expression
+      // postfix_expression
+      // unary_expression
+      // multiplicative_expression
+      // additive_expression
+      // relational_expression
+      // equality_expression
+      char dummy1[sizeof (Expr*)];
+
+      // function_declaration
+      // fn_statement_box
+      char dummy2[sizeof (FunctionDeclStmt*)];
+
+      // global_declaration
+      // statement
+      // flow_statement
+      // expression_statement
+      char dummy3[sizeof (Stmt*)];
+
+      // program
+      // statement_list
+      // statement_box
+      char dummy4[sizeof (StmtList*)];
+
+      // type_declaration
+      char dummy5[sizeof (TypeDeclStmt*)];
+
+      // variable_declaration
+      // declaration
+      char dummy6[sizeof (VarDeclStmt*)];
+
       // BOOL_VAL
-      char dummy1[sizeof (bool)];
+      // declaration_hypothesis
+      char dummy7[sizeof (bool)];
 
       // CHAR_VAL
-      char dummy2[sizeof (char)];
+      char dummy8[sizeof (char)];
 
       // FLOAT_VAL
-      char dummy3[sizeof (float)];
+      char dummy9[sizeof (float)];
 
+      // type
       // assign_op
       // unary_op
-      char dummy4[sizeof (int)];
+      char dummy10[sizeof (int)];
 
       // INT_VAL
-      char dummy5[sizeof (long long)];
+      char dummy11[sizeof (long long)];
 
       // STRING_VAL
       // ID
-      char dummy6[sizeof (std::string)];
+      char dummy12[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -558,7 +601,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 75, ///< Number of tokens.
+        YYNTOKENS = 74, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -634,50 +677,40 @@ namespace yy {
         S_I64 = 71,                              // I64
         S_F32 = 72,                              // F32
         S_F64 = 73,                              // F64
-        S_74_ = 74,                              // "->"
-        S_YYACCEPT = 75,                         // $accept
-        S_program = 76,                          // program
-        S_global_declaration = 77,               // global_declaration
-        S_variable_declaration = 78,             // variable_declaration
-        S_type_declaration = 79,                 // type_declaration
-        S_type_declaration_list = 80,            // type_declaration_list
-        S_type_declaration_member = 81,          // type_declaration_member
-        S_declaration_type = 82,                 // declaration_type
-        S_type_mods = 83,                        // type_mods
-        S_type_mod = 84,                         // type_mod
-        S_type = 85,                             // type
-        S_declaration = 86,                      // declaration
-        S_declaration_specification = 87,        // declaration_specification
-        S_declaration_hypothesis = 88,           // declaration_hypothesis
-        S_function_declaration = 89,             // function_declaration
-        S_parameter_list = 90,                   // parameter_list
-        S_statement_list = 91,                   // statement_list
-        S_statement = 92,                        // statement
-        S_statement_box = 93,                    // statement_box
-        S_iteration_statement = 94,              // iteration_statement
-        S_flow_statement = 95,                   // flow_statement
-        S_conditional_statement = 96,            // conditional_statement
-        S_expression_statement = 97,             // expression_statement
-        S_initializer = 98,                      // initializer
-        S_initializer_list = 99,                 // initializer_list
-        S_expression = 100,                      // expression
-        S_constant_expression = 101,             // constant_expression
-        S_conditional_expression = 102,          // conditional_expression
-        S_assignment_expression = 103,           // assignment_expression
-        S_atomic_expression = 104,               // atomic_expression
-        S_postfix_expression = 105,              // postfix_expression
-        S_argument_expression_list = 106,        // argument_expression_list
-        S_unary_expression = 107,                // unary_expression
-        S_multiplicative_expression = 108,       // multiplicative_expression
-        S_additive_expression = 109,             // additive_expression
-        S_relational_expression = 110,           // relational_expression
-        S_equality_expression = 111,             // equality_expression
-        S_logical_expression = 112,              // logical_expression
-        S_match_expression = 113,                // match_expression
-        S_pattern_list = 114,                    // pattern_list
-        S_pattern = 115,                         // pattern
-        S_assign_op = 116,                       // assign_op
-        S_unary_op = 117                         // unary_op
+        S_YYACCEPT = 74,                         // $accept
+        S_program = 75,                          // program
+        S_global_declaration = 76,               // global_declaration
+        S_variable_declaration = 77,             // variable_declaration
+        S_type_declaration = 78,                 // type_declaration
+        S_type_declaration_list = 79,            // type_declaration_list
+        S_type_declaration_member = 80,          // type_declaration_member
+        S_declaration_type = 81,                 // declaration_type
+        S_type_mods = 82,                        // type_mods
+        S_type_mod = 83,                         // type_mod
+        S_type = 84,                             // type
+        S_declaration = 85,                      // declaration
+        S_declaration_hypothesis = 86,           // declaration_hypothesis
+        S_function_declaration = 87,             // function_declaration
+        S_parameter_list = 88,                   // parameter_list
+        S_statement_list = 89,                   // statement_list
+        S_statement = 90,                        // statement
+        S_statement_box = 91,                    // statement_box
+        S_fn_statement_box = 92,                 // fn_statement_box
+        S_flow_statement = 93,                   // flow_statement
+        S_expression_statement = 94,             // expression_statement
+        S_initializer = 95,                      // initializer
+        S_expression = 96,                       // expression
+        S_constant_expression = 97,              // constant_expression
+        S_assignment_expression = 98,            // assignment_expression
+        S_atomic_expression = 99,                // atomic_expression
+        S_postfix_expression = 100,              // postfix_expression
+        S_unary_expression = 101,                // unary_expression
+        S_multiplicative_expression = 102,       // multiplicative_expression
+        S_additive_expression = 103,             // additive_expression
+        S_relational_expression = 104,           // relational_expression
+        S_equality_expression = 105,             // equality_expression
+        S_assign_op = 106,                       // assign_op
+        S_unary_op = 107                         // unary_op
       };
     };
 
@@ -714,7 +747,49 @@ namespace yy {
       {
         switch (this->kind ())
     {
+      case symbol_kind::S_initializer: // initializer
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_constant_expression: // constant_expression
+      case symbol_kind::S_assignment_expression: // assignment_expression
+      case symbol_kind::S_atomic_expression: // atomic_expression
+      case symbol_kind::S_postfix_expression: // postfix_expression
+      case symbol_kind::S_unary_expression: // unary_expression
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+      case symbol_kind::S_additive_expression: // additive_expression
+      case symbol_kind::S_relational_expression: // relational_expression
+      case symbol_kind::S_equality_expression: // equality_expression
+        value.move< Expr* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_function_declaration: // function_declaration
+      case symbol_kind::S_fn_statement_box: // fn_statement_box
+        value.move< FunctionDeclStmt* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_global_declaration: // global_declaration
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_flow_statement: // flow_statement
+      case symbol_kind::S_expression_statement: // expression_statement
+        value.move< Stmt* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_statement_list: // statement_list
+      case symbol_kind::S_statement_box: // statement_box
+        value.move< StmtList* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_type_declaration: // type_declaration
+        value.move< TypeDeclStmt* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_variable_declaration: // variable_declaration
+      case symbol_kind::S_declaration: // declaration
+        value.move< VarDeclStmt* > (std::move (that.value));
+        break;
+
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
+      case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
         value.move< bool > (std::move (that.value));
         break;
 
@@ -726,6 +801,7 @@ namespace yy {
         value.move< float > (std::move (that.value));
         break;
 
+      case symbol_kind::S_type: // type
       case symbol_kind::S_assign_op: // assign_op
       case symbol_kind::S_unary_op: // unary_op
         value.move< int > (std::move (that.value));
@@ -759,6 +835,84 @@ namespace yy {
 #else
       basic_symbol (typename Base::kind_type t, const location_type& l)
         : Base (t)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, Expr*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const Expr*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, FunctionDeclStmt*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const FunctionDeclStmt*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, Stmt*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const Stmt*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, StmtList*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const StmtList*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, TypeDeclStmt*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const TypeDeclStmt*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, VarDeclStmt*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const VarDeclStmt*& v, const location_type& l)
+        : Base (t)
+        , value (v)
         , location (l)
       {}
 #endif
@@ -863,7 +1017,49 @@ namespace yy {
         // Value type destructor.
 switch (yykind)
     {
+      case symbol_kind::S_initializer: // initializer
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_constant_expression: // constant_expression
+      case symbol_kind::S_assignment_expression: // assignment_expression
+      case symbol_kind::S_atomic_expression: // atomic_expression
+      case symbol_kind::S_postfix_expression: // postfix_expression
+      case symbol_kind::S_unary_expression: // unary_expression
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+      case symbol_kind::S_additive_expression: // additive_expression
+      case symbol_kind::S_relational_expression: // relational_expression
+      case symbol_kind::S_equality_expression: // equality_expression
+        value.template destroy< Expr* > ();
+        break;
+
+      case symbol_kind::S_function_declaration: // function_declaration
+      case symbol_kind::S_fn_statement_box: // fn_statement_box
+        value.template destroy< FunctionDeclStmt* > ();
+        break;
+
+      case symbol_kind::S_global_declaration: // global_declaration
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_flow_statement: // flow_statement
+      case symbol_kind::S_expression_statement: // expression_statement
+        value.template destroy< Stmt* > ();
+        break;
+
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_statement_list: // statement_list
+      case symbol_kind::S_statement_box: // statement_box
+        value.template destroy< StmtList* > ();
+        break;
+
+      case symbol_kind::S_type_declaration: // type_declaration
+        value.template destroy< TypeDeclStmt* > ();
+        break;
+
+      case symbol_kind::S_variable_declaration: // variable_declaration
+      case symbol_kind::S_declaration: // declaration
+        value.template destroy< VarDeclStmt* > ();
+        break;
+
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
+      case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
         value.template destroy< bool > ();
         break;
 
@@ -875,6 +1071,7 @@ switch (yykind)
         value.template destroy< float > ();
         break;
 
+      case symbol_kind::S_type: // type
       case symbol_kind::S_assign_op: // assign_op
       case symbol_kind::S_unary_op: // unary_op
         value.template destroy< int > ();
@@ -979,13 +1176,13 @@ switch (yykind)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64 || tok == 329);
+        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64 || tok == 329);
+        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1056,7 +1253,7 @@ switch (yykind)
     };
 
     /// Build a parser object.
-    Parser (Driver *driver_yyarg);
+    Parser (Driver *driver_yyarg, StmtList *fstmt_list_yyarg);
     virtual ~Parser ();
 
 #if 201103L <= YY_CPLUSPLUS
@@ -2273,7 +2470,7 @@ switch (yykind)
     /// \param yyvalue   the value to check
     static bool yy_table_value_is_error_ (int yyvalue);
 
-    static const short yypact_ninf_;
+    static const signed char yypact_ninf_;
     static const signed char yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
@@ -2555,14 +2752,15 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 400,     ///< Last index in yytable_.
-      yynnts_ = 43,  ///< Number of nonterminal symbols.
+      yylast_ = 261,     ///< Last index in yytable_.
+      yynnts_ = 34,  ///< Number of nonterminal symbols.
       yyfinal_ = 14 ///< Termination state number.
     };
 
 
     // User arguments.
     Driver *driver;
+    StmtList *fstmt_list;
 
   };
 
@@ -2582,7 +2780,49 @@ switch (yykind)
   {
     switch (this->kind ())
     {
+      case symbol_kind::S_initializer: // initializer
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_constant_expression: // constant_expression
+      case symbol_kind::S_assignment_expression: // assignment_expression
+      case symbol_kind::S_atomic_expression: // atomic_expression
+      case symbol_kind::S_postfix_expression: // postfix_expression
+      case symbol_kind::S_unary_expression: // unary_expression
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+      case symbol_kind::S_additive_expression: // additive_expression
+      case symbol_kind::S_relational_expression: // relational_expression
+      case symbol_kind::S_equality_expression: // equality_expression
+        value.copy< Expr* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_function_declaration: // function_declaration
+      case symbol_kind::S_fn_statement_box: // fn_statement_box
+        value.copy< FunctionDeclStmt* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_global_declaration: // global_declaration
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_flow_statement: // flow_statement
+      case symbol_kind::S_expression_statement: // expression_statement
+        value.copy< Stmt* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_statement_list: // statement_list
+      case symbol_kind::S_statement_box: // statement_box
+        value.copy< StmtList* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_type_declaration: // type_declaration
+        value.copy< TypeDeclStmt* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_variable_declaration: // variable_declaration
+      case symbol_kind::S_declaration: // declaration
+        value.copy< VarDeclStmt* > (YY_MOVE (that.value));
+        break;
+
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
+      case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
         value.copy< bool > (YY_MOVE (that.value));
         break;
 
@@ -2594,6 +2834,7 @@ switch (yykind)
         value.copy< float > (YY_MOVE (that.value));
         break;
 
+      case symbol_kind::S_type: // type
       case symbol_kind::S_assign_op: // assign_op
       case symbol_kind::S_unary_op: // unary_op
         value.copy< int > (YY_MOVE (that.value));
@@ -2637,7 +2878,49 @@ switch (yykind)
     super_type::move (s);
     switch (this->kind ())
     {
+      case symbol_kind::S_initializer: // initializer
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_constant_expression: // constant_expression
+      case symbol_kind::S_assignment_expression: // assignment_expression
+      case symbol_kind::S_atomic_expression: // atomic_expression
+      case symbol_kind::S_postfix_expression: // postfix_expression
+      case symbol_kind::S_unary_expression: // unary_expression
+      case symbol_kind::S_multiplicative_expression: // multiplicative_expression
+      case symbol_kind::S_additive_expression: // additive_expression
+      case symbol_kind::S_relational_expression: // relational_expression
+      case symbol_kind::S_equality_expression: // equality_expression
+        value.move< Expr* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_function_declaration: // function_declaration
+      case symbol_kind::S_fn_statement_box: // fn_statement_box
+        value.move< FunctionDeclStmt* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_global_declaration: // global_declaration
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_flow_statement: // flow_statement
+      case symbol_kind::S_expression_statement: // expression_statement
+        value.move< Stmt* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_statement_list: // statement_list
+      case symbol_kind::S_statement_box: // statement_box
+        value.move< StmtList* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_type_declaration: // type_declaration
+        value.move< TypeDeclStmt* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_variable_declaration: // variable_declaration
+      case symbol_kind::S_declaration: // declaration
+        value.move< VarDeclStmt* > (YY_MOVE (s.value));
+        break;
+
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
+      case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
         value.move< bool > (YY_MOVE (s.value));
         break;
 
@@ -2649,6 +2932,7 @@ switch (yykind)
         value.move< float > (YY_MOVE (s.value));
         break;
 
+      case symbol_kind::S_type: // type
       case symbol_kind::S_assign_op: // assign_op
       case symbol_kind::S_unary_op: // unary_op
         value.move< int > (YY_MOVE (s.value));
@@ -2724,9 +3008,9 @@ switch (yykind)
     return this->kind ();
   }
 
-#line 6 "/home/espresso/projects/tape/src/Bison/parser.yy"
+#line 6 "/home/espresso/projects/tape/src/parser.yy"
 } // yy
-#line 2730 "../src/../src/Parser/Parser.hh"
+#line 3014 "../src/../src/Parser/Parser.hh"
 
 
 
