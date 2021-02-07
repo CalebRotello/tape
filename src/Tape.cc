@@ -14,10 +14,14 @@ int main(int argc, char *argv[]) {
             driver.trace_ast = true;
         else if (arg == "-s")
             driver.show_scan = true;
-        else if (arg.substr(arg.rfind('.')) == ".tape")
+        else if (arg.substr(arg.rfind('.')) == ".tape") 
             source_files.push_back(arg);
         else 
             std::cerr << "tape: unrecognized command" << std::endl;
+    }
+
+    if (source_files.size() == 0) {
+        std::cerr << "tape: expected 1 or more arguments of type *.tape" << std::endl;
     }
 
     // parse the whole program
@@ -28,7 +32,8 @@ int main(int argc, char *argv[]) {
 
     // ast elbow grease
     for (Tree *tree : ftrees) {
-        prettyprint(tree->getProg(), 0);
+        if (driver.trace_ast)
+            tree->getProg()->print("", false);
     }
 
     return result;

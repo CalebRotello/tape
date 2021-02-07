@@ -5,5 +5,5 @@ fn main(): i32
     c += 6;
     c++;
     c *=7;
-    return c;
+    return c==d;
 }

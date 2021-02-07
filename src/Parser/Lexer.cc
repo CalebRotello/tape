@@ -2503,8 +2503,6 @@ void yyfree (void * ptr )
 
 void Driver::scan_start() {
     yy_flex_debug = show_scan;
-    if (trace_ast)
-        #define YYDEBUG 1
     if (!(yyin = fopen(fname.c_str(), "r"))) {
         std::cerr << "Error opening " << fname << ": " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);

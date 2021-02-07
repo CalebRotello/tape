@@ -11,8 +11,9 @@
 
 class Node {
 public:
-    virtual void print(u_short i) const;
+    virtual void print(const std::string& prefix, bool is_last);
 };
+
 class IdValue;
 class StmtList;
 
@@ -32,7 +33,7 @@ class VarDeclStmt : public Stmt {
 public:
     VarDeclStmt(std::string id, bool is_mutable) : id(id) {} // TODO default values
     void setExpr(Expr *expr);
-    virtual void print(u_short i) const;
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class FunctionDeclStmt : public Stmt {
@@ -45,13 +46,14 @@ public:
     FunctionDeclStmt(StmtList *stmt_list, Expr *return_expr) : fn_stmt_list(stmt_list), return_expr(return_expr) {}
     IdValue *getFnId();
     void setFnId(std::string id);
-    virtual void print(u_short i) const;
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class TypeDeclStmt : public Stmt {
     std::string id;
 public:
     TypeDeclStmt(std::string id) : id(id) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class StmtList : public Stmt {
@@ -60,13 +62,14 @@ public:
     StmtList(std::initializer_list<Stmt*> stmt_list) : stmt_list(stmt_list) {}
     StmtList() : stmt_list() {}
     void push_back(Stmt* s);
-    virtual void print(u_short i) const;
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class ExprStmt : public Stmt {
     Expr *expr;
 public:
     ExprStmt(Expr *expr) : expr(expr) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class ActionStmt : public Stmt {
@@ -87,6 +90,7 @@ class BopExpr : public Expr {
     int op;
 public:
     BopExpr(int op, Expr *lexpr, Expr *rexpr) : lexpr(lexpr), rexpr(rexpr), op(op) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class UopExpr : public Expr {
@@ -94,6 +98,7 @@ class UopExpr : public Expr {
     int op;
 public:
     UopExpr(int op, Expr *expr) : expr(expr), op(op) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class AssignExpr : public Expr {
@@ -101,6 +106,7 @@ class AssignExpr : public Expr {
     Expr *expr;
 public:
     AssignExpr(IdValue *id, Expr *expr) : id(id), expr(expr) {} // TODO check mutability
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 
@@ -114,24 +120,28 @@ class IdValue : public Value {
     std::string val;
 public:
     IdValue(std::string v) : val(v) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class StrValue : public Value {
     std::string val;
 public:
     StrValue(std::string v) : val(v) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class IntValue : public Value {
     long long val;
 public:
     IntValue(long long l) : val(l) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 class FloatValue : public Value {
     double val;
 public:
     FloatValue(double v) : val(v) {}
+    virtual void print(const std::string& prefix, bool is_last);
 };
 
 
@@ -145,7 +155,8 @@ public:
 
 
 // bells and whistles
-void prettyprint(const Node *n, u_short layer);
-void ptab(u_short i);
+void pref(const std::string& prefix, bool is_last);
+const char *psymbol(const int& op);
+
 
 #endif /* AST_HH_ */
