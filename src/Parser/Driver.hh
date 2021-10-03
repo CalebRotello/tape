@@ -5,18 +5,18 @@
 #include <map>
 #include "Parser.hh"
 #include "../Ast/Ast.hh"
-//#include "Lexer.hh"
 #include "location.hh"
 
 // yylex for Flex
 # define YY_DECL \
-    yy::Parser::symbol_type yylex (Driver *driver)//, std::vector<Stmt*> *fstmt_list) 
+    yy::Parser::symbol_type yylex (Driver *driver)
 // declare for parser
 YY_DECL;
 
 struct Driver {
-    Driver();
-    Tree *f_ast;
+public:
+    Driver() : ast_map() {}
+    ~Driver();
     yy::location loc;
 
     bool show_scan = false;
@@ -27,6 +27,11 @@ struct Driver {
     void scan_start();
     void scan_finish();
 
+    int traverseAsts();
+
+private:
+    std::map<std::string, Tree*> ast_map; // file -> ast
+    ScopeTree global_scope = ScopeTree(nullptr, 0);
 };
 
 

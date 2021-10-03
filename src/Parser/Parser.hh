@@ -51,6 +51,7 @@
     #include <vector>
 
     struct Driver;
+    class ScopeTree;
     class Expr;
     class Stmt;
     class StmtList;
@@ -58,7 +59,7 @@
     class VarDeclStmt;
     class TypeDeclStmt;
 
-#line 62 "../src/../src/Parser/Parser.hh"
+#line 63 "../src/../src/Parser/Parser.hh"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -193,7 +194,7 @@
 
 #line 6 "/home/espresso/projects/tape/src/parser.yy"
 namespace yy {
-#line 197 "../src/../src/Parser/Parser.hh"
+#line 198 "../src/../src/Parser/Parser.hh"
 
 
 
@@ -578,13 +579,18 @@ namespace yy {
     MATCH = 64,                    // MATCH
     BREAK = 65,                    // BREAK
     CONTINUE = 66,                 // CONTINUE
-    TYPE_NAME = 67,                // TYPE_NAME
-    I8 = 68,                       // I8
-    I16 = 69,                      // I16
-    I32 = 70,                      // I32
-    I64 = 71,                      // I64
-    F32 = 72,                      // F32
-    F64 = 73                       // F64
+    I8 = 67,                       // I8
+    I16 = 68,                      // I16
+    I32 = 69,                      // I32
+    I64 = 70,                      // I64
+    F32 = 71,                      // F32
+    F64 = 72,                      // F64
+    U_I8 = 73,                     // U_I8
+    U_I16 = 74,                    // U_I16
+    U_I32 = 75,                    // U_I32
+    U_I64 = 76,                    // U_I64
+    U_F32 = 77,                    // U_F32
+    U_F64 = 78                     // U_F64
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -601,7 +607,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 74, ///< Number of tokens.
+        YYNTOKENS = 79, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -670,47 +676,52 @@ namespace yy {
         S_MATCH = 64,                            // MATCH
         S_BREAK = 65,                            // BREAK
         S_CONTINUE = 66,                         // CONTINUE
-        S_TYPE_NAME = 67,                        // TYPE_NAME
-        S_I8 = 68,                               // I8
-        S_I16 = 69,                              // I16
-        S_I32 = 70,                              // I32
-        S_I64 = 71,                              // I64
-        S_F32 = 72,                              // F32
-        S_F64 = 73,                              // F64
-        S_YYACCEPT = 74,                         // $accept
-        S_program = 75,                          // program
-        S_global_declaration = 76,               // global_declaration
-        S_variable_declaration = 77,             // variable_declaration
-        S_type_declaration = 78,                 // type_declaration
-        S_type_declaration_list = 79,            // type_declaration_list
-        S_type_declaration_member = 80,          // type_declaration_member
-        S_declaration_type = 81,                 // declaration_type
-        S_type_mods = 82,                        // type_mods
-        S_type_mod = 83,                         // type_mod
-        S_type = 84,                             // type
-        S_declaration = 85,                      // declaration
-        S_declaration_hypothesis = 86,           // declaration_hypothesis
-        S_function_declaration = 87,             // function_declaration
-        S_parameter_list = 88,                   // parameter_list
-        S_statement_list = 89,                   // statement_list
-        S_statement = 90,                        // statement
-        S_statement_box = 91,                    // statement_box
-        S_fn_statement_box = 92,                 // fn_statement_box
-        S_flow_statement = 93,                   // flow_statement
-        S_expression_statement = 94,             // expression_statement
-        S_initializer = 95,                      // initializer
-        S_expression = 96,                       // expression
-        S_constant_expression = 97,              // constant_expression
-        S_assignment_expression = 98,            // assignment_expression
-        S_atomic_expression = 99,                // atomic_expression
-        S_postfix_expression = 100,              // postfix_expression
-        S_unary_expression = 101,                // unary_expression
-        S_multiplicative_expression = 102,       // multiplicative_expression
-        S_additive_expression = 103,             // additive_expression
-        S_relational_expression = 104,           // relational_expression
-        S_equality_expression = 105,             // equality_expression
-        S_assign_op = 106,                       // assign_op
-        S_unary_op = 107                         // unary_op
+        S_I8 = 67,                               // I8
+        S_I16 = 68,                              // I16
+        S_I32 = 69,                              // I32
+        S_I64 = 70,                              // I64
+        S_F32 = 71,                              // F32
+        S_F64 = 72,                              // F64
+        S_U_I8 = 73,                             // U_I8
+        S_U_I16 = 74,                            // U_I16
+        S_U_I32 = 75,                            // U_I32
+        S_U_I64 = 76,                            // U_I64
+        S_U_F32 = 77,                            // U_F32
+        S_U_F64 = 78,                            // U_F64
+        S_YYACCEPT = 79,                         // $accept
+        S_program = 80,                          // program
+        S_global_declaration = 81,               // global_declaration
+        S_variable_declaration = 82,             // variable_declaration
+        S_type_declaration = 83,                 // type_declaration
+        S_type_declaration_list = 84,            // type_declaration_list
+        S_type_declaration_member = 85,          // type_declaration_member
+        S_declaration_type = 86,                 // declaration_type
+        S_type_mods = 87,                        // type_mods
+        S_type_mod = 88,                         // type_mod
+        S_type = 89,                             // type
+        S_declaration = 90,                      // declaration
+        S_declaration_hypothesis = 91,           // declaration_hypothesis
+        S_function_declaration = 92,             // function_declaration
+        S_parameter_list = 93,                   // parameter_list
+        S_statement_list = 94,                   // statement_list
+        S_statement = 95,                        // statement
+        S_statement_box = 96,                    // statement_box
+        S_fn_statement_box = 97,                 // fn_statement_box
+        S_flow_statement = 98,                   // flow_statement
+        S_expression_statement = 99,             // expression_statement
+        S_initializer = 100,                     // initializer
+        S_expression = 101,                      // expression
+        S_constant_expression = 102,             // constant_expression
+        S_assignment_expression = 103,           // assignment_expression
+        S_atomic_expression = 104,               // atomic_expression
+        S_postfix_expression = 105,              // postfix_expression
+        S_unary_expression = 106,                // unary_expression
+        S_multiplicative_expression = 107,       // multiplicative_expression
+        S_additive_expression = 108,             // additive_expression
+        S_relational_expression = 109,           // relational_expression
+        S_equality_expression = 110,             // equality_expression
+        S_assign_op = 111,                       // assign_op
+        S_unary_op = 112                         // unary_op
       };
     };
 
@@ -1176,13 +1187,13 @@ switch (yykind)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64);
+        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64 || tok == token::U_I8 || tok == token::U_I16 || tok == token::U_I32 || tok == token::U_I64 || tok == token::U_F32 || tok == token::U_F64);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::TYPE_NAME || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64);
+        YY_ASSERT (tok == token::YYEOF || tok == token::YYerror || tok == token::YYUNDEF || tok == token::EQ || tok == token::PLUS || tok == token::MINUS || tok == token::AT || tok == token::AMP || tok == token::PIPE || tok == token::FSLASH || tok == token::STAR || tok == token::MOD || tok == token::LPAREN || tok == token::RPAREN || tok == token::LSQUARE || tok == token::RSQUARE || tok == token::LBRACE || tok == token::RBRACE || tok == token::SC || tok == token::LT || tok == token::GT || tok == token::COLON || tok == token::CARROT || tok == token::COMMA || tok == token::QUESTION || tok == token::DOT || tok == token::BANG || tok == token::TILDE || tok == token::POINTER || tok == token::INCREMENT || tok == token::DECREMENT || tok == token::LEFT || tok == token::RIGHT || tok == token::AMP_AMP || tok == token::PIPE_PIPE || tok == token::STAR_EQ || tok == token::FSLASH_EQ || tok == token::MOD_EQ || tok == token::PLUS_EQ || tok == token::MINUS_EQ || tok == token::LEFT_EQ || tok == token::RIGHT_EQ || tok == token::AMP_EQ || tok == token::CARROT_EQ || tok == token::PIPE_EQ || tok == token::LT_EQ || tok == token::GT_EQ || tok == token::EQ_EQ || tok == token::BANG_EQ || tok == token::IF || tok == token::ELSE || tok == token::FN || tok == token::LET || tok == token::VAR || tok == token::TYPE || tok == token::RETURN || tok == token::FOR || tok == token::WHILE || tok == token::MATCH || tok == token::BREAK || tok == token::CONTINUE || tok == token::I8 || tok == token::I16 || tok == token::I32 || tok == token::I64 || tok == token::F32 || tok == token::F64 || tok == token::U_I8 || tok == token::U_I16 || tok == token::U_I32 || tok == token::U_I64 || tok == token::U_F32 || tok == token::U_F64);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1253,7 +1264,7 @@ switch (yykind)
     };
 
     /// Build a parser object.
-    Parser (Driver *driver_yyarg, StmtList *fstmt_list_yyarg);
+    Parser (Driver *driver_yyarg, StmtList *fstmt_list_yyarg, ScopeTree *scope_yyarg);
     virtual ~Parser ();
 
 #if 201103L <= YY_CPLUSPLUS
@@ -2306,21 +2317,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_TYPE_NAME (location_type l)
-      {
-        return symbol_type (token::TYPE_NAME, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_TYPE_NAME (const location_type& l)
-      {
-        return symbol_type (token::TYPE_NAME, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_I8 (location_type l)
       {
         return symbol_type (token::I8, std::move (l));
@@ -2408,6 +2404,96 @@ switch (yykind)
         return symbol_type (token::F64, l);
       }
 #endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_I8 (location_type l)
+      {
+        return symbol_type (token::U_I8, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_I8 (const location_type& l)
+      {
+        return symbol_type (token::U_I8, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_I16 (location_type l)
+      {
+        return symbol_type (token::U_I16, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_I16 (const location_type& l)
+      {
+        return symbol_type (token::U_I16, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_I32 (location_type l)
+      {
+        return symbol_type (token::U_I32, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_I32 (const location_type& l)
+      {
+        return symbol_type (token::U_I32, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_I64 (location_type l)
+      {
+        return symbol_type (token::U_I64, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_I64 (const location_type& l)
+      {
+        return symbol_type (token::U_I64, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_F32 (location_type l)
+      {
+        return symbol_type (token::U_F32, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_F32 (const location_type& l)
+      {
+        return symbol_type (token::U_F32, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_U_F64 (location_type l)
+      {
+        return symbol_type (token::U_F64, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_U_F64 (const location_type& l)
+      {
+        return symbol_type (token::U_F64, l);
+      }
+#endif
 
 
     class context
@@ -2470,7 +2556,7 @@ switch (yykind)
     /// \param yyvalue   the value to check
     static bool yy_table_value_is_error_ (int yyvalue);
 
-    static const signed char yypact_ninf_;
+    static const short yypact_ninf_;
     static const signed char yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
@@ -2752,7 +2838,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 261,     ///< Last index in yytable_.
+      yylast_ = 320,     ///< Last index in yytable_.
       yynnts_ = 34,  ///< Number of nonterminal symbols.
       yyfinal_ = 14 ///< Termination state number.
     };
@@ -2761,6 +2847,7 @@ switch (yykind)
     // User arguments.
     Driver *driver;
     StmtList *fstmt_list;
+    ScopeTree *scope;
 
   };
 
@@ -3010,7 +3097,7 @@ switch (yykind)
 
 #line 6 "/home/espresso/projects/tape/src/parser.yy"
 } // yy
-#line 3014 "../src/../src/Parser/Parser.hh"
+#line 3101 "../src/../src/Parser/Parser.hh"
 
 
 

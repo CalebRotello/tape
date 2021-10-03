@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
     Driver driver;
 
     std::vector<std::string> source_files;
-    std::vector<Tree*> ftrees;
     for (int i = 1; i < argc; i++) {
         std::string arg(argv[i]);
         if (arg == "-a")
@@ -27,14 +26,14 @@ int main(int argc, char *argv[]) {
     // parse the whole program
     for (const std::string& str : source_files) {
         result = driver.parse(str);
-        ftrees.push_back(driver.f_ast);
     }
 
     // ast elbow grease
-    for (Tree *tree : ftrees) {
-        if (driver.trace_ast)
-            tree->getProg()->print("", false);
-    }
+    driver.traverseAsts();
+    //for (Tree *tree : ftrees) {
+    //    if (driver.trace_ast)
+    //        tree->getProg()->print("", false);
+    //}
 
     return result;
 }

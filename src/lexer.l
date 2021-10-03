@@ -61,6 +61,13 @@ Sci     [Ee][+-]?{Dec}+
 "i16"       { return yy::Parser::make_I16   (loc); }
 "i32"       { return yy::Parser::make_I32   (loc); }
 "i64"       { return yy::Parser::make_I64   (loc); }
+"u_f32"       { return yy::Parser::make_U_F32   (loc); }
+"u_f64"       { return yy::Parser::make_U_F64   (loc); }
+"u_i8"        { return yy::Parser::make_U_I8    (loc); }
+"u_i16"       { return yy::Parser::make_U_I16   (loc); }
+"u_i32"       { return yy::Parser::make_U_I32   (loc); }
+"u_i64"       { return yy::Parser::make_U_I64   (loc); }
+
  /*"char"      { return yy::Parser::make_CHAR  (loc); } */
 
 "true"      {  return yy::Parser::make_BOOL_VAL (true, loc); }

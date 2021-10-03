@@ -1,5 +1,5 @@
 let value = 6;
-fn main(i32 argc, char argv): i32
+fn main(argc: i32, argv: i8): i32
 {
     let i: i32 = 5;
     var id = 5;

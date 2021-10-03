@@ -24,6 +24,7 @@ find_package(FLEX)
   include_directories(${CMAKE_CURRENT_BINARY_DIR})
   add_executable(tape 
 
+    ${AST}/SymbolRec.cc
     ${PARSER}/Driver.cc
     ${PARSER}/Parser.cc
     ${AST}/Ast.cc

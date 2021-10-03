@@ -42,15 +42,15 @@
 
 
 // Unqualified %code blocks.
-#line 32 "/home/espresso/projects/tape/src/parser.yy"
+#line 34 "/home/espresso/projects/tape/src/parser.yy"
 
     #include "Driver.hh"
     #include "../Ast/Ast.hh"
-    #include "../Ast/Type.hh"
+    #include "../Ast/SymbolRec.hh"
 
-#line 109 "/home/espresso/projects/tape/src/parser.yy"
+#line 111 "/home/espresso/projects/tape/src/parser.yy"
 
-typedef yy::Parser::symbol_kind_type skind_type;
+    typedef yy::Parser::symbol_kind_type skind_type;
 
 #line 56 "../src/../src/Parser/Parser.cc"
 
@@ -148,7 +148,7 @@ namespace yy {
 #line 149 "../src/../src/Parser/Parser.cc"
 
   /// Build a parser object.
-  Parser::Parser (Driver *driver_yyarg, StmtList *fstmt_list_yyarg)
+  Parser::Parser (Driver *driver_yyarg, StmtList *fstmt_list_yyarg, ScopeTree *scope_yyarg)
 #if YYDEBUG
     : yydebug_ (false),
       yycdebug_ (&std::cerr),
@@ -157,7 +157,8 @@ namespace yy {
 #endif
       yy_lac_established_ (false),
       driver (driver_yyarg),
-      fstmt_list (fstmt_list_yyarg)
+      fstmt_list (fstmt_list_yyarg),
+      scope (scope_yyarg)
   {}
 
   Parser::~Parser ()
@@ -572,627 +573,657 @@ namespace yy {
         switch (yykind)
     {
       case symbol_kind::S_EQ: // "="
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 578 "../src/../src/Parser/Parser.cc"
+#line 579 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PLUS: // "+"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 584 "../src/../src/Parser/Parser.cc"
+#line 585 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MINUS: // "-"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 590 "../src/../src/Parser/Parser.cc"
+#line 591 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AT: // "@"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 596 "../src/../src/Parser/Parser.cc"
+#line 597 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP: // "&"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 602 "../src/../src/Parser/Parser.cc"
+#line 603 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE: // "|"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 608 "../src/../src/Parser/Parser.cc"
+#line 609 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FSLASH: // "/"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 614 "../src/../src/Parser/Parser.cc"
+#line 615 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STAR: // "*"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 620 "../src/../src/Parser/Parser.cc"
+#line 621 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MOD: // "%"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 626 "../src/../src/Parser/Parser.cc"
+#line 627 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LPAREN: // "("
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 632 "../src/../src/Parser/Parser.cc"
+#line 633 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RPAREN: // ")"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 638 "../src/../src/Parser/Parser.cc"
+#line 639 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LSQUARE: // "["
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 644 "../src/../src/Parser/Parser.cc"
+#line 645 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RSQUARE: // "]"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 650 "../src/../src/Parser/Parser.cc"
+#line 651 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LBRACE: // "{"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 656 "../src/../src/Parser/Parser.cc"
+#line 657 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RBRACE: // "}"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 662 "../src/../src/Parser/Parser.cc"
+#line 663 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_SC: // ";"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 668 "../src/../src/Parser/Parser.cc"
+#line 669 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LT: // "<"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 674 "../src/../src/Parser/Parser.cc"
+#line 675 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_GT: // ">"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 680 "../src/../src/Parser/Parser.cc"
+#line 681 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_COLON: // ":"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 686 "../src/../src/Parser/Parser.cc"
+#line 687 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CARROT: // "^"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 692 "../src/../src/Parser/Parser.cc"
+#line 693 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_COMMA: // ","
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 698 "../src/../src/Parser/Parser.cc"
+#line 699 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_QUESTION: // "?"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 704 "../src/../src/Parser/Parser.cc"
+#line 705 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_DOT: // "."
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 710 "../src/../src/Parser/Parser.cc"
+#line 711 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BANG: // "!"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 716 "../src/../src/Parser/Parser.cc"
+#line 717 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_TILDE: // "~"
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 722 "../src/../src/Parser/Parser.cc"
+#line 723 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_INT_VAL: // INT_VAL
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < long long > (); }
-#line 728 "../src/../src/Parser/Parser.cc"
+#line 729 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FLOAT_VAL: // FLOAT_VAL
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < float > (); }
-#line 734 "../src/../src/Parser/Parser.cc"
+#line 735 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STRING_VAL: // STRING_VAL
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < std::string > (); }
-#line 740 "../src/../src/Parser/Parser.cc"
+#line 741 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CHAR_VAL: // CHAR_VAL
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < char > (); }
-#line 746 "../src/../src/Parser/Parser.cc"
+#line 747 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BOOL_VAL: // BOOL_VAL
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < bool > (); }
-#line 752 "../src/../src/Parser/Parser.cc"
+#line 753 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_ID: // ID
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < std::string > (); }
-#line 758 "../src/../src/Parser/Parser.cc"
+#line 759 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_POINTER: // POINTER
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 764 "../src/../src/Parser/Parser.cc"
+#line 765 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_INCREMENT: // INCREMENT
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 770 "../src/../src/Parser/Parser.cc"
+#line 771 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_DECREMENT: // DECREMENT
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 776 "../src/../src/Parser/Parser.cc"
+#line 777 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LEFT: // LEFT
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 782 "../src/../src/Parser/Parser.cc"
+#line 783 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RIGHT: // RIGHT
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 788 "../src/../src/Parser/Parser.cc"
+#line 789 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP_AMP: // AMP_AMP
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 794 "../src/../src/Parser/Parser.cc"
+#line 795 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE_PIPE: // PIPE_PIPE
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 800 "../src/../src/Parser/Parser.cc"
+#line 801 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_STAR_EQ: // STAR_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 806 "../src/../src/Parser/Parser.cc"
+#line 807 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FSLASH_EQ: // FSLASH_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 812 "../src/../src/Parser/Parser.cc"
+#line 813 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MOD_EQ: // MOD_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 818 "../src/../src/Parser/Parser.cc"
+#line 819 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PLUS_EQ: // PLUS_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 824 "../src/../src/Parser/Parser.cc"
+#line 825 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MINUS_EQ: // MINUS_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 830 "../src/../src/Parser/Parser.cc"
+#line 831 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LEFT_EQ: // LEFT_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 836 "../src/../src/Parser/Parser.cc"
+#line 837 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RIGHT_EQ: // RIGHT_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 842 "../src/../src/Parser/Parser.cc"
+#line 843 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_AMP_EQ: // AMP_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 848 "../src/../src/Parser/Parser.cc"
+#line 849 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CARROT_EQ: // CARROT_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 854 "../src/../src/Parser/Parser.cc"
+#line 855 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_PIPE_EQ: // PIPE_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 860 "../src/../src/Parser/Parser.cc"
+#line 861 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LT_EQ: // LT_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 866 "../src/../src/Parser/Parser.cc"
+#line 867 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_GT_EQ: // GT_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 872 "../src/../src/Parser/Parser.cc"
+#line 873 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_EQ_EQ: // EQ_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 878 "../src/../src/Parser/Parser.cc"
+#line 879 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BANG_EQ: // BANG_EQ
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 884 "../src/../src/Parser/Parser.cc"
+#line 885 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_IF: // IF
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 890 "../src/../src/Parser/Parser.cc"
+#line 891 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_ELSE: // ELSE
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 896 "../src/../src/Parser/Parser.cc"
+#line 897 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FN: // FN
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 902 "../src/../src/Parser/Parser.cc"
+#line 903 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_LET: // LET
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 908 "../src/../src/Parser/Parser.cc"
+#line 909 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_VAR: // VAR
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 914 "../src/../src/Parser/Parser.cc"
+#line 915 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_TYPE: // TYPE
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 920 "../src/../src/Parser/Parser.cc"
+#line 921 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_RETURN: // RETURN
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 926 "../src/../src/Parser/Parser.cc"
+#line 927 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_FOR: // FOR
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 932 "../src/../src/Parser/Parser.cc"
+#line 933 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_WHILE: // WHILE
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 938 "../src/../src/Parser/Parser.cc"
+#line 939 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_MATCH: // MATCH
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 944 "../src/../src/Parser/Parser.cc"
+#line 945 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_BREAK: // BREAK
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 950 "../src/../src/Parser/Parser.cc"
+#line 951 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_CONTINUE: // CONTINUE
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 956 "../src/../src/Parser/Parser.cc"
-        break;
-
-      case symbol_kind::S_TYPE_NAME: // TYPE_NAME
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
-                 { yyo << "<>"; }
-#line 962 "../src/../src/Parser/Parser.cc"
+#line 957 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I8: // I8
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 968 "../src/../src/Parser/Parser.cc"
+#line 963 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I16: // I16
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 974 "../src/../src/Parser/Parser.cc"
+#line 969 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I32: // I32
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 980 "../src/../src/Parser/Parser.cc"
+#line 975 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_I64: // I64
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 986 "../src/../src/Parser/Parser.cc"
+#line 981 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_F32: // F32
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 992 "../src/../src/Parser/Parser.cc"
+#line 987 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_F64: // F64
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 998 "../src/../src/Parser/Parser.cc"
+#line 993 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_I8: // U_I8
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 999 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_I16: // U_I16
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 1005 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_I32: // U_I32
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 1011 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_I64: // U_I64
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 1017 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_F32: // U_F32
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 1023 "../src/../src/Parser/Parser.cc"
+        break;
+
+      case symbol_kind::S_U_F64: // U_F64
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
+                 { yyo << "<>"; }
+#line 1029 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_program: // program
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < StmtList* > (); }
-#line 1004 "../src/../src/Parser/Parser.cc"
+#line 1035 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_global_declaration: // global_declaration
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Stmt* > (); }
-#line 1010 "../src/../src/Parser/Parser.cc"
+#line 1041 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_variable_declaration: // variable_declaration
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < VarDeclStmt* > (); }
-#line 1016 "../src/../src/Parser/Parser.cc"
+#line 1047 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_declaration: // type_declaration
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < TypeDeclStmt* > (); }
-#line 1022 "../src/../src/Parser/Parser.cc"
+#line 1053 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_declaration_list: // type_declaration_list
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1028 "../src/../src/Parser/Parser.cc"
+#line 1059 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_declaration_member: // type_declaration_member
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1034 "../src/../src/Parser/Parser.cc"
+#line 1065 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration_type: // declaration_type
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1040 "../src/../src/Parser/Parser.cc"
+#line 1071 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_mods: // type_mods
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1046 "../src/../src/Parser/Parser.cc"
+#line 1077 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type_mod: // type_mod
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1052 "../src/../src/Parser/Parser.cc"
+#line 1083 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_type: // type
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < int > (); }
-#line 1058 "../src/../src/Parser/Parser.cc"
+#line 1089 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration: // declaration
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < VarDeclStmt* > (); }
-#line 1064 "../src/../src/Parser/Parser.cc"
+#line 1095 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_declaration_hypothesis: // declaration_hypothesis
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < bool > (); }
-#line 1070 "../src/../src/Parser/Parser.cc"
+#line 1101 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_function_declaration: // function_declaration
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < FunctionDeclStmt* > (); }
-#line 1076 "../src/../src/Parser/Parser.cc"
+#line 1107 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_parameter_list: // parameter_list
-#line 40 "/home/espresso/projects/tape/src/parser.yy"
+#line 42 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << "<>"; }
-#line 1082 "../src/../src/Parser/Parser.cc"
+#line 1113 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement_list: // statement_list
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < StmtList* > (); }
-#line 1088 "../src/../src/Parser/Parser.cc"
+#line 1119 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement: // statement
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Stmt* > (); }
-#line 1094 "../src/../src/Parser/Parser.cc"
+#line 1125 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_statement_box: // statement_box
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < StmtList* > (); }
-#line 1100 "../src/../src/Parser/Parser.cc"
+#line 1131 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_fn_statement_box: // fn_statement_box
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < FunctionDeclStmt* > (); }
-#line 1106 "../src/../src/Parser/Parser.cc"
+#line 1137 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_flow_statement: // flow_statement
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Stmt* > (); }
-#line 1112 "../src/../src/Parser/Parser.cc"
+#line 1143 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_expression_statement: // expression_statement
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Stmt* > (); }
-#line 1118 "../src/../src/Parser/Parser.cc"
+#line 1149 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_initializer: // initializer
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1124 "../src/../src/Parser/Parser.cc"
+#line 1155 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_expression: // expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1130 "../src/../src/Parser/Parser.cc"
+#line 1161 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_constant_expression: // constant_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1136 "../src/../src/Parser/Parser.cc"
+#line 1167 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_assignment_expression: // assignment_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1142 "../src/../src/Parser/Parser.cc"
+#line 1173 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_atomic_expression: // atomic_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1148 "../src/../src/Parser/Parser.cc"
+#line 1179 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_postfix_expression: // postfix_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1154 "../src/../src/Parser/Parser.cc"
+#line 1185 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_unary_expression: // unary_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1160 "../src/../src/Parser/Parser.cc"
+#line 1191 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_multiplicative_expression: // multiplicative_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1166 "../src/../src/Parser/Parser.cc"
+#line 1197 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_additive_expression: // additive_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1172 "../src/../src/Parser/Parser.cc"
+#line 1203 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_relational_expression: // relational_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1178 "../src/../src/Parser/Parser.cc"
+#line 1209 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_equality_expression: // equality_expression
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < Expr* > (); }
-#line 1184 "../src/../src/Parser/Parser.cc"
+#line 1215 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_assign_op: // assign_op
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < int > (); }
-#line 1190 "../src/../src/Parser/Parser.cc"
+#line 1221 "../src/../src/Parser/Parser.cc"
         break;
 
       case symbol_kind::S_unary_op: // unary_op
-#line 39 "/home/espresso/projects/tape/src/parser.yy"
+#line 41 "/home/espresso/projects/tape/src/parser.yy"
                  { yyo << yysym.value.template as < int > (); }
-#line 1196 "../src/../src/Parser/Parser.cc"
+#line 1227 "../src/../src/Parser/Parser.cc"
         break;
 
       default:
@@ -1522,498 +1553,534 @@ namespace yy {
           switch (yyn)
             {
   case 2: // program: global_declaration
-#line 123 "/home/espresso/projects/tape/src/parser.yy"
+#line 125 "/home/espresso/projects/tape/src/parser.yy"
                                 { fstmt_list->push_back(yystack_[0].value.as < Stmt* > ()); }
-#line 1528 "../src/../src/Parser/Parser.cc"
+#line 1559 "../src/../src/Parser/Parser.cc"
     break;
 
   case 3: // program: program global_declaration
-#line 124 "/home/espresso/projects/tape/src/parser.yy"
+#line 126 "/home/espresso/projects/tape/src/parser.yy"
                                 { fstmt_list->push_back(yystack_[0].value.as < Stmt* > ()); }
-#line 1534 "../src/../src/Parser/Parser.cc"
+#line 1565 "../src/../src/Parser/Parser.cc"
     break;
 
   case 4: // global_declaration: variable_declaration ";"
-#line 128 "/home/espresso/projects/tape/src/parser.yy"
+#line 130 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Stmt* > () = yystack_[1].value.as < VarDeclStmt* > (); }
-#line 1540 "../src/../src/Parser/Parser.cc"
+#line 1571 "../src/../src/Parser/Parser.cc"
     break;
 
   case 5: // global_declaration: function_declaration
-#line 129 "/home/espresso/projects/tape/src/parser.yy"
+#line 131 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Stmt* > () = yystack_[0].value.as < FunctionDeclStmt* > (); }
-#line 1546 "../src/../src/Parser/Parser.cc"
+#line 1577 "../src/../src/Parser/Parser.cc"
     break;
 
   case 6: // global_declaration: type_declaration
-#line 130 "/home/espresso/projects/tape/src/parser.yy"
+#line 132 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Stmt* > () = yystack_[0].value.as < TypeDeclStmt* > (); }
-#line 1552 "../src/../src/Parser/Parser.cc"
+#line 1583 "../src/../src/Parser/Parser.cc"
     break;
 
   case 7: // variable_declaration: declaration "=" initializer
-#line 134 "/home/espresso/projects/tape/src/parser.yy"
+#line 136 "/home/espresso/projects/tape/src/parser.yy"
                                 { yystack_[2].value.as < VarDeclStmt* > ()->setExpr(yystack_[0].value.as < Expr* > ()); yylhs.value.as < VarDeclStmt* > () = yystack_[2].value.as < VarDeclStmt* > (); }
-#line 1558 "../src/../src/Parser/Parser.cc"
+#line 1589 "../src/../src/Parser/Parser.cc"
     break;
 
   case 8: // variable_declaration: declaration
-#line 135 "/home/espresso/projects/tape/src/parser.yy"
+#line 137 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < VarDeclStmt* > () = yystack_[0].value.as < VarDeclStmt* > (); }
-#line 1564 "../src/../src/Parser/Parser.cc"
+#line 1595 "../src/../src/Parser/Parser.cc"
     break;
 
   case 9: // type_declaration: TYPE ID "=" type type_mods
-#line 139 "/home/espresso/projects/tape/src/parser.yy"
+#line 141 "/home/espresso/projects/tape/src/parser.yy"
                                                 { yylhs.value.as < TypeDeclStmt* > () = new TypeDeclStmt(yystack_[3].value.as < std::string > ()); }
-#line 1570 "../src/../src/Parser/Parser.cc"
+#line 1601 "../src/../src/Parser/Parser.cc"
     break;
 
   case 10: // type_declaration: TYPE ID "=" "{" type_declaration_list "}"
-#line 140 "/home/espresso/projects/tape/src/parser.yy"
+#line 142 "/home/espresso/projects/tape/src/parser.yy"
                                                 { yylhs.value.as < TypeDeclStmt* > () = new TypeDeclStmt(yystack_[4].value.as < std::string > ()); }
-#line 1576 "../src/../src/Parser/Parser.cc"
+#line 1607 "../src/../src/Parser/Parser.cc"
     break;
 
   case 22: // type: I8
-#line 175 "/home/espresso/projects/tape/src/parser.yy"
+#line 177 "/home/espresso/projects/tape/src/parser.yy"
         { yylhs.value.as < int > () = Type::I8;    }
-#line 1582 "../src/../src/Parser/Parser.cc"
+#line 1613 "../src/../src/Parser/Parser.cc"
     break;
 
   case 23: // type: I16
-#line 176 "/home/espresso/projects/tape/src/parser.yy"
+#line 178 "/home/espresso/projects/tape/src/parser.yy"
         { yylhs.value.as < int > () = Type::I16;   }
-#line 1588 "../src/../src/Parser/Parser.cc"
+#line 1619 "../src/../src/Parser/Parser.cc"
     break;
 
   case 24: // type: I32
-#line 177 "/home/espresso/projects/tape/src/parser.yy"
+#line 179 "/home/espresso/projects/tape/src/parser.yy"
         { yylhs.value.as < int > () = Type::I32;   }
-#line 1594 "../src/../src/Parser/Parser.cc"
+#line 1625 "../src/../src/Parser/Parser.cc"
     break;
 
   case 25: // type: I64
-#line 178 "/home/espresso/projects/tape/src/parser.yy"
+#line 180 "/home/espresso/projects/tape/src/parser.yy"
         { yylhs.value.as < int > () = Type::I64;   }
-#line 1600 "../src/../src/Parser/Parser.cc"
+#line 1631 "../src/../src/Parser/Parser.cc"
     break;
 
   case 26: // type: F32
-#line 179 "/home/espresso/projects/tape/src/parser.yy"
+#line 181 "/home/espresso/projects/tape/src/parser.yy"
         { yylhs.value.as < int > () = Type::F32;   }
-#line 1606 "../src/../src/Parser/Parser.cc"
+#line 1637 "../src/../src/Parser/Parser.cc"
     break;
 
   case 27: // type: F64
-#line 180 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = Type::F64;   }
-#line 1612 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 28: // type: FN
-#line 181 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = Type::FN;    }
-#line 1618 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 29: // type: ID
 #line 182 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = Type::DEF;   }
-#line 1624 "../src/../src/Parser/Parser.cc"
+        { yylhs.value.as < int > () = Type::F64;   }
+#line 1643 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 30: // declaration: declaration_hypothesis ID declaration_type
+  case 28: // type: U_I8
+#line 183 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < int > () = Type::U_I8;    }
+#line 1649 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 29: // type: U_I16
+#line 184 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < int > () = Type::U_I16;   }
+#line 1655 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 30: // type: U_I32
+#line 185 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < int > () = Type::U_I32;   }
+#line 1661 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 31: // type: U_I64
 #line 186 "/home/espresso/projects/tape/src/parser.yy"
-                                               { yylhs.value.as < VarDeclStmt* > () = new VarDeclStmt(yystack_[1].value.as < std::string > (), yystack_[2].value.as < bool > ()); }
-#line 1630 "../src/../src/Parser/Parser.cc"
+          { yylhs.value.as < int > () = Type::U_I64;   }
+#line 1667 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 31: // declaration_hypothesis: LET
+  case 32: // type: U_F32
+#line 187 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < int > () = Type::U_F32;   }
+#line 1673 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 33: // type: U_F64
+#line 188 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < int > () = Type::U_F64;   }
+#line 1679 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 34: // type: FN
+#line 189 "/home/espresso/projects/tape/src/parser.yy"
+        { yylhs.value.as < int > () = Type::FN;    }
+#line 1685 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 35: // type: ID
 #line 190 "/home/espresso/projects/tape/src/parser.yy"
-        {yylhs.value.as < bool > ()=false;}
-#line 1636 "../src/../src/Parser/Parser.cc"
+        { yylhs.value.as < int > () = Type::DEF;   }
+#line 1691 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 32: // declaration_hypothesis: VAR
-#line 190 "/home/espresso/projects/tape/src/parser.yy"
-                         {yylhs.value.as < bool > ()=true;}
-#line 1642 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 33: // function_declaration: FN ID "(" parameter_list ")" declaration_type fn_statement_box
+  case 36: // declaration: declaration_hypothesis ID declaration_type
 #line 194 "/home/espresso/projects/tape/src/parser.yy"
+                                               { yylhs.value.as < VarDeclStmt* > () = new VarDeclStmt(yystack_[1].value.as < std::string > (), yystack_[2].value.as < bool > ()); }
+#line 1697 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 37: // declaration_hypothesis: LET
+#line 198 "/home/espresso/projects/tape/src/parser.yy"
+        {yylhs.value.as < bool > ()=false;}
+#line 1703 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 38: // declaration_hypothesis: VAR
+#line 198 "/home/espresso/projects/tape/src/parser.yy"
+                         {yylhs.value.as < bool > ()=true;}
+#line 1709 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 39: // function_declaration: FN ID "(" parameter_list ")" declaration_type fn_statement_box
+#line 202 "/home/espresso/projects/tape/src/parser.yy"
                                                                     { yystack_[0].value.as < FunctionDeclStmt* > ()->setFnId(yystack_[5].value.as < std::string > ()); yylhs.value.as < FunctionDeclStmt* > () = yystack_[0].value.as < FunctionDeclStmt* > (); }
-#line 1648 "../src/../src/Parser/Parser.cc"
+#line 1715 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 34: // function_declaration: FN ID "(" parameter_list ")" declaration_type ";"
-#line 195 "/home/espresso/projects/tape/src/parser.yy"
+  case 40: // function_declaration: FN ID "(" parameter_list ")" declaration_type ";"
+#line 203 "/home/espresso/projects/tape/src/parser.yy"
                                                                     { yylhs.value.as < FunctionDeclStmt* > () = new FunctionDeclStmt(yystack_[5].value.as < std::string > ()); }
-#line 1654 "../src/../src/Parser/Parser.cc"
+#line 1721 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 38: // statement_list: statement
-#line 208 "/home/espresso/projects/tape/src/parser.yy"
+  case 44: // statement_list: statement
+#line 216 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < StmtList* > () = new StmtList({yystack_[0].value.as < Stmt* > ()}); }
-#line 1660 "../src/../src/Parser/Parser.cc"
+#line 1727 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 39: // statement_list: statement_list statement
-#line 209 "/home/espresso/projects/tape/src/parser.yy"
+  case 45: // statement_list: statement_list statement
+#line 217 "/home/espresso/projects/tape/src/parser.yy"
                                 { yystack_[1].value.as < StmtList* > ()->push_back(yystack_[0].value.as < Stmt* > ()); yylhs.value.as < StmtList* > () = yystack_[1].value.as < StmtList* > (); }
-#line 1666 "../src/../src/Parser/Parser.cc"
+#line 1733 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 40: // statement: statement_box
-#line 213 "/home/espresso/projects/tape/src/parser.yy"
+  case 46: // statement: statement_box
+#line 221 "/home/espresso/projects/tape/src/parser.yy"
                             { yylhs.value.as < Stmt* > () = yystack_[0].value.as < StmtList* > (); }
-#line 1672 "../src/../src/Parser/Parser.cc"
+#line 1739 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 41: // statement: expression_statement
-#line 214 "/home/espresso/projects/tape/src/parser.yy"
+  case 47: // statement: expression_statement
+#line 222 "/home/espresso/projects/tape/src/parser.yy"
                             { yylhs.value.as < Stmt* > () = yystack_[0].value.as < Stmt* > (); }
-#line 1678 "../src/../src/Parser/Parser.cc"
+#line 1745 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 42: // statement: flow_statement
-#line 215 "/home/espresso/projects/tape/src/parser.yy"
-                            { yylhs.value.as < Stmt* > () = yystack_[0].value.as < Stmt* > (); }
-#line 1684 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 43: // statement_box: "{" statement_list "}"
-#line 219 "/home/espresso/projects/tape/src/parser.yy"
-                            { yylhs.value.as < StmtList* > () = yystack_[1].value.as < StmtList* > (); }
-#line 1690 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 44: // fn_statement_box: "{" statement_list expression "}"
+  case 48: // statement: flow_statement
 #line 223 "/home/espresso/projects/tape/src/parser.yy"
+                            { yylhs.value.as < Stmt* > () = yystack_[0].value.as < Stmt* > (); }
+#line 1751 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 49: // statement_box: "{" statement_list "}"
+#line 227 "/home/espresso/projects/tape/src/parser.yy"
+                            { yylhs.value.as < StmtList* > () = yystack_[1].value.as < StmtList* > (); }
+#line 1757 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 50: // fn_statement_box: "{" statement_list expression "}"
+#line 231 "/home/espresso/projects/tape/src/parser.yy"
                                                     { yylhs.value.as < FunctionDeclStmt* > () = new FunctionDeclStmt(yystack_[2].value.as < StmtList* > (), yystack_[1].value.as < Expr* > ()); }
-#line 1696 "../src/../src/Parser/Parser.cc"
+#line 1763 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 45: // fn_statement_box: "{" statement_list RETURN expression ";" "}"
-#line 224 "/home/espresso/projects/tape/src/parser.yy"
+  case 51: // fn_statement_box: "{" statement_list RETURN expression ";" "}"
+#line 232 "/home/espresso/projects/tape/src/parser.yy"
                                                     { yylhs.value.as < FunctionDeclStmt* > () = new FunctionDeclStmt(yystack_[4].value.as < StmtList* > (), yystack_[2].value.as < Expr* > ()); }
-#line 1702 "../src/../src/Parser/Parser.cc"
+#line 1769 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 46: // fn_statement_box: statement_box
-#line 225 "/home/espresso/projects/tape/src/parser.yy"
-                                                    { yylhs.value.as < FunctionDeclStmt* > () = new FunctionDeclStmt(yystack_[0].value.as < StmtList* > ()); }
-#line 1708 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 47: // flow_statement: BREAK
-#line 229 "/home/espresso/projects/tape/src/parser.yy"
-          { yylhs.value.as < Stmt* > () = new ActionStmt; }
-#line 1714 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 48: // flow_statement: CONTINUE
-#line 229 "/home/espresso/projects/tape/src/parser.yy"
-                                              { yylhs.value.as < Stmt* > () = new ActionStmt; }
-#line 1720 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 49: // expression_statement: expression ";"
+  case 52: // fn_statement_box: statement_box
 #line 233 "/home/espresso/projects/tape/src/parser.yy"
+                                                    { yylhs.value.as < FunctionDeclStmt* > () = new FunctionDeclStmt(yystack_[0].value.as < StmtList* > ()); }
+#line 1775 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 53: // flow_statement: BREAK
+#line 237 "/home/espresso/projects/tape/src/parser.yy"
+          { yylhs.value.as < Stmt* > () = new Break; }
+#line 1781 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 54: // flow_statement: CONTINUE
+#line 237 "/home/espresso/projects/tape/src/parser.yy"
+                                         { yylhs.value.as < Stmt* > () = new Continue; }
+#line 1787 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 55: // expression_statement: expression ";"
+#line 241 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Stmt* > () = new ExprStmt(yystack_[1].value.as < Expr* > ()); }
-#line 1726 "../src/../src/Parser/Parser.cc"
+#line 1793 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 50: // expression_statement: variable_declaration ";"
-#line 234 "/home/espresso/projects/tape/src/parser.yy"
+  case 56: // expression_statement: variable_declaration ";"
+#line 242 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Stmt* > () = yystack_[1].value.as < VarDeclStmt* > (); }
-#line 1732 "../src/../src/Parser/Parser.cc"
+#line 1799 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 51: // initializer: expression
-#line 238 "/home/espresso/projects/tape/src/parser.yy"
+  case 57: // initializer: expression
+#line 246 "/home/espresso/projects/tape/src/parser.yy"
                 { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1738 "../src/../src/Parser/Parser.cc"
+#line 1805 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 52: // expression: function_declaration
-#line 244 "/home/espresso/projects/tape/src/parser.yy"
+  case 58: // expression: function_declaration
+#line 252 "/home/espresso/projects/tape/src/parser.yy"
                             { yylhs.value.as < Expr* > () = yystack_[0].value.as < FunctionDeclStmt* > ()->getFnId(); }
-#line 1744 "../src/../src/Parser/Parser.cc"
+#line 1811 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 53: // expression: assignment_expression
-#line 245 "/home/espresso/projects/tape/src/parser.yy"
+  case 59: // expression: assignment_expression
+#line 253 "/home/espresso/projects/tape/src/parser.yy"
                             { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1750 "../src/../src/Parser/Parser.cc"
+#line 1817 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 54: // constant_expression: equality_expression
-#line 249 "/home/espresso/projects/tape/src/parser.yy"
+  case 60: // constant_expression: equality_expression
+#line 257 "/home/espresso/projects/tape/src/parser.yy"
                         { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1756 "../src/../src/Parser/Parser.cc"
+#line 1823 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 55: // assignment_expression: constant_expression
-#line 254 "/home/espresso/projects/tape/src/parser.yy"
+  case 61: // assignment_expression: constant_expression
+#line 262 "/home/espresso/projects/tape/src/parser.yy"
                         { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1762 "../src/../src/Parser/Parser.cc"
+#line 1829 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 56: // assignment_expression: unary_expression assign_op constant_expression
-#line 255 "/home/espresso/projects/tape/src/parser.yy"
+  case 62: // assignment_expression: unary_expression assign_op constant_expression
+#line 263 "/home/espresso/projects/tape/src/parser.yy"
                                                     {
                                                         Expr *const_expr = yystack_[0].value.as < Expr* > ();
                                                         if (yystack_[1].value.as < int > () != skind_type::S_EQ)  
                                                             const_expr = new BopExpr(yystack_[1].value.as < int > (), yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());
                                                         yylhs.value.as < Expr* > () = new AssignExpr((IdValue*)yystack_[2].value.as < Expr* > (), const_expr); // TODO implement a real "get id"
                                                     }
-#line 1773 "../src/../src/Parser/Parser.cc"
+#line 1840 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 57: // atomic_expression: ID
-#line 264 "/home/espresso/projects/tape/src/parser.yy"
+  case 63: // atomic_expression: ID
+#line 272 "/home/espresso/projects/tape/src/parser.yy"
                 { yylhs.value.as < Expr* > () = new IdValue(yystack_[0].value.as < std::string > ());     }
-#line 1779 "../src/../src/Parser/Parser.cc"
+#line 1846 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 58: // atomic_expression: INT_VAL
-#line 265 "/home/espresso/projects/tape/src/parser.yy"
+  case 64: // atomic_expression: INT_VAL
+#line 273 "/home/espresso/projects/tape/src/parser.yy"
                 { yylhs.value.as < Expr* > () = new IntValue(yystack_[0].value.as < long long > ());    }
-#line 1785 "../src/../src/Parser/Parser.cc"
+#line 1852 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 59: // atomic_expression: CHAR_VAL
-#line 266 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < Expr* > () = new IntValue(yystack_[0].value.as < char > ());    }
-#line 1791 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 60: // atomic_expression: BOOL_VAL
-#line 267 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < Expr* > () = new IntValue(yystack_[0].value.as < bool > ());    }
-#line 1797 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 61: // atomic_expression: FLOAT_VAL
-#line 268 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < Expr* > () = new FloatValue(yystack_[0].value.as < float > ());  }
-#line 1803 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 62: // atomic_expression: STRING_VAL
-#line 269 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < Expr* > () = new StrValue(yystack_[0].value.as < std::string > ());    }
-#line 1809 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 63: // atomic_expression: "(" expression ")"
-#line 270 "/home/espresso/projects/tape/src/parser.yy"
-                       { yylhs.value.as < Expr* > () = yystack_[1].value.as < Expr* > ();           }
-#line 1815 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 64: // postfix_expression: atomic_expression
+  case 65: // atomic_expression: CHAR_VAL
 #line 274 "/home/espresso/projects/tape/src/parser.yy"
-                                    { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1821 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < Expr* > () = new IntValue(yystack_[0].value.as < char > ());    }
+#line 1858 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 65: // postfix_expression: postfix_expression INCREMENT
+  case 66: // atomic_expression: BOOL_VAL
 #line 275 "/home/espresso/projects/tape/src/parser.yy"
-                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[1].value.as < Expr* > (), new IntValue(1));    }
-#line 1827 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < Expr* > () = new IntValue(yystack_[0].value.as < bool > ());    }
+#line 1864 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 66: // postfix_expression: postfix_expression DECREMENT
+  case 67: // atomic_expression: FLOAT_VAL
 #line 276 "/home/espresso/projects/tape/src/parser.yy"
-                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[1].value.as < Expr* > (), new IntValue(1));   }
-#line 1833 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < Expr* > () = new FloatValue(yystack_[0].value.as < float > ());  }
+#line 1870 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 67: // unary_expression: postfix_expression
-#line 280 "/home/espresso/projects/tape/src/parser.yy"
-                                { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1839 "../src/../src/Parser/Parser.cc"
+  case 68: // atomic_expression: STRING_VAL
+#line 277 "/home/espresso/projects/tape/src/parser.yy"
+                { yylhs.value.as < Expr* > () = new StrValue(yystack_[0].value.as < std::string > ());    }
+#line 1876 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 68: // unary_expression: INCREMENT unary_expression
-#line 281 "/home/espresso/projects/tape/src/parser.yy"
-                                { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[0].value.as < Expr* > (), new IntValue(1));  }
-#line 1845 "../src/../src/Parser/Parser.cc"
+  case 69: // atomic_expression: "(" expression ")"
+#line 278 "/home/espresso/projects/tape/src/parser.yy"
+                       { yylhs.value.as < Expr* > () = yystack_[1].value.as < Expr* > ();           }
+#line 1882 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 69: // unary_expression: DECREMENT unary_expression
+  case 70: // postfix_expression: atomic_expression
 #line 282 "/home/espresso/projects/tape/src/parser.yy"
-                                { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[0].value.as < Expr* > (), new IntValue(1)); }
-#line 1851 "../src/../src/Parser/Parser.cc"
+                                    { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
+#line 1888 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 70: // unary_expression: unary_op unary_expression
+  case 71: // postfix_expression: postfix_expression INCREMENT
 #line 283 "/home/espresso/projects/tape/src/parser.yy"
-                                { yylhs.value.as < Expr* > () = new UopExpr(yystack_[1].value.as < int > (), yystack_[0].value.as < Expr* > ()); }
-#line 1857 "../src/../src/Parser/Parser.cc"
+                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[1].value.as < Expr* > (), new IntValue(1));    }
+#line 1894 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 71: // multiplicative_expression: unary_expression
+  case 72: // postfix_expression: postfix_expression DECREMENT
+#line 284 "/home/espresso/projects/tape/src/parser.yy"
+                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[1].value.as < Expr* > (), new IntValue(1));   }
+#line 1900 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 73: // unary_expression: postfix_expression
 #line 288 "/home/espresso/projects/tape/src/parser.yy"
                                 { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1863 "../src/../src/Parser/Parser.cc"
+#line 1906 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 72: // multiplicative_expression: multiplicative_expression "*" unary_expression
+  case 74: // unary_expression: INCREMENT unary_expression
 #line 289 "/home/espresso/projects/tape/src/parser.yy"
-                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_STAR, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());    }
-#line 1869 "../src/../src/Parser/Parser.cc"
+                                { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[0].value.as < Expr* > (), new IntValue(1));  }
+#line 1912 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 73: // multiplicative_expression: multiplicative_expression "/" unary_expression
+  case 75: // unary_expression: DECREMENT unary_expression
 #line 290 "/home/espresso/projects/tape/src/parser.yy"
-                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_FSLASH, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
-#line 1875 "../src/../src/Parser/Parser.cc"
+                                { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[0].value.as < Expr* > (), new IntValue(1)); }
+#line 1918 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 74: // multiplicative_expression: multiplicative_expression "%" unary_expression
+  case 76: // unary_expression: unary_op unary_expression
 #line 291 "/home/espresso/projects/tape/src/parser.yy"
-                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MOD, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
-#line 1881 "../src/../src/Parser/Parser.cc"
+                                { yylhs.value.as < Expr* > () = new UopExpr(yystack_[1].value.as < int > (), yystack_[0].value.as < Expr* > ()); }
+#line 1924 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 75: // additive_expression: multiplicative_expression
-#line 295 "/home/espresso/projects/tape/src/parser.yy"
-                                { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1887 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 76: // additive_expression: additive_expression "+" multiplicative_expression
+  case 77: // multiplicative_expression: unary_expression
 #line 296 "/home/espresso/projects/tape/src/parser.yy"
-                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ()); }
-#line 1893 "../src/../src/Parser/Parser.cc"
+                                { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
+#line 1930 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 77: // additive_expression: additive_expression "-" multiplicative_expression
+  case 78: // multiplicative_expression: multiplicative_expression "*" unary_expression
 #line 297 "/home/espresso/projects/tape/src/parser.yy"
-                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());}
-#line 1899 "../src/../src/Parser/Parser.cc"
+                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_STAR, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());    }
+#line 1936 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 78: // relational_expression: additive_expression
-#line 301 "/home/espresso/projects/tape/src/parser.yy"
-                            { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1905 "../src/../src/Parser/Parser.cc"
+  case 79: // multiplicative_expression: multiplicative_expression "/" unary_expression
+#line 298 "/home/espresso/projects/tape/src/parser.yy"
+                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_FSLASH, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
+#line 1942 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 79: // relational_expression: relational_expression "<" additive_expression
-#line 302 "/home/espresso/projects/tape/src/parser.yy"
-                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_LT, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
-#line 1911 "../src/../src/Parser/Parser.cc"
+  case 80: // multiplicative_expression: multiplicative_expression "%" unary_expression
+#line 299 "/home/espresso/projects/tape/src/parser.yy"
+                                                   { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MOD, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
+#line 1948 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 80: // relational_expression: relational_expression ">" additive_expression
+  case 81: // additive_expression: multiplicative_expression
 #line 303 "/home/espresso/projects/tape/src/parser.yy"
-                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_GT, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
-#line 1917 "../src/../src/Parser/Parser.cc"
+                                { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
+#line 1954 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 81: // relational_expression: relational_expression LT_EQ additive_expression
+  case 82: // additive_expression: additive_expression "+" multiplicative_expression
 #line 304 "/home/espresso/projects/tape/src/parser.yy"
-                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_LT_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
-#line 1923 "../src/../src/Parser/Parser.cc"
+                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_PLUS, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ()); }
+#line 1960 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 82: // relational_expression: relational_expression GT_EQ additive_expression
+  case 83: // additive_expression: additive_expression "-" multiplicative_expression
 #line 305 "/home/espresso/projects/tape/src/parser.yy"
-                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_GT_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
-#line 1929 "../src/../src/Parser/Parser.cc"
+                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_MINUS, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());}
+#line 1966 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 83: // equality_expression: relational_expression
+  case 84: // relational_expression: additive_expression
 #line 309 "/home/espresso/projects/tape/src/parser.yy"
                             { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
-#line 1935 "../src/../src/Parser/Parser.cc"
+#line 1972 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 84: // equality_expression: equality_expression EQ_EQ relational_expression
+  case 85: // relational_expression: relational_expression "<" additive_expression
 #line 310 "/home/espresso/projects/tape/src/parser.yy"
-                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_EQ_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
-#line 1941 "../src/../src/Parser/Parser.cc"
+                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_LT, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
+#line 1978 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 85: // equality_expression: equality_expression BANG_EQ relational_expression
+  case 86: // relational_expression: relational_expression ">" additive_expression
 #line 311 "/home/espresso/projects/tape/src/parser.yy"
-                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_BANG_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());}
-#line 1947 "../src/../src/Parser/Parser.cc"
+                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_GT, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());     }
+#line 1984 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 86: // assign_op: "="
-#line 316 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_EQ;        }
-#line 1953 "../src/../src/Parser/Parser.cc"
+  case 87: // relational_expression: relational_expression LT_EQ additive_expression
+#line 312 "/home/espresso/projects/tape/src/parser.yy"
+                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_LT_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
+#line 1990 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 87: // assign_op: PLUS_EQ
+  case 88: // relational_expression: relational_expression GT_EQ additive_expression
+#line 313 "/home/espresso/projects/tape/src/parser.yy"
+                                                    { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_GT_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
+#line 1996 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 89: // equality_expression: relational_expression
 #line 317 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_PLUS;      }
-#line 1959 "../src/../src/Parser/Parser.cc"
+                            { yylhs.value.as < Expr* > () = yystack_[0].value.as < Expr* > (); }
+#line 2002 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 88: // assign_op: MINUS_EQ
+  case 90: // equality_expression: equality_expression EQ_EQ relational_expression
 #line 318 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_MINUS;     }
-#line 1965 "../src/../src/Parser/Parser.cc"
+                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_EQ_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());  }
+#line 2008 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 89: // assign_op: STAR_EQ
+  case 91: // equality_expression: equality_expression BANG_EQ relational_expression
 #line 319 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_STAR;      }
-#line 1971 "../src/../src/Parser/Parser.cc"
+                                                      { yylhs.value.as < Expr* > () = new BopExpr(skind_type::S_BANG_EQ, yystack_[2].value.as < Expr* > (), yystack_[0].value.as < Expr* > ());}
+#line 2014 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 90: // assign_op: FSLASH_EQ
-#line 320 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_FSLASH;    }
-#line 1977 "../src/../src/Parser/Parser.cc"
+  case 92: // assign_op: "="
+#line 324 "/home/espresso/projects/tape/src/parser.yy"
+                { yylhs.value.as < int > () = skind_type::S_EQ;        }
+#line 2020 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 91: // assign_op: MOD_EQ
-#line 321 "/home/espresso/projects/tape/src/parser.yy"
-                { yylhs.value.as < int > () = skind_type::S_MOD;       }
-#line 1983 "../src/../src/Parser/Parser.cc"
-    break;
-
-  case 92: // unary_op: "!"
+  case 93: // assign_op: PLUS_EQ
 #line 325 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = skind_type::S_BANG;    }
-#line 1989 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < int > () = skind_type::S_PLUS;      }
+#line 2026 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 93: // unary_op: "@"
+  case 94: // assign_op: MINUS_EQ
 #line 326 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = skind_type::S_AT;      }
-#line 1995 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < int > () = skind_type::S_MINUS;     }
+#line 2032 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 94: // unary_op: "&"
+  case 95: // assign_op: STAR_EQ
 #line 327 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = skind_type::S_AMP;     }
-#line 2001 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < int > () = skind_type::S_STAR;      }
+#line 2038 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 95: // unary_op: "-"
+  case 96: // assign_op: FSLASH_EQ
 #line 328 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = skind_type::S_MINUS;   }
-#line 2007 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < int > () = skind_type::S_FSLASH;    }
+#line 2044 "../src/../src/Parser/Parser.cc"
     break;
 
-  case 96: // unary_op: "~"
+  case 97: // assign_op: MOD_EQ
 #line 329 "/home/espresso/projects/tape/src/parser.yy"
-        { yylhs.value.as < int > () = skind_type::S_TILDE;   }
-#line 2013 "../src/../src/Parser/Parser.cc"
+                { yylhs.value.as < int > () = skind_type::S_MOD;       }
+#line 2050 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 98: // unary_op: "!"
+#line 333 "/home/espresso/projects/tape/src/parser.yy"
+            { yylhs.value.as < int > () = skind_type::S_BANG;    }
+#line 2056 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 99: // unary_op: "@"
+#line 334 "/home/espresso/projects/tape/src/parser.yy"
+            { yylhs.value.as < int > () = skind_type::S_AT;      }
+#line 2062 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 100: // unary_op: "&"
+#line 335 "/home/espresso/projects/tape/src/parser.yy"
+            { yylhs.value.as < int > () = skind_type::S_AMP;     }
+#line 2068 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 101: // unary_op: "-"
+#line 336 "/home/espresso/projects/tape/src/parser.yy"
+            { yylhs.value.as < int > () = skind_type::S_MINUS;   }
+#line 2074 "../src/../src/Parser/Parser.cc"
+    break;
+
+  case 102: // unary_op: "~"
+#line 337 "/home/espresso/projects/tape/src/parser.yy"
+            { yylhs.value.as < int > () = skind_type::S_TILDE;   }
+#line 2080 "../src/../src/Parser/Parser.cc"
     break;
 
 
-#line 2017 "../src/../src/Parser/Parser.cc"
+#line 2084 "../src/../src/Parser/Parser.cc"
 
             default:
               break;
@@ -2205,17 +2272,18 @@ namespace yy {
   "MOD_EQ", "PLUS_EQ", "MINUS_EQ", "LEFT_EQ", "RIGHT_EQ", "AMP_EQ",
   "CARROT_EQ", "PIPE_EQ", "LT_EQ", "GT_EQ", "EQ_EQ", "BANG_EQ", "IF",
   "ELSE", "FN", "LET", "VAR", "TYPE", "RETURN", "FOR", "WHILE", "MATCH",
-  "BREAK", "CONTINUE", "TYPE_NAME", "I8", "I16", "I32", "I64", "F32",
-  "F64", "$accept", "program", "global_declaration",
-  "variable_declaration", "type_declaration", "type_declaration_list",
-  "type_declaration_member", "declaration_type", "type_mods", "type_mod",
-  "type", "declaration", "declaration_hypothesis", "function_declaration",
-  "parameter_list", "statement_list", "statement", "statement_box",
-  "fn_statement_box", "flow_statement", "expression_statement",
-  "initializer", "expression", "constant_expression",
-  "assignment_expression", "atomic_expression", "postfix_expression",
-  "unary_expression", "multiplicative_expression", "additive_expression",
-  "relational_expression", "equality_expression", "assign_op", "unary_op", YY_NULLPTR
+  "BREAK", "CONTINUE", "I8", "I16", "I32", "I64", "F32", "F64", "U_I8",
+  "U_I16", "U_I32", "U_I64", "U_F32", "U_F64", "$accept", "program",
+  "global_declaration", "variable_declaration", "type_declaration",
+  "type_declaration_list", "type_declaration_member", "declaration_type",
+  "type_mods", "type_mod", "type", "declaration", "declaration_hypothesis",
+  "function_declaration", "parameter_list", "statement_list", "statement",
+  "statement_box", "fn_statement_box", "flow_statement",
+  "expression_statement", "initializer", "expression",
+  "constant_expression", "assignment_expression", "atomic_expression",
+  "postfix_expression", "unary_expression", "multiplicative_expression",
+  "additive_expression", "relational_expression", "equality_expression",
+  "assign_op", "unary_op", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -2480,165 +2548,181 @@ namespace yy {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -109;
+  const short Parser::yypact_ninf_ = -129;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const short
   Parser::yypact_[] =
   {
-      29,   -27,  -109,  -109,    -9,    19,  -109,    13,  -109,    37,
-      64,  -109,    58,    72,  -109,  -109,  -109,   153,    80,    75,
-      12,  -109,  -109,  -109,   153,  -109,  -109,  -109,  -109,  -109,
-    -109,  -109,  -109,   225,   225,  -109,  -109,  -109,  -109,  -109,
-    -109,    25,     7,    44,    69,    -5,    45,   225,   145,  -109,
-      80,   102,    36,  -109,  -109,  -109,  -109,  -109,  -109,  -109,
-    -109,  -109,   104,  -109,  -109,  -109,  -109,  -109,  -109,  -109,
-    -109,  -109,  -109,   225,   225,   225,   225,   225,   225,   225,
-     225,   225,   225,   225,   225,  -109,  -109,    87,    80,  -109,
-    -109,   114,   113,    15,  -109,  -109,  -109,  -109,  -109,  -109,
-      44,    44,    69,    69,    69,    69,    -5,    -5,    15,    75,
-      50,  -109,    36,  -109,   214,  -109,  -109,   141,  -109,  -109,
-    -109,  -109,  -109,   122,   141,  -109,  -109,   120,     6,  -109,
-    -109,  -109,  -109,   121,  -109,    97,  -109,  -109,   153,  -109,
-      88,  -109,   123,  -109,   125,  -109
+     -38,   -22,  -129,  -129,   -10,    24,  -129,    78,  -129,    33,
+      66,  -129,    90,   100,  -129,  -129,  -129,   216,    83,    72,
+       2,  -129,  -129,  -129,   216,  -129,  -129,  -129,  -129,  -129,
+    -129,  -129,  -129,   284,   284,  -129,  -129,  -129,  -129,  -129,
+    -129,    -2,     9,    51,    62,     6,    39,   284,   -30,  -129,
+      83,    94,    31,  -129,  -129,  -129,  -129,  -129,  -129,  -129,
+    -129,  -129,  -129,  -129,  -129,  -129,  -129,  -129,    98,  -129,
+    -129,  -129,  -129,  -129,  -129,  -129,  -129,  -129,  -129,   284,
+     284,   284,   284,   284,   284,   284,   284,   284,   284,   284,
+     284,  -129,  -129,    89,    83,  -129,  -129,    97,    93,    18,
+    -129,  -129,  -129,  -129,  -129,  -129,    51,    51,    62,    62,
+      62,    62,     6,     6,    18,    72,    13,  -129,    31,  -129,
+     252,  -129,  -129,   204,  -129,  -129,  -129,  -129,  -129,   106,
+     204,  -129,  -129,   105,   103,  -129,  -129,  -129,  -129,   107,
+    -129,   160,  -129,  -129,   216,  -129,    77,  -129,   108,  -129,
+     120,  -129
   };
 
   const signed char
   Parser::yydefact_[] =
   {
-       0,     0,    31,    32,     0,     0,     2,     0,     6,     8,
-       0,     5,     0,     0,     1,     3,     4,     0,    15,    35,
-       0,    95,    93,    94,     0,    92,    96,    58,    61,    62,
-      59,    60,    57,     0,     0,    52,     7,    51,    55,    53,
-      64,    67,    71,    75,    78,    83,    54,     0,     0,    30,
-      15,     0,     0,    29,    28,    22,    23,    24,    25,    26,
-      27,    17,     0,    68,    69,    65,    66,    86,    89,    90,
-      91,    87,    88,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,    70,    17,    36,    15,    14,
-      13,     0,    11,     9,    63,    56,    71,    73,    72,    74,
-      76,    77,    79,    80,    81,    82,    84,    85,    16,    35,
-       0,    10,     0,    19,     0,    18,    37,     0,    34,    46,
-      33,    12,    20,     0,     0,    47,    48,     0,     0,    38,
-      40,    42,    41,     0,    21,     0,    50,    43,     0,    39,
-       0,    49,     0,    44,     0,    45
+       0,     0,    37,    38,     0,     0,     2,     0,     6,     8,
+       0,     5,     0,     0,     1,     3,     4,     0,    15,    41,
+       0,   101,    99,   100,     0,    98,   102,    64,    67,    68,
+      65,    66,    63,     0,     0,    58,     7,    57,    61,    59,
+      70,    73,    77,    81,    84,    89,    60,     0,     0,    36,
+      15,     0,     0,    35,    34,    22,    23,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    33,    17,     0,    74,
+      75,    71,    72,    92,    95,    96,    97,    93,    94,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,    76,    17,    42,    15,    14,    13,     0,    11,     9,
+      69,    62,    77,    79,    78,    80,    82,    83,    85,    86,
+      87,    88,    90,    91,    16,    41,     0,    10,     0,    19,
+       0,    18,    43,     0,    40,    52,    39,    12,    20,     0,
+       0,    53,    54,     0,     0,    44,    46,    48,    47,     0,
+      21,     0,    56,    49,     0,    45,     0,    55,     0,    50,
+       0,    51
   };
 
   const short
   Parser::yypgoto_[] =
   {
-    -109,  -109,   135,     4,   -50,    31,  -109,   -45,    59,  -109,
-      96,  -109,  -109,    21,    40,    26,  -108,    41,  -109,  -109,
-    -109,  -109,   -16,   -70,  -109,  -109,  -109,   -17,    42,    11,
-      51,  -109,  -109,  -109
+    -129,  -129,   135,     4,   -50,    23,  -129,   -45,    50,  -129,
+      95,  -129,  -129,    10,    29,    15,  -128,    30,  -129,  -129,
+    -129,  -129,   -16,   -65,  -129,  -129,  -129,   -17,    14,     0,
+      11,  -129,  -129,  -129
   };
 
   const short
   Parser::yydefgoto_[] =
   {
-      -1,     5,     6,   127,     8,    91,    92,    49,    93,   115,
-      61,     9,    10,    35,    51,   128,   129,   130,   120,   131,
-     132,    36,   133,    38,    39,    40,    41,    96,    43,    44,
-      45,    46,    73,    47
+      -1,     5,     6,   133,     8,    97,    98,    49,    99,   121,
+      67,     9,    10,    35,    51,   134,   135,   136,   126,   137,
+     138,    36,   139,    38,    39,    40,    41,   102,    43,    44,
+      45,    46,    79,    47
   };
 
   const unsigned char
   Parser::yytable_[] =
   {
-      42,    37,    90,    95,     7,    87,    12,    42,    62,     7,
-      67,    21,    22,    23,    79,    80,    63,    64,    24,    14,
-     139,    11,   124,   137,    13,   113,    11,   139,    52,   114,
-      85,    16,    25,    26,    27,    28,    29,    30,    31,    32,
-      17,    33,    34,   110,   123,    53,    81,    82,    68,    69,
-      70,    71,    72,    74,    75,    76,    89,    97,    98,    99,
-      65,    66,    90,     1,     2,     3,   117,   138,   118,    54,
-      19,   125,   126,    77,    78,    20,     1,     2,     3,     4,
-      55,    56,    57,    58,    59,    60,     1,     2,     3,     4,
-     102,   103,   104,   105,     2,     3,     4,    18,    83,    84,
-      42,    48,    21,    22,    23,   143,   141,    42,    50,    24,
-     109,    42,   140,   124,   137,    88,    89,    94,    42,   100,
-     101,    42,   142,    25,    26,    27,    28,    29,    30,    31,
-      32,   111,    33,    34,   106,   107,   112,   134,   136,   141,
-      15,   144,   145,   121,    86,   108,    21,    22,    23,   116,
-     135,   119,     0,    24,     1,     2,     3,   124,    21,    22,
-      23,     0,   125,   126,     0,    24,     0,    25,    26,    27,
-      28,    29,    30,    31,    32,     0,    33,    34,    53,    25,
-      26,    27,    28,    29,    30,    31,    32,     0,    33,    34,
-       0,     0,     0,     0,     0,     0,     0,     0,     1,     2,
-       3,     0,    54,     0,     0,     0,   125,   126,     0,     0,
-       1,     0,     0,    55,    56,    57,    58,    59,    60,    21,
-      22,    23,     0,     0,     0,     0,    24,     0,     0,   122,
-      21,    22,    23,     0,     0,     0,     0,    24,     0,     0,
+      42,    37,    96,    53,     7,    93,   145,    42,    68,     7,
+      11,    12,    73,   145,   101,    11,    69,    70,    52,     1,
+       2,     3,     4,    13,    14,    85,    86,    54,   119,   123,
+      91,   124,   120,    71,    72,    53,    17,    55,    56,    57,
+      58,    59,    60,    61,    62,    63,    64,    65,    66,   116,
+      74,    75,    76,    77,    78,   129,    95,    87,    88,    54,
+      80,    81,    82,   103,   104,   105,    83,    84,    96,    55,
+      56,    57,    58,    59,    60,    61,    62,    63,    64,    65,
+      66,     1,     2,     3,     4,   108,   109,   110,   111,     2,
+       3,     4,    89,    90,   149,   147,    16,   106,   107,    18,
+     112,   113,    19,    20,    48,    50,    42,    94,    21,    22,
+      23,   100,   115,    42,   117,    24,   118,    42,   146,   130,
+     143,   140,    95,   142,    42,   147,   150,    42,   148,    25,
+      26,    27,    28,    29,    30,    31,    32,   151,    33,    34,
+      15,   127,   114,    92,   122,   141,   125,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       1,     2,     3,     0,   144,    21,    22,    23,   131,   132,
+       0,     0,    24,     0,     0,     0,   130,   143,     0,     0,
+       0,     0,     0,     0,     0,     0,    25,    26,    27,    28,
+      29,    30,    31,    32,     0,    33,    34,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    21,
+      22,    23,     0,     0,     0,     0,    24,     1,     2,     3,
+     130,    21,    22,    23,     0,   131,   132,     0,    24,     0,
       25,    26,    27,    28,    29,    30,    31,    32,     0,    33,
-      34,    25,    26,    27,    28,    29,    30,    31,    32,     0,
-      33,    34
+      34,     0,    25,    26,    27,    28,    29,    30,    31,    32,
+       0,    33,    34,     0,     0,     0,     0,    21,    22,    23,
+       0,     1,     2,     3,    24,     0,     0,   128,     0,   131,
+     132,     0,     0,     1,     0,     0,     0,     0,    25,    26,
+      27,    28,    29,    30,    31,    32,     0,    33,    34,    21,
+      22,    23,     0,     0,     0,     0,    24,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+      25,    26,    27,    28,    29,    30,    31,    32,     0,    33,
+      34
   };
 
   const short
   Parser::yycheck_[] =
   {
-      17,    17,    52,    73,     0,    50,    33,    24,    24,     5,
-       3,     5,     6,     7,    19,    20,    33,    34,    12,     0,
-     128,     0,    16,    17,    33,    10,     5,   135,    16,    14,
-      47,    18,    26,    27,    28,    29,    30,    31,    32,    33,
-       3,    35,    36,    88,   114,    33,    51,    52,    41,    42,
-      43,    44,    45,     9,    10,    11,    52,    74,    75,    76,
-      35,    36,   112,    57,    58,    59,    16,    61,    18,    57,
-      12,    65,    66,     4,     5,     3,    57,    58,    59,    60,
-      68,    69,    70,    71,    72,    73,    57,    58,    59,    60,
-      79,    80,    81,    82,    58,    59,    60,    33,    53,    54,
-     117,    21,     5,     6,     7,    17,    18,   124,    33,    12,
-      23,   128,   128,    16,    17,    13,   112,    13,   135,    77,
-      78,   138,   138,    26,    27,    28,    29,    30,    31,    32,
-      33,    17,    35,    36,    83,    84,    23,    15,    18,    18,
-       5,    18,    17,   112,    48,    86,     5,     6,     7,   109,
-     124,   110,    -1,    12,    57,    58,    59,    16,     5,     6,
-       7,    -1,    65,    66,    -1,    12,    -1,    26,    27,    28,
-      29,    30,    31,    32,    33,    -1,    35,    36,    33,    26,
-      27,    28,    29,    30,    31,    32,    33,    -1,    35,    36,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,    58,
-      59,    -1,    57,    -1,    -1,    -1,    65,    66,    -1,    -1,
-      57,    -1,    -1,    68,    69,    70,    71,    72,    73,     5,
-       6,     7,    -1,    -1,    -1,    -1,    12,    -1,    -1,    15,
-       5,     6,     7,    -1,    -1,    -1,    -1,    12,    -1,    -1,
+      17,    17,    52,    33,     0,    50,   134,    24,    24,     5,
+       0,    33,     3,   141,    79,     5,    33,    34,    16,    57,
+      58,    59,    60,    33,     0,    19,    20,    57,    10,    16,
+      47,    18,    14,    35,    36,    33,     3,    67,    68,    69,
+      70,    71,    72,    73,    74,    75,    76,    77,    78,    94,
+      41,    42,    43,    44,    45,   120,    52,    51,    52,    57,
+       9,    10,    11,    80,    81,    82,     4,     5,   118,    67,
+      68,    69,    70,    71,    72,    73,    74,    75,    76,    77,
+      78,    57,    58,    59,    60,    85,    86,    87,    88,    58,
+      59,    60,    53,    54,    17,    18,    18,    83,    84,    33,
+      89,    90,    12,     3,    21,    33,   123,    13,     5,     6,
+       7,    13,    23,   130,    17,    12,    23,   134,   134,    16,
+      17,    15,   118,    18,   141,    18,    18,   144,   144,    26,
+      27,    28,    29,    30,    31,    32,    33,    17,    35,    36,
+       5,   118,    92,    48,   115,   130,   116,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      57,    58,    59,    -1,    61,     5,     6,     7,    65,    66,
+      -1,    -1,    12,    -1,    -1,    -1,    16,    17,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    26,    27,    28,    29,
+      30,    31,    32,    33,    -1,    35,    36,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,     5,
+       6,     7,    -1,    -1,    -1,    -1,    12,    57,    58,    59,
+      16,     5,     6,     7,    -1,    65,    66,    -1,    12,    -1,
       26,    27,    28,    29,    30,    31,    32,    33,    -1,    35,
-      36,    26,    27,    28,    29,    30,    31,    32,    33,    -1,
-      35,    36
+      36,    -1,    26,    27,    28,    29,    30,    31,    32,    33,
+      -1,    35,    36,    -1,    -1,    -1,    -1,     5,     6,     7,
+      -1,    57,    58,    59,    12,    -1,    -1,    15,    -1,    65,
+      66,    -1,    -1,    57,    -1,    -1,    -1,    -1,    26,    27,
+      28,    29,    30,    31,    32,    33,    -1,    35,    36,     5,
+       6,     7,    -1,    -1,    -1,    -1,    12,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      26,    27,    28,    29,    30,    31,    32,    33,    -1,    35,
+      36
   };
 
   const signed char
   Parser::yystos_[] =
   {
-       0,    57,    58,    59,    60,    75,    76,    77,    78,    85,
-      86,    87,    33,    33,     0,    76,    18,     3,    33,    12,
+       0,    57,    58,    59,    60,    80,    81,    82,    83,    90,
+      91,    92,    33,    33,     0,    81,    18,     3,    33,    12,
        3,     5,     6,     7,    12,    26,    27,    28,    29,    30,
-      31,    32,    33,    35,    36,    87,    95,    96,    97,    98,
-      99,   100,   101,   102,   103,   104,   105,   107,    21,    81,
-      33,    88,    16,    33,    57,    68,    69,    70,    71,    72,
-      73,    84,    96,   101,   101,    35,    36,     3,    41,    42,
-      43,    44,    45,   106,     9,    10,    11,     4,     5,    19,
-      20,    51,    52,    53,    54,   101,    84,    81,    13,    77,
-      78,    79,    80,    82,    13,    97,   101,   101,   101,   101,
-     102,   102,   103,   103,   103,   103,   104,   104,    82,    23,
-      81,    17,    23,    10,    14,    83,    88,    16,    18,    91,
-      92,    79,    15,    97,    16,    65,    66,    77,    89,    90,
-      91,    93,    94,    96,    15,    89,    18,    17,    61,    90,
-      96,    18,    96,    17,    18,    17
+      31,    32,    33,    35,    36,    92,   100,   101,   102,   103,
+     104,   105,   106,   107,   108,   109,   110,   112,    21,    86,
+      33,    93,    16,    33,    57,    67,    68,    69,    70,    71,
+      72,    73,    74,    75,    76,    77,    78,    89,   101,   106,
+     106,    35,    36,     3,    41,    42,    43,    44,    45,   111,
+       9,    10,    11,     4,     5,    19,    20,    51,    52,    53,
+      54,   106,    89,    86,    13,    82,    83,    84,    85,    87,
+      13,   102,   106,   106,   106,   106,   107,   107,   108,   108,
+     108,   108,   109,   109,    87,    23,    86,    17,    23,    10,
+      14,    88,    93,    16,    18,    96,    97,    84,    15,   102,
+      16,    65,    66,    82,    94,    95,    96,    98,    99,   101,
+      15,    94,    18,    17,    61,    95,   101,    18,   101,    17,
+      18,    17
   };
 
   const signed char
   Parser::yyr1_[] =
   {
-       0,    74,    75,    75,    76,    76,    76,    77,    77,    78,
-      78,    79,    79,    80,    80,    81,    81,    82,    82,    83,
-      83,    83,    84,    84,    84,    84,    84,    84,    84,    84,
-      85,    86,    86,    87,    87,    88,    88,    88,    89,    89,
-      90,    90,    90,    91,    92,    92,    92,    93,    93,    94,
-      94,    95,    96,    96,    97,    98,    98,    99,    99,    99,
-      99,    99,    99,    99,   100,   100,   100,   101,   101,   101,
-     101,   102,   102,   102,   102,   103,   103,   103,   104,   104,
-     104,   104,   104,   105,   105,   105,   106,   106,   106,   106,
-     106,   106,   107,   107,   107,   107,   107
+       0,    79,    80,    80,    81,    81,    81,    82,    82,    83,
+      83,    84,    84,    85,    85,    86,    86,    87,    87,    88,
+      88,    88,    89,    89,    89,    89,    89,    89,    89,    89,
+      89,    89,    89,    89,    89,    89,    90,    91,    91,    92,
+      92,    93,    93,    93,    94,    94,    95,    95,    95,    96,
+      97,    97,    97,    98,    98,    99,    99,   100,   101,   101,
+     102,   103,   103,   104,   104,   104,   104,   104,   104,   104,
+     105,   105,   105,   106,   106,   106,   106,   107,   107,   107,
+     107,   108,   108,   108,   109,   109,   109,   109,   109,   110,
+     110,   110,   111,   111,   111,   111,   111,   111,   112,   112,
+     112,   112,   112
   };
 
   const signed char
@@ -2647,13 +2731,14 @@ namespace yy {
        0,     2,     1,     2,     2,     1,     1,     3,     1,     5,
        6,     1,     3,     1,     1,     0,     3,     0,     2,     1,
        2,     3,     1,     1,     1,     1,     1,     1,     1,     1,
-       3,     1,     1,     7,     7,     0,     2,     4,     1,     2,
-       1,     1,     1,     3,     4,     6,     1,     1,     1,     2,
-       2,     1,     1,     1,     1,     1,     3,     1,     1,     1,
-       1,     1,     1,     3,     1,     2,     2,     1,     2,     2,
-       2,     1,     3,     3,     3,     1,     3,     3,     1,     3,
-       3,     3,     3,     1,     3,     3,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1
+       1,     1,     1,     1,     1,     1,     3,     1,     1,     7,
+       7,     0,     2,     4,     1,     2,     1,     1,     1,     3,
+       4,     6,     1,     1,     1,     2,     2,     1,     1,     1,
+       1,     1,     3,     1,     1,     1,     1,     1,     1,     3,
+       1,     2,     2,     1,     2,     2,     2,     1,     3,     3,
+       3,     1,     3,     3,     1,     3,     3,     3,     3,     1,
+       3,     3,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1
   };
 
 
@@ -2663,16 +2748,17 @@ namespace yy {
   const short
   Parser::yyrline_[] =
   {
-       0,   123,   123,   124,   128,   129,   130,   134,   135,   139,
-     140,   145,   146,   151,   152,   157,   158,   163,   164,   169,
-     170,   171,   175,   176,   177,   178,   179,   180,   181,   182,
-     186,   190,   190,   194,   195,   200,   201,   202,   208,   209,
-     213,   214,   215,   219,   223,   224,   225,   229,   229,   233,
-     234,   238,   244,   245,   249,   254,   255,   264,   265,   266,
-     267,   268,   269,   270,   274,   275,   276,   280,   281,   282,
-     283,   288,   289,   290,   291,   295,   296,   297,   301,   302,
-     303,   304,   305,   309,   310,   311,   316,   317,   318,   319,
-     320,   321,   325,   326,   327,   328,   329
+       0,   125,   125,   126,   130,   131,   132,   136,   137,   141,
+     142,   147,   148,   153,   154,   159,   160,   165,   166,   171,
+     172,   173,   177,   178,   179,   180,   181,   182,   183,   184,
+     185,   186,   187,   188,   189,   190,   194,   198,   198,   202,
+     203,   208,   209,   210,   216,   217,   221,   222,   223,   227,
+     231,   232,   233,   237,   237,   241,   242,   246,   252,   253,
+     257,   262,   263,   272,   273,   274,   275,   276,   277,   278,
+     282,   283,   284,   288,   289,   290,   291,   296,   297,   298,
+     299,   303,   304,   305,   309,   310,   311,   312,   313,   317,
+     318,   319,   324,   325,   326,   327,   328,   329,   333,   334,
+     335,   336,   337
   };
 
   void
@@ -2705,9 +2791,9 @@ namespace yy {
 
 #line 6 "/home/espresso/projects/tape/src/parser.yy"
 } // yy
-#line 2709 "../src/../src/Parser/Parser.cc"
+#line 2795 "../src/../src/Parser/Parser.cc"
 
-#line 332 "/home/espresso/projects/tape/src/parser.yy"
+#line 340 "/home/espresso/projects/tape/src/parser.yy"
  
 
 void yy::Parser::error(const location_type &loc, const std::string &msg) {

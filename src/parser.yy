@@ -14,6 +14,7 @@
     #include <vector>
 
     struct Driver;
+    class ScopeTree;
     class Expr;
     class Stmt;
     class StmtList;
@@ -24,6 +25,7 @@
 
 %param {Driver *driver}
 %parse-param {StmtList *fstmt_list}
+%parse-param {ScopeTree *scope}
 %locations 
 %define parse.trace
 %define parse.error detailed
@@ -32,7 +34,7 @@
 %code {
     #include "Driver.hh"
     #include "../Ast/Ast.hh"
-    #include "../Ast/Type.hh"
+    #include "../Ast/SymbolRec.hh"
 
 }
 
@@ -86,11 +88,11 @@
 %token FOR WHILE MATCH BREAK CONTINUE
 
 // types
-%token  TYPE_NAME 
 %token I8 I16 I32 I64 F32 F64 
+%token U_I8 U_I16 U_I32 U_I64 U_F32 U_F64
 
 // nonterms
-%nterm <int> assign_op unary_op type
+%nterm <int> assign_op unary_op type declaration_type
 %nterm <bool> declaration_hypothesis // is mutable
 %nterm <Expr*> atomic_expression
 %nterm <Expr*> expression multiplicative_expression additive_expression equality_expression relational_expression
@@ -107,7 +109,7 @@
 %nonassoc ELSE
 
 %code {
-typedef yy::Parser::symbol_kind_type skind_type;
+    typedef yy::Parser::symbol_kind_type skind_type;
 }
 
 %start program
@@ -154,8 +156,8 @@ type_declaration_member:
 
 // TODO
 declaration_type:
-    %empty
-|   ":" type type_mods
+    %empty              { $$ = Type::AUTO; }
+|   ":" type type_mods  { $$ = $2; }
     ;
 
 // TODO
@@ -178,6 +180,12 @@ type:
 |   I64 { $$ = Type::I64;   }
 |   F32 { $$ = Type::F32;   }
 |   F64 { $$ = Type::F64;   }
+|   U_I8  { $$ = Type::uI8;    }
+|   U_I16 { $$ = Type::uI16;   }
+|   U_I32 { $$ = Type::uI32;   }
+|   U_I64 { $$ = Type::uI64;   }
+|   U_F32 { $$ = Type::uF32;   }
+|   U_F64 { $$ = Type::uF64;   }
 |   FN  { $$ = Type::FN;    }
 |   ID  { $$ = Type::DEF;   }
     ;
@@ -226,7 +234,7 @@ fn_statement_box:
     ;
 
 flow_statement:
-    BREAK { $$ = new ActionStmt; } | CONTINUE { $$ = new ActionStmt; }
+    BREAK { $$ = new Break; } | CONTINUE { $$ = new Continue; }
     ;
 
 expression_statement:
@@ -322,11 +330,11 @@ assign_op:
     ;
 
 unary_op:
-    "!" { $$ = skind_type::S_BANG;    }
-|   "@" { $$ = skind_type::S_AT;      }
-|   "&" { $$ = skind_type::S_AMP;     }
-|   "-" { $$ = skind_type::S_MINUS;   }
-|   "~" { $$ = skind_type::S_TILDE;   }
+    "!"     { $$ = skind_type::S_BANG;    }
+|   "@"     { $$ = skind_type::S_AT;      }
+|   "&"     { $$ = skind_type::S_AMP;     }
+|   "-"     { $$ = skind_type::S_MINUS;   }
+|   "~"     { $$ = skind_type::S_TILDE;   }
     ;
 
 %% 

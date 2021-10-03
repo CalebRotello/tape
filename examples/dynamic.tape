@@ -1,18 +1,18 @@
 
 
-fn main(argc: i32, argv: i8[]*): i32 {
+fn main(argc: i32, argv: i8*[]): i32 {
    
-    if (argc != 2) return 0;
+    if (argc != 2) 
+        return 0;
 
-//    char BUFF[255];
-    char[255] BUFF;
-    i32 in;
-    i32 i = 0;
-    FILE* fp = fopen(argv[1],"r");    // read in file
+    var BUFF: char[255];
+    var in: i32;
+    var i: i32 = 0;
+    var fp: FILE* = fopen(argv[1],"r");    // read in file
 
     // get n
     fscanf(fp,"%d",&in);
-    i32 n = in;
+    let n = in;
     // get k
     fscanf(fp,"%d",&in);
     i32 k = in;
