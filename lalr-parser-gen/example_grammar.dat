@@ -1,0 +1,11 @@
+Start   = Add 
+
+Add     = Add plus Factor 
+Add     = Factor
+
+Factor  = Factor star Term
+Factor  = Term
+
+Term    = lparen Add rparen
+Term    = name
+Term    = int

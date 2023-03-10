@@ -1,0 +1,12 @@
+
+Start   = Add 
+
+Add     = Add plus Factor 
+Add     = Add dash Factor 
+Add     = Factor
+
+Factor  = Factor star Term
+Factor  = Factor fslash Term
+Factor  = Term
+
+Term    = integerliteral
